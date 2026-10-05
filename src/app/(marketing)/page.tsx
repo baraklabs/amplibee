@@ -140,9 +140,9 @@ export default function HomePage() {
               <div className="overflow-hidden rounded-lg border border-border">
                 <Image
                   src="/hero-workflow.png"
-                  alt="One post fans out to X, LinkedIn, Medium, and Substack, then rolls up into more reach"
+                  alt="One post fans out to X, LinkedIn, Facebook, and YouTube, then rolls up into analytics"
                   width={1355}
-                  height={1161}
+                  height={1160}
                   priority
                   className="h-auto w-full"
                 />

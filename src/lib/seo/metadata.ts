@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import { siteConfig } from "./config";
 
+/** Branded static card used for the home page / site-wide default. */
+export const DEFAULT_OG_IMAGE = "/og-default.jpg";
+
 interface PageMetadataInput {
   title: string;
   description: string;
@@ -40,7 +43,9 @@ export function pageMetadata({
   if (eyebrow) ogImageParams.set("eyebrow", eyebrow);
   const ogImage = image
     ? new URL(image, siteConfig.url).toString()
-    : new URL(`/api/og?${ogImageParams.toString()}`, siteConfig.url).toString();
+    : path === "/"
+      ? new URL(DEFAULT_OG_IMAGE, siteConfig.url).toString()
+      : new URL(`/api/og?${ogImageParams.toString()}`, siteConfig.url).toString();
   const fullTitle = path === "/" ? title : `${title} · ${siteConfig.name}`;
 
   return {
