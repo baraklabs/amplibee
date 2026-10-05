@@ -1,37 +1,42 @@
 export const faqs = [
   {
-    question: "What is Amplibee?",
+    question: "What is Oyekool?",
     answer:
-      "Amplibee connects product owners — SaaS founders, indie hackers, open-source maintainers — with real influencers and creators who authentically promote their product, app, or GitHub repo on X, LinkedIn, YouTube, and Instagram, to their own genuine audience.",
+      "Oyekool is a social media scheduling and cross-posting tool. Connect your X, LinkedIn, YouTube, Instagram, and Facebook accounts, write a post once, and publish or schedule it everywhere from one composer — with more platforms coming soon.",
   },
   {
-    question: "Is this a service for buying GitHub stars, followers, or upvotes?",
+    question: "Which platforms does Oyekool support?",
     answer:
-      "No, explicitly not. Amplibee doesn't sell stars, followers, or engagement directly. It matches real influencers with real audiences to campaigns that fit their niche — they post genuinely, in their own voice, to people who actually follow them.",
+      "X, LinkedIn, YouTube, Instagram, and Facebook today. TikTok, Threads, Pinterest, and Mastodon are on the public roadmap.",
   },
   {
-    question: "How does influencer matching work?",
+    question: "How is Oyekool different from Postiz, Buffer, or Hootsuite?",
     answer:
-      "You brief a campaign with what you're promoting and your goal. Influencers in the network browse or get matched to campaigns by niche and channel, and choose which ones to join based on genuine fit with their audience.",
+      "The core job is the same — one composer, many platforms, a shared calendar. Oyekool keeps that simple and adds AI drafting from a saved brand profile, per-post analytics across platforms, and team approvals in the same flow.",
   },
   {
-    question: "How does the AI campaign brief work?",
+    question: "Can I schedule posts in advance?",
     answer:
-      "Describe your product and goal, and Amplibee's AI drafts suggested talking points and captions per channel from your saved product profile. Influencers adapt those into their own voice before posting — it's a starting point, never a script to read verbatim.",
+      "Yes. Draft a post in the composer, pick which connected accounts it goes to, and set a time on the content calendar — it publishes automatically, or you can send it immediately instead.",
+  },
+  {
+    question: "Does Oyekool write my posts for me?",
+    answer:
+      "AI can draft a starting point per platform from your saved brand profile — a thread angle for X, a longer post for LinkedIn, a caption for Instagram. You can edit every draft before it goes out, or write it yourself and skip generation entirely.",
   },
   {
     question: "Can I use my own OpenAI or Anthropic API key?",
     answer:
-      "Yes. Amplibee supports Bring Your Own Key for OpenAI, Anthropic, and OpenRouter. Your key is encrypted at rest and never sent to the browser — AI generation is billed directly by your provider.",
+      "Yes. Oyekool supports Bring Your Own Key for OpenAI, Anthropic, and OpenRouter. Your key is encrypted at rest and never sent to the browser — AI generation is billed directly by your provider.",
   },
   {
-    question: "How do I know a campaign's results are genuine?",
+    question: "Can more than one person on my team manage the same accounts?",
     answer:
-      "Every influencer gets a unique tracked link, and every submitted deliverable — the post, video, or story they publish — is reviewed before it counts toward your campaign. Nothing here runs on bots or purchased engagement.",
+      "Yes — invite teammates to a shared workspace, and optionally require review and approval before a teammate's draft can publish or schedule.",
   },
   {
-    question: "What can I run a campaign for?",
+    question: "Can I see how a post performed across different platforms?",
     answer:
-      "A SaaS product, a mobile app, a GitHub or open-source repo, a Product Hunt launch, or a blog post — with a goal of GitHub stars, sign-ups, downloads, awareness, or traffic.",
+      "Yes — each cross-posted update tracks performance per platform it went out to, so you can compare how the same post did on X versus LinkedIn versus Instagram in one dashboard.",
   },
 ];

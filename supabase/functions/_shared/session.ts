@@ -29,7 +29,7 @@ export interface DeviceInfo {
   ipAddress: string | null;
 }
 
-/** Amplibee only has a web client today, but the shape matches doculigent's so the same
+/** Oyekool only has a web client today, but the shape matches doculigent's so the same
  *  user_sessions schema can carry a future desktop/mobile client without another migration. */
 export function deviceInfoFrom(req: Request): DeviceInfo {
   const platform = req.headers.get("x-platform");

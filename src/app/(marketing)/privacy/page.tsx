@@ -6,30 +6,30 @@ import { pageMetadata } from "@/lib/seo/metadata";
 export const metadata: Metadata = pageMetadata({
   title: "Privacy Policy",
   description:
-    "How Amplibee collects, uses, and protects your data, including campaign and network profile data, AI provider keys, and cookies.",
+    "How Oyekool collects, uses, and protects your data, including connected-account tokens, post content, AI provider keys, and cookies.",
   path: "/privacy",
 });
 
 const sections = [
   {
     title: "What we collect",
-    body: "Account details (name, email), campaign data (product profiles, campaign briefs, goals), network profile data if you're an influencer or creator (display name, niches, channels, audience size, bio), deliverable links submitted as proof of a post, and usage data needed to operate the product.",
+    body: "Account details (name, email), brand profile data (voice, audience, facts you save), post content and media you draft or schedule, connected-account tokens for the platforms you link, per-post performance data pulled back from those platforms, and usage data needed to operate the product.",
   },
   {
     title: "AI provider API keys",
-    body: "Any AI provider API key you add under Bring Your Own Key is encrypted before being stored and is only decrypted server-side at the moment it's needed to generate a campaign brief on your behalf. It is never sent to your browser after you save it — settings only ever show a masked version.",
+    body: "Any AI provider API key you add under Bring Your Own Key is encrypted before being stored and is only decrypted server-side at the moment it's needed to draft a post on your behalf. It is never sent to your browser after you save it — settings only ever show a masked version.",
   },
   {
     title: "How we use your data",
-    body: "To operate the product: matching campaigns with influencers whose network profile fits, generating AI campaign brief drafts using the provider you configure, reviewing submitted deliverables, and showing you which tracked links drove results. We do not sell your data.",
+    body: "To operate the product: publishing or scheduling your posts to the platforms you connect, generating AI post drafts using the provider you configure, and showing you how each post performed per platform. We do not sell your data.",
   },
   {
     title: "Third-party platforms",
-    body: "Amplibee doesn't connect to or post on your behalf on X, LinkedIn, YouTube, or Instagram. Influencers post independently on those platforms and submit a link as proof; each platform's own privacy policy applies to what's posted there. We only store the link and metadata about the deliverable, not the platform account itself.",
+    body: "When you connect an account, Oyekool stores an access token so it can publish or schedule posts to that platform on your behalf. Each platform's own terms and privacy policy apply to what happens there. You can disconnect an account at any time, which revokes our access.",
   },
   {
     title: "Data retention",
-    body: "We retain your content and account data as long as your account is active. You can delete individual campaigns, your product profile, or your network profile at any time, or request full account deletion from Settings → Security.",
+    body: "We retain your content and account data as long as your account is active. You can delete individual posts, disconnect an account, or remove a brand profile at any time, or request full account deletion from Settings → Security.",
   },
   {
     title: "Contact",
@@ -47,13 +47,13 @@ const cookieCategories = [
   {
     name: "Analytics",
     detail:
-      "Would help us understand usage. Amplibee doesn't currently load any analytics scripts, so choosing to allow this has no effect yet — your preference is saved for if that changes.",
+      "Would help us understand usage. Oyekool doesn't currently load any analytics scripts, so choosing to allow this has no effect yet — your preference is saved for if that changes.",
     canDisable: true,
   },
   {
     name: "Marketing",
     detail:
-      "Would measure ads and campaigns. Amplibee doesn't currently load any marketing or advertising scripts, so choosing to allow this has no effect yet — your preference is saved for if that changes.",
+      "Would measure ads and campaigns. Oyekool doesn't currently load any marketing or advertising scripts, so choosing to allow this has no effect yet — your preference is saved for if that changes.",
     canDisable: true,
   },
 ];

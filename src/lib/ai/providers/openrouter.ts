@@ -24,8 +24,8 @@ export const openrouterProvider: AIProvider = {
         headers: {
           Authorization: `Bearer ${apiKey}`,
           "Content-Type": "application/json",
-          "HTTP-Referer": "https://amplibee.com",
-          "X-Title": "Amplibee",
+          "HTTP-Referer": "https://oyekool.com",
+          "X-Title": "Oyekool",
         },
         body: JSON.stringify({
           model,
@@ -52,8 +52,8 @@ export const openrouterProvider: AIProvider = {
       headers: {
         Authorization: `Bearer ${apiKey}`,
         "Content-Type": "application/json",
-        "HTTP-Referer": "https://amplibee.com",
-        "X-Title": "Amplibee",
+        "HTTP-Referer": "https://oyekool.com",
+        "X-Title": "Oyekool",
       },
       body: JSON.stringify({
         model,

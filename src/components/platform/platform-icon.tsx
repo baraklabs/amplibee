@@ -60,6 +60,15 @@ export function PlatformIcon({ platform, className }: PlatformIconProps) {
         <circle cx="15.7" cy="8.3" r="0.9" fill="#ffffff" />
       </>
     ),
+    facebook: (
+      <>
+        <rect width="24" height="24" rx="6" fill="#1877F2" />
+        <path
+          d="M13.4 19v-5.6h1.88l.36-2.18h-2.24V9.73c0-.6.29-1.18 1.24-1.18h.96V6.69s-.87-.15-1.7-.15c-1.74 0-2.88 1.05-2.88 2.97v1.71H9.1v2.18h1.92V19Z"
+          fill="#ffffff"
+        />
+      </>
+    ),
   };
 
   return (

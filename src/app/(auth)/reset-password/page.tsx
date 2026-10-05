@@ -4,7 +4,7 @@ import { pageMetadata } from "@/lib/seo/metadata";
 
 export const metadata: Metadata = pageMetadata({
   title: "Reset password",
-  description: "Choose a new password for your Amplibee account.",
+  description: "Choose a new password for your Oyekool account.",
   path: "/reset-password",
   noIndex: true,
 });

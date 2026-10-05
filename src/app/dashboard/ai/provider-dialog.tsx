@@ -56,7 +56,7 @@ export function ProviderDialog({
       open={open}
       onClose={onClose}
       title={title}
-      description="Bring your own key. Amplibee never marks up AI usage."
+      description="Bring your own key. Oyekool never marks up AI usage."
     >
       {/* Dialog only mounts this while `open` is true, so it gets a fresh, reset instance
           each time it opens — but stays mounted (preserving typed values, including the API

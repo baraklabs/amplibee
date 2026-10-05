@@ -67,7 +67,7 @@ export function CookieSettingsModal({
       open={open}
       onClose={() => onOpenChange(false)}
       title="Cookie settings"
-      description="Choose which cookies Amplibee may use. You can change this anytime from the footer."
+      description="Choose which cookies Oyekool may use. You can change this anytime from the footer."
     >
       <div className="flex flex-col divide-y divide-border">
         <div className="flex items-start justify-between gap-4 py-4 first:pt-0">

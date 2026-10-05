@@ -8,7 +8,7 @@ import { siteConfig } from "@/lib/seo/config";
 
 export const metadata: Metadata = pageMetadata({
   title: "Contact",
-  description: "Get in touch with the Amplibee team — questions, feedback, or partnership inquiries.",
+  description: "Get in touch with the Oyekool team — questions, feedback, or partnership inquiries.",
   path: "/contact",
 });
 
@@ -19,7 +19,7 @@ export default function ContactPage() {
         data={[
           webPageJsonLd({
             title: "Contact",
-            description: "Get in touch with the Amplibee team.",
+            description: "Get in touch with the Oyekool team.",
             path: "/contact",
             type: "ContactPage",
           }),
@@ -36,7 +36,7 @@ export default function ContactPage() {
             Let&apos;s talk.
           </h1>
           <p className="mt-4 text-[15px] leading-relaxed text-muted-foreground">
-            Questions about a plan or briefing your first campaign — send it over.
+            Questions about a plan or connecting your first account — send it over.
           </p>
           <div className="mt-6 flex items-center gap-2.5 text-sm text-muted-foreground">
             <Mail className="size-4" />

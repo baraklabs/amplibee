@@ -8,7 +8,6 @@ export const footerNav = {
   resources1: [
     { label: "Pricing", href: "/pricing" },
     { label: "Channels", href: "/channels" },
-    { label: "Network", href: "/network" },
   ],
   resources2: [
     { label: "Blog", href: "/blog" },

@@ -1,7 +1,7 @@
 /**
  * Server-only wrappers around the supabase/functions/auth-* edge functions. This is the
  * server-rendered counterpart to doculigent-website's src/lib/auth.ts: same endpoints and
- * response shapes, but called from Server Actions (never the browser) since Amplibee's
+ * response shapes, but called from Server Actions (never the browser) since Oyekool's
  * dashboard is server-rendered and gated by src/proxy.ts, not a client-side SPA reading
  * tokens from localStorage. Callers are responsible for turning the returned tokens into
  * cookies — see src/lib/auth/session.ts.

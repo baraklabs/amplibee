@@ -3,8 +3,8 @@
 // Same name and value as the frontend's NEXT_PUBLIC_SITE_URL in env/{dev,prod}.env, so the
 // site and its emails can't drift onto different origins. Set it per environment:
 //   local  — NEXT_PUBLIC_SITE_URL=http://localhost:3000 in supabase/functions/.env
-//   remote — npx supabase secrets set NEXT_PUBLIC_SITE_URL=https://amplibee.com
-const BASE_URL = (Deno.env.get("NEXT_PUBLIC_SITE_URL") ?? "https://amplibee.com").replace(
+//   remote — npx supabase secrets set NEXT_PUBLIC_SITE_URL=https://oyekool.com
+const BASE_URL = (Deno.env.get("NEXT_PUBLIC_SITE_URL") ?? "https://oyekool.com").replace(
   /\/+$/,
   "",
 );

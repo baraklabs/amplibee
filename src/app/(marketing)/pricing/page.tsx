@@ -10,7 +10,7 @@ import { PricingPlans, type PricingPlan } from "./pricing-plans";
 export const metadata: Metadata = pageMetadata({
   title: "Pricing",
   description:
-    "Free to join with 25 contact views a month. Plus gets you 10 active campaigns and 250 contact views for $49/month. Business gets 100 active campaigns and 1,000 contact views for $249/month.",
+    "Free with 3 connected accounts and 10 scheduled posts a month. Plus unlocks 10 accounts, unlimited posts, and AI drafting for $15/month. Business gets unlimited accounts, seats, and approvals for $49/month.",
   path: "/pricing",
 });
 
@@ -20,13 +20,12 @@ const plans: PricingPlan[] = [
     monthly: 0,
     yearlyMonthly: null,
     yearlyBilled: null,
-    description: "Join the marketplace and see who's out there.",
+    description: "Try cross-posting with your first few accounts.",
     features: [
-      "Product and influencer profiles",
-      "Browse and apply in the network",
-      "1 active campaign",
-      "25 contact views / month",
-      "Manual deliverable review",
+      "3 connected accounts",
+      "10 scheduled posts / month",
+      "Content calendar",
+      "1 user",
     ],
     cta: "Get started for free",
     href: "/login?mode=signup",
@@ -34,17 +33,17 @@ const plans: PricingPlan[] = [
   },
   {
     name: "Plus",
-    monthly: 49,
-    yearlyMonthly: 41,
-    yearlyBilled: 490,
-    description: "For founders running campaigns every week.",
+    monthly: 15,
+    yearlyMonthly: 13,
+    yearlyBilled: 150,
+    description: "For creators and small teams posting every week.",
     features: [
       "Everything in Free",
-      "10 active campaigns",
-      "250 contact views / month",
-      "AI campaign brief generation",
-      "Priority network placement",
-      "Tracked links on every deliverable",
+      "10 connected accounts",
+      "Unlimited scheduled posts",
+      "AI post drafting from your brand profile",
+      "Post analytics across every platform",
+      "3 team seats",
     ],
     cta: "Get started for free",
     href: "/login?mode=signup",
@@ -52,17 +51,17 @@ const plans: PricingPlan[] = [
   },
   {
     name: "Business",
-    monthly: 249,
-    yearlyMonthly: 208,
-    yearlyBilled: 2490,
-    description: "For agencies and teams running multiple brands.",
+    monthly: 49,
+    yearlyMonthly: 41,
+    yearlyBilled: 490,
+    description: "For agencies and teams managing multiple brands.",
     features: [
       "Everything in Plus",
-      "100 active campaigns",
-      "1,000 contact views / month",
-      "Multiple products and brands",
-      "Team support with shared workspace access",
-      "Dedicated support",
+      "Unlimited connected accounts",
+      "Unlimited team seats",
+      "Team approval workflows",
+      "Multiple brand profiles",
+      "Priority support",
     ],
     cta: "Get started for free",
     href: "/login?mode=signup",
@@ -78,28 +77,28 @@ const plansForJsonLd = plans.map((plan) => ({
 
 const faqs = [
   {
-    question: "What's a contact view?",
+    question: "What counts as a connected account?",
     answer:
-      "It's what's spent when you open an influencer's direct contact details to reach out yourself. Browsing profiles, matching by niche, and running campaigns through the network don't use any — contact views only apply when you go around the campaign flow to contact someone directly. Your allowance refreshes every month.",
+      "Each individual account you link — your personal X account and a company Page both count separately, even on the same platform. Disconnecting an account frees up the slot immediately.",
   },
   {
-    question: "What counts as an active campaign?",
+    question: "What happens if I hit my scheduled-post limit on Free?",
     answer:
-      "Any campaign with status set to active and visible to the network. Draft, paused, and completed campaigns don't count against your plan's limit — only the ones currently open for influencers to discover and join.",
+      "You can still publish immediately, but new posts won't schedule for later until the next month's allowance refreshes or you upgrade — nothing already scheduled gets cancelled.",
   },
   {
     question: "Can I change plans later?",
-    answer: "Yes, upgrade or downgrade at any time from Settings → Billing. Changes apply immediately, including your new campaign and contact-view limits.",
+    answer: "Yes, upgrade or downgrade at any time from Settings → Billing. Changes apply immediately, including your new account and scheduled-post limits.",
   },
   {
-    question: "Does a higher plan mean more fake engagement or faster stars?",
+    question: "Do all platforms count the same toward my connected-account limit?",
     answer:
-      "No. Every plan runs on the same rule: real influencers, real audiences, reviewed deliverables. Paid plans unlock more active campaigns, more contact views, and better placement in the network — never shortcuts around genuine engagement.",
+      "Yes — X, LinkedIn, YouTube, Instagram, and Facebook accounts all count the same way against your plan's connected-account limit, regardless of platform.",
   },
   {
-    question: "Is there a limit on how many influencers can join a campaign?",
+    question: "Is there a limit on team seats on the Free plan?",
     answer:
-      "No artificial cap on influencers per campaign. Plan limits are on how many active campaigns you can run at once, not on how much genuine reach a single campaign can attract.",
+      "Free is single-user. Plus includes 3 team seats, and Business includes unlimited seats with team approval workflows for shared accounts.",
   },
 ];
 
@@ -120,10 +119,10 @@ export default function PricingPage() {
       <section className="border-b border-border">
         <div className="mx-auto max-w-6xl px-6 pb-6 pt-10 text-center sm:pb-8 sm:pt-12">
           <h1 className="font-heading mx-auto max-w-xl text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
-            Simple plans that scale with your campaigns.
+            Simple plans that scale with how much you post.
           </h1>
           <p className="mx-auto mt-4 max-w-lg text-[15px] text-muted-foreground">
-            Every plan includes a monthly allowance of active campaigns and contact views — no
+            Every plan includes a connected-account limit and a scheduled-post allowance — no
             per-post fees, no surprise charges.
           </p>
         </div>
@@ -142,18 +141,17 @@ export default function PricingPage() {
           </h2>
           <div className="mt-8 grid gap-4 sm:grid-cols-2">
             <div className="rounded-lg border border-border bg-card p-5">
-              <p className="font-heading text-[15px] font-semibold text-foreground">Active campaigns</p>
+              <p className="font-heading text-[15px] font-semibold text-foreground">Connected accounts</p>
               <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-                How many campaigns you can have live and visible to the network at once. Draft,
-                paused, and completed campaigns never count against the limit.
+                How many social accounts you can link at once, across X, LinkedIn, YouTube,
+                Instagram, and Facebook combined. Disconnect one any time to free up the slot.
               </p>
             </div>
             <div className="rounded-lg border border-border bg-card p-5">
-              <p className="font-heading text-[15px] font-semibold text-foreground">Contact views</p>
+              <p className="font-heading text-[15px] font-semibold text-foreground">Scheduled posts</p>
               <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-                A monthly allowance for opening an influencer&apos;s direct contact details.
-                Browsing the network and running campaigns through the normal flow never spends
-                one.
+                A monthly allowance for posts scheduled ahead of time on the content calendar.
+                Publishing immediately instead of scheduling never spends one.
               </p>
             </div>
           </div>

@@ -27,7 +27,7 @@ export function Logo({
           isLarge ? "text-[28px] font-bold" : "text-[15px]",
         )}
       >
-        Amplibee
+        Oyekool
       </span>
     </Link>
   );

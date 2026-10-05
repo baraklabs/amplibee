@@ -4,9 +4,9 @@ import { defaultContentProfile, type ContentProfile } from "@/lib/ai/transform";
 import type { AIProviderIdDb } from "@/types/database";
 
 /**
- * Shared BYOK-provider and content-profile loading used by both the campaign
- * creation flow (`dashboard/create`) and campaign-brief regeneration
- * (`dashboard/campaigns`) — kept in one place instead of duplicated per route.
+ * Shared BYOK-provider and brand-profile loading used by the composer
+ * (`dashboard/create`) and anywhere else content gets generated — kept in
+ * one place instead of duplicated per route.
  */
 
 export interface ResolvedAIProvider {

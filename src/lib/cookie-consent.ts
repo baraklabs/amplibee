@@ -1,6 +1,6 @@
-export const STORAGE_KEY = "amplibee-cookie-consent";
-const OPEN_SETTINGS_EVENT = "amplibee:open-cookie-settings";
-const CONSENT_CHANGED_EVENT = "amplibee:consent-changed";
+export const STORAGE_KEY = "oyekool-cookie-consent";
+const OPEN_SETTINGS_EVENT = "oyekool:open-cookie-settings";
+const CONSENT_CHANGED_EVENT = "oyekool:consent-changed";
 
 export interface CookieConsent {
   necessary: true;

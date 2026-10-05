@@ -19,7 +19,7 @@ export function PostSidebar({ videoId }: { videoId?: string }) {
           Want your next launch to go further?
         </h3>
         <p className="mt-2.5 text-sm leading-relaxed text-muted-foreground">
-          Amplibee turns one post into platform-native content, builds backlinks, and helps you
+          Oyekool turns one post into platform-native content, builds backlinks, and helps you
           reach more people through the network.
         </p>
         <ul className="mt-4 flex flex-col gap-2.5">
@@ -42,7 +42,7 @@ export function PostSidebar({ videoId }: { videoId?: string }) {
         <div className="relative aspect-video overflow-hidden rounded-lg border border-border shadow-sm">
           <iframe
             src={`https://www.youtube.com/embed/${videoId}`}
-            title="Amplibee video"
+            title="Oyekool video"
             className="absolute inset-0 size-full"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowFullScreen

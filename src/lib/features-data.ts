@@ -15,197 +15,192 @@ export interface FeatureItem {
 
 export const FEATURE_LIST: FeatureItem[] = [
   {
-    slug: "campaign-brief-generator",
-    title: "Campaign brief generator",
+    slug: "cross-posting-composer",
+    title: "Cross-posting composer",
     description:
-      "Describe your product, app, or GitHub repo and the goal you're chasing. Amplibee drafts suggested talking points and captions per channel that a real influencer can adapt in their own voice — never a script.",
+      "Write a post once and Oyekool adapts it for X, LinkedIn, YouTube, Instagram, and Facebook — the right length, format, and media per platform — then publish everywhere at once or schedule it for later.",
     color: "#4f46e5",
-    thumbnail: "/images/features/campaign-brief-generator/one-brief-every-channel-og.png",
+    thumbnail: "/images/features/cross-posting-composer/write-once-post-everywhere-og.png",
     body: [
-      "A campaign starts with a brief: what you're promoting (a SaaS product, a mobile app, a GitHub repo, a Product Hunt launch, or a blog post) and what you want out of it — GitHub stars, sign-ups, downloads, awareness, or traffic. The generator takes that and drafts a starting point for each channel: a thread-shaped angle for X, a story-with-context angle for LinkedIn, a talking-point outline for a YouTube mention, a visual-first caption for Instagram.",
-      "None of this is meant to be posted as-is. It's a set of talking points and angles an influencer reads, adapts into their own voice, and records or writes themselves — see [why fake engagement kills your launch and what to do instead](/blog/why-fake-engagement-kills-your-launch-and-what-to-do-instead) for why that distinction matters. A brief that reads like a corporate ad gets ignored by the network; one that gives a creator something true and specific to react to gets picked up.",
-      "The brief pulls from your [product profile](/features/product-profile) — the same voice, audience, and product facts every time — so you're not re-explaining what you're promoting on every new campaign. Every draft is fully editable before it's published to the network.",
+      "The composer is one editor with a preview per platform: a thread-shaped draft for X, a longer post with context for LinkedIn, a caption with hashtags for Instagram, a title and description for a YouTube video or short, and a post for your Facebook Page. Edit the shared draft once, then fine-tune each platform's version without starting over.",
+      "Attach images or video once and Oyekool handles the per-platform differences — aspect ratio, caption length limits, and link handling — so you're not manually resizing or rewriting for each network. Pick which connected accounts a post goes out to, right from the composer.",
+      "Publish immediately, or hand it to the [content calendar](/features/content-calendar) to go out at the time you actually want. Either way, it's the same draft — nothing gets rewritten behind your back between scheduling and publishing.",
     ],
     faq: [
       {
-        question: "Does Amplibee write the influencer's post for them?",
+        question: "Do I have to write a separate post for every platform?",
         answer:
-          "No. The generator drafts suggested talking points and captions per channel as a starting point. Influencers adapt them into their own words and voice before posting — a script read verbatim isn't genuine, and genuine is the entire point.",
+          "No. Write one draft in the composer and Oyekool adapts it per platform — you can still edit each platform's version individually before it goes out.",
       },
       {
-        question: "What can I brief a campaign around?",
+        question: "Which platforms can I post to?",
         answer:
-          "A SaaS product, a mobile app, a GitHub or open-source repo, a Product Hunt launch, or a blog post — plus a goal: GitHub stars, sign-ups, downloads, awareness, or traffic. That goal shapes the angle the generator suggests.",
+          "X, LinkedIn, YouTube, Instagram, and Facebook today, with more platforms on the way. Pick any combination of your connected accounts per post.",
       },
       {
-        question: "Do I need to write the brief myself?",
+        question: "Can I post images and video, not just text?",
         answer:
-          "No — describe your product and goal and the AI drafts the first version per channel. You can also write it entirely yourself if you'd rather skip generation altogether.",
+          "Yes — attach media once in the composer and it carries across every platform you post to, adapted to each one's format.",
       },
       {
-        question: "Can I edit the generated talking points before a campaign goes live?",
+        question: "What happens if I only want a post to go to some platforms?",
         answer:
-          "Yes. Every generated brief is an editable draft — nothing goes out to the network until you've reviewed and, if needed, changed it.",
+          "Select only the connected accounts you want for that specific post — every post can target a different combination of platforms.",
       },
     ],
   },
   {
-    slug: "product-profile",
-    title: "Product profile",
+    slug: "brand-profile",
+    title: "Brand profile",
     description:
-      "Save your product's voice, audience, and key facts once. Every campaign brief you generate afterward reuses it, instead of you re-explaining what you're promoting each time.",
+      "Save your brand's voice, audience, and key facts once. Every AI-drafted post reuses it, instead of you re-explaining who you are and what you post about every time.",
     color: "#0284c7",
-    thumbnail: "/images/features/product-profile/a-profile-every-brief-reuses-og.png",
+    thumbnail: "/images/features/brand-profile/a-profile-every-draft-reuses-og.png",
     body: [
-      "A product profile is a saved description of what you're promoting: the product or repo, who it's for, what makes it worth a genuine mention, tone, and any facts or numbers that should stay consistent across campaigns — star count, user count, pricing, launch date.",
-      "Set it up once under your product's settings, then every campaign brief the AI drafts pulls from it automatically. You can run a GitHub-stars campaign for a repo and a sign-ups campaign for the SaaS product it powers, each with its own profile, without cross-contaminating the voice or facts between them.",
-      "This is also where you keep the specific angle that makes your product worth an influencer's time — the actual problem it solves, who it's genuinely useful for — so every generated brief leads with something real instead of generic marketing language.",
+      "A brand profile is a saved description of your product, business, or personal brand: who it's for, your tone of voice, and facts that should stay consistent across posts — product names, pricing, launch dates, links you post often.",
+      "Set it up once under Settings, and every AI-drafted caption or post pulls from it automatically. Run a separate profile per brand or client if you manage more than one set of accounts, each with its own voice and facts, without cross-contaminating tone between them.",
+      "This is also where you keep the specific angle that makes your content worth posting — what you actually do, who it's for — so AI drafts lead with something real instead of generic marketing language.",
     ],
     faq: [
       {
-        question: "What is a product profile used for?",
+        question: "What is a brand profile used for?",
         answer:
-          "It's a saved description of your product, audience, tone, and key facts that every campaign brief you generate reuses, so you don't re-explain what you're promoting on every new campaign.",
+          "It's a saved description of your voice, audience, and key facts that every AI-drafted post reuses, so you're not re-explaining your brand every time you write a post.",
       },
       {
-        question: "Can I run campaigns for more than one product?",
+        question: "Can I manage more than one brand or client?",
         answer:
-          "Yes — create a separate product profile per product, app, or repo, and pick which one a campaign brief pulls from.",
+          "Yes — create a separate brand profile per brand or client, and pick which one a draft pulls from when you generate a post.",
       },
       {
-        question: "Does the profile keep facts like star count or pricing accurate?",
+        question: "Does the profile keep facts accurate over time?",
         answer:
-          "You keep it accurate by updating the profile when facts change — the AI uses whatever is currently saved there, so a stale profile produces a stale brief. Update it before a new campaign if numbers have moved.",
+          "You keep it accurate by updating the profile when facts change — AI uses whatever is currently saved there, so update it before your next campaign if details have moved.",
       },
     ],
   },
   {
-    slug: "influencer-network",
-    title: "Influencer network",
+    slug: "connected-accounts",
+    title: "Connected accounts",
     description:
-      "Browse real influencers and creators on X, LinkedIn, YouTube, and Instagram by niche and audience size. Every profile is opted in and posts to their own genuine audience.",
+      "Connect your X, LinkedIn, YouTube, Instagram, and Facebook accounts once, then post or schedule to any of them from one place — no more logging into five apps.",
     color: "#059669",
-    thumbnail: "/images/features/influencer-network/match-by-niche-and-channel-og.png",
+    thumbnail: "/images/features/connected-accounts/connect-once-post-everywhere-og.png",
     body: [
-      "The [network](/network) is a directory of influencers, creators, and communities who've opted in to discover campaigns. Each profile lists the channels they're active on, their niches, roughly how large their audience is, and — where they've shared it — rate information and a portfolio link.",
-      "Product owners browse or get matched by niche; influencers browse or get matched by the campaigns that fit what they already talk about. A developer-tools creator sees GitHub-star campaigns for repos in their niche; a productivity-app reviewer sees SaaS launches in theirs. Nobody is pushed a campaign that doesn't fit their actual audience.",
-      "This only works because it's opt-in and niche-matched — an influencer's value is their genuine audience, and a mismatched campaign burns that trust fast. The network is built to protect the fit, not just maximize the number of matches.",
+      "[Connected accounts](/channels) is where you link each social account you post from. Connect as many accounts per platform as you need — a personal X account and a company Page, for example — and every one shows up as a destination in the composer and calendar.",
+      "Each connection shows its status at a glance: connected and healthy, or needing reauthorization if a token expired. Disconnect an account any time, and nothing that's already been published changes — it only stops new posts from being sent there.",
+      "More platforms are being added beyond the current five — see [channels](/channels) for what's live today and what's coming soon.",
     ],
     faq: [
       {
-        question: "How does Amplibee match influencers to campaigns?",
+        question: "How many accounts can I connect?",
         answer:
-          "By niche and channel — an influencer's network profile lists what they cover and where, and campaigns matching that niche surface to them. Product owners can also browse the directory directly by category and audience size.",
+          "As many as your plan allows across X, LinkedIn, YouTube, Instagram, and Facebook — including more than one account on the same platform, like a personal profile and a company Page.",
       },
       {
-        question: "Which channels does the network cover?",
+        question: "What happens if a connection expires?",
         answer:
-          "X, LinkedIn, YouTube, and Instagram — wherever an influencer already has a genuine, engaged audience.",
+          "Oyekool flags it as needing reauthorization. Posts scheduled to that account wait until you reconnect, instead of silently failing.",
       },
       {
-        question: "Do I have to accept every campaign that matches my niche?",
+        question: "Does disconnecting an account delete my past posts?",
         answer:
-          "No. Matching just means a campaign is surfaced to you as relevant — you choose which ones you actually want to post about.",
+          "No. Disconnecting only stops future posts from going to that account — anything already published stays exactly as it is on the platform itself.",
       },
       {
-        question: "How do I get listed in the network as an influencer?",
+        question: "What platforms are coming next?",
         answer:
-          "Create a network profile with your niches, channels, and audience size, and opt in to being visible. Product owners then discover you the same way you discover campaigns — by fit, not by cold outreach.",
+          "TikTok, Threads, Pinterest, and Mastodon are on the public roadmap. See [channels](/channels) for the current list and what's next.",
       },
     ],
   },
   {
-    slug: "tracked-campaign-links",
-    title: "Tracked campaign links",
+    slug: "post-analytics",
+    title: "Post analytics",
     description:
-      "Every influencer gets a unique tracked link with UTM parameters, so you can see exactly what each deliverable drove — clicks, sign-ups, or stars — instead of guessing which post worked.",
+      "See how every post performed on every platform it went out to — in one dashboard, instead of switching between five native analytics tabs.",
     color: "#db2777",
-    thumbnail: "/images/features/tracked-campaign-links/see-what-each-deliverable-drove-og.png",
+    thumbnail: "/images/features/post-analytics/one-dashboard-every-platform-og.png",
     body: [
-      "When an influencer joins a campaign, they get their own tracked link back to your product, launch page, or GitHub repo. It's unique to them, carries UTM parameters you control, and lets you see what that specific post, video, or story actually drove.",
-      "This is what makes it possible to tell genuine influence apart from noise: instead of one campaign-wide number, you get per-influencer data — which creator's audience actually clicked through, signed up, starred the repo, or downloaded the app. That's useful for the current campaign and for deciding who to work with again.",
-      "Influencers submit their deliverable link as proof once they've posted, and the campaign metrics roll up from there — see [reviewing every deliverable](/features/review-every-deliverable) for how that submission gets checked before it counts.",
+      "Once a cross-posted update goes out, Oyekool pulls back performance per platform for that specific post — so you can see how the same piece of content did on X versus LinkedIn versus Instagram, side by side.",
+      "This is what makes it possible to tell which platforms and formats are actually working for your audience, instead of guessing from memory across five different apps. Use it to decide what to post more of, and where.",
+      "Analytics roll up per post and per platform, so you can compare a single update's reach everywhere it was shared, or look at a platform's trend over your last several weeks of posts.",
     ],
     faq: [
       {
-        question: "How do I know which influencer actually drove results?",
+        question: "Do I still need to check each platform's own analytics?",
         answer:
-          "Each influencer gets a unique tracked link with UTM parameters, so clicks, sign-ups, downloads, or stars attributed to their link are visible per-influencer, not just as one campaign-wide total.",
+          "Not for a quick read on how a post did — Oyekool pulls the key numbers back into one dashboard per post and per platform, side by side.",
       },
       {
-        question: "Do influencers need to set up their own tracking?",
+        question: "Can I compare performance across platforms for the same post?",
         answer:
-          "No — the tracked link is generated for them when they join a campaign. They just use that link instead of a plain one when they post.",
+          "Yes — since each cross-posted update is tracked per platform, you can see directly whether a given post did better on X, LinkedIn, Instagram, YouTube, or Facebook.",
       },
       {
-        question: "Can I see results per channel, not just per influencer?",
+        question: "Does analytics work for scheduled posts too?",
         answer:
-          "Yes — since each deliverable is tied to a specific influencer and channel, you can see whether your best results are coming from X threads, LinkedIn posts, YouTube mentions, or Instagram stories.",
+          "Yes — once a scheduled post publishes, its performance is tracked the same way a post sent immediately would be.",
       },
     ],
   },
   {
-    slug: "campaigns",
-    title: "Campaigns",
+    slug: "content-calendar",
+    title: "Content calendar",
     description:
-      "Brief once, set a goal and a budget type, and reuse the same campaign across every influencer who joins — instead of negotiating and briefing each creator separately.",
+      "Plan a week or a month of posts across every connected platform in one visual calendar, instead of juggling reminders and separate native schedulers.",
     color: "#9333ea",
-    thumbnail: "/images/features/campaigns/brief-once-reuse-across-influencers-og.png",
+    thumbnail: "/images/features/content-calendar/plan-your-whole-month-og.png",
     body: [
-      "A campaign is the unit of work in Amplibee: what you're promoting, the goal (GitHub stars, sign-ups, downloads, awareness, or traffic), a budget type (paid, product-only, or revenue-share, depending on what you offer), and the generated or hand-written brief influencers see when they discover it.",
-      "Once a campaign is live, any influencer in the network whose niche matches can apply or join, pick up the brief, adapt it in their own voice, and post. You don't re-brief each one individually — the campaign is the single source of truth every participant works from.",
-      "You can run more than one campaign at a time — a GitHub-stars campaign for a repo and a separate sign-ups campaign for the product built on it, each with its own goal, brief, and tracked links. See [pricing](/pricing) for plan limits on active campaigns.",
+      "The calendar is where scheduled posts live: drag a draft to a new day or time, see at a glance which platforms each slot is going out to, and spot gaps in your posting rhythm before they happen instead of after.",
+      "Every scheduled post is still the same editable draft from the [composer](/features/cross-posting-composer) — reschedule it, tweak the copy, add or remove platforms, or pull it back to draft, right up until it publishes.",
+      "You can plan more than one campaign or theme at a time — a product-launch week and your regular weekly content, both visible on the same calendar, color-coded so you can tell them apart at a glance.",
     ],
     faq: [
       {
-        question: "What's the difference between a campaign and just messaging influencers directly?",
+        question: "Can I see what's scheduled across all my platforms at once?",
         answer:
-          "A campaign is a saved brief and goal that any matching influencer in the network can discover and join on their own — you're not negotiating and re-briefing each creator individually.",
+          "Yes — the calendar shows every scheduled post across every connected account in one view, with each slot showing which platforms it targets.",
       },
       {
-        question: "Can I run more than one campaign at once?",
+        question: "Can I reschedule a post after it's been added to the calendar?",
         answer:
-          "Yes, depending on your plan — for example a GitHub-stars campaign for a repo and a separate sign-ups campaign for the product it powers, each with its own goal and brief.",
+          "Yes — drag it to a new date and time, or open it to edit the copy, media, or target platforms. Nothing publishes until the scheduled time arrives.",
       },
       {
-        question: "What goals can a campaign target?",
+        question: "What happens if I need to pull a scheduled post back?",
         answer:
-          "GitHub stars, sign-ups, downloads, awareness, or traffic. The goal shapes both the AI-generated talking points and what the tracked links measure.",
-      },
-      {
-        question: "Do all influencers on a campaign see the same brief?",
-        answer:
-          "They see the same starting brief, but each adapts it into their own voice before posting — the brief is a shared starting point, not a script everyone repeats verbatim.",
+          "Move it back to draft any time before it publishes — it won't go out until you schedule or publish it again.",
       },
     ],
   },
   {
-    slug: "review-every-deliverable",
-    title: "Review every deliverable",
+    slug: "team-approvals",
+    title: "Team approvals",
     description:
-      "Every submitted post, video, or story is reviewed before it counts toward a campaign — genuine engagement only, never bots, never fake followers, never manipulated numbers.",
+      "Draft, review, and approve posts before they go out — so a team can collaborate on content without anyone accidentally publishing something unreviewed.",
     color: "#4f46e5",
-    thumbnail: "/images/features/review-every-deliverable/genuine-engagement-only-og.png",
+    thumbnail: "/images/features/team-approvals/review-before-it-goes-live-og.png",
     body: [
-      "When an influencer posts about your campaign, they submit the link as proof — a deliverable. Nothing counts toward your campaign's results until that deliverable has been reviewed: is it live, does it genuinely reflect the brief, does it look like a real post to a real audience.",
-      "This is a deliberate constraint, not friction for its own sake. The entire value of Amplibee is genuine reach — real people telling their real audience about something worth telling them about. Review is what keeps that promise honest: it's how bought engagement, fake followers, and templated spam get filtered out before they ever show up in your results.",
-      "Every deliverable shows its status — submitted, under review, approved, or rejected — so both sides know where a campaign stands. Approved deliverables roll into your campaign metrics via their [tracked link](/features/tracked-campaign-links).",
+      "When a teammate drafts a post, it can move through a review step before it's allowed to publish or schedule — a second set of eyes on copy, media, and which accounts it's going out to.",
+      "This is a deliberate workflow, not an afterthought: it's what keeps a shared set of accounts from getting an off-brand or unreviewed post published by mistake, especially with multiple people drafting content for the same brand.",
+      "Every draft shows its status — draft, in review, approved, or scheduled — so everyone on the team knows what's about to go out and what still needs a look.",
     ],
     faq: [
       {
-        question: "Does every influencer post automatically count toward my campaign?",
+        question: "Can anyone on the team publish immediately?",
         answer:
-          "No. Every submitted deliverable is reviewed before it counts — checking that it's live, genuinely reflects the brief, and reads like a real post to a real audience, not a bot or templated spam.",
+          "That depends on their role — you can require review before publishing for some teammates while trusted admins publish directly, depending on how your workspace is set up.",
       },
       {
-        question: "How does Amplibee prevent fake engagement or bought followers?",
+        question: "What happens if a draft gets rejected in review?",
         answer:
-          "By reviewing every deliverable before it counts, and by only working with network profiles that represent genuine audiences. There's no mechanism in the product for buying stars, followers, or engagement directly — the entire model runs through real influencers posting to real audiences.",
+          "It goes back to the author with feedback instead of publishing, so they can revise and resubmit it.",
       },
       {
-        question: "What happens if a deliverable gets rejected?",
+        question: "Does this work across all connected platforms?",
         answer:
-          "It doesn't count toward the campaign's results, and the influencer can see why so they can fix and resubmit if the issue is fixable — for example, a link that didn't go live yet.",
+          "Yes — review and approval apply to the post as a whole, before it goes out to whichever platforms it targets.",
       },
     ],
   },

@@ -94,7 +94,7 @@ Deno.serve(async (req) => {
       await ensureProfile(supabase, user.id, name);
       await sendWelcomeEmail(user.email_id, user.first_name);
       await notifyTelegram(
-        `🎉 New Amplibee Signup\n\n👤 Name: ${name ?? "(no name)"}\n📧 Email: ${user.email_id}\n🔑 Via: Password`,
+        `🎉 New Oyekool Signup\n\n👤 Name: ${name ?? "(no name)"}\n📧 Email: ${user.email_id}\n🔑 Via: Password`,
       );
     }
 

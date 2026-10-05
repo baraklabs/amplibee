@@ -3,8 +3,8 @@ import { SignJWT, jwtVerify } from "https://esm.sh/jose@5";
 const ACCESS_TOKEN_TTL = "30m";
 const PENDING_TOKEN_TTL = "30m";
 
-const ISSUER = Deno.env.get("JWT_ISSUER") ?? "https://amplibee.com";
-const AUDIENCE = Deno.env.get("JWT_AUDIENCE") ?? "amplibee-api";
+const ISSUER = Deno.env.get("JWT_ISSUER") ?? "https://oyekool.com";
+const AUDIENCE = Deno.env.get("JWT_AUDIENCE") ?? "oyekool-api";
 
 function secretKey(): Uint8Array {
   const secret = Deno.env.get("JWT_SECRET");

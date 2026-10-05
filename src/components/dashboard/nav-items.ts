@@ -1,10 +1,10 @@
 import {
   LayoutDashboard,
   PenSquare,
-  Megaphone,
-  ClipboardCheck,
+  FileStack,
   Users,
-  KeyRound,
+  Bot,
+  BarChart3,
   Settings,
   type LucideIcon,
 } from "lucide-react";
@@ -17,10 +17,10 @@ export interface NavItem {
 
 export const dashboardNavItems: NavItem[] = [
   { label: "Overview", href: "/dashboard", icon: LayoutDashboard },
-  { label: "New Campaign", href: "/dashboard/create", icon: PenSquare },
-  { label: "Campaigns", href: "/dashboard/campaigns", icon: Megaphone },
-  { label: "Deliverables", href: "/dashboard/deliverables", icon: ClipboardCheck },
-  { label: "Influencer Profile", href: "/dashboard/channels", icon: Users },
-  { label: "AI", href: "/dashboard/ai", icon: KeyRound },
+  { label: "Create", href: "/dashboard/create", icon: PenSquare },
+  { label: "Posts", href: "/dashboard/posts", icon: FileStack },
+  { label: "Accounts", href: "/dashboard/accounts", icon: Users },
+  { label: "AI", href: "/dashboard/ai", icon: Bot },
+  { label: "Analytics", href: "/dashboard/analytics", icon: BarChart3 },
   { label: "Settings", href: "/dashboard/settings", icon: Settings },
 ];

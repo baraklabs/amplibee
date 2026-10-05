@@ -16,10 +16,10 @@ type Mode = "signin" | "signup";
 
 const COPY: Record<Mode, { heading: string; submitLabel: string; submittingLabel: string; toggleHint: string; toggleCta: string }> = {
   signin: {
-    heading: "Log in to Amplibee",
+    heading: "Log in to Oyekool",
     submitLabel: "Log in",
     submittingLabel: "Logging in…",
-    toggleHint: "New to Amplibee?",
+    toggleHint: "New to Oyekool?",
     toggleCta: "Create an account",
   },
   signup: {

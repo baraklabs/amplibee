@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 /*
- * Amplibee design tokens.
+ * Oyekool design tokens.
  * Light, premium, minimal. One accent color, used sparingly.
  * Keep all color usage in components tied to these tokens —
  * never hardcode hex values in component code.

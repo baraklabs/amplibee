@@ -3,8 +3,8 @@ import { getAIProviderRuntime } from "./registry";
 import type { AIProviderId } from "./types";
 
 /**
- * A product's "voice" for campaign brief generation — what the product owner
- * sounds like and wants influencers to say, not a personal writing style.
+ * A brand's saved voice for AI post drafting — tone, audience, and facts
+ * that should stay consistent across every platform a post goes out to.
  */
 export interface ContentProfile {
   tone: string;
@@ -31,21 +31,23 @@ export const defaultContentProfile: ContentProfile = {
 };
 
 const channelInstructions: Record<PlatformId, string> = {
-  x: "Write a single X post an influencer could post as their own genuine reaction — a hook, a real opinion on why this is worth trying, no corporate voice. Stay under 280 characters. No hashtags unless natural.",
+  x: "Write a single X post — a hook, a real point of view, no corporate voice. Stay under 280 characters. No hashtags unless natural.",
   linkedin:
-    "Write a LinkedIn post shaped as an influencer's own take: why they're excited about this, who it helps, and what stood out — first person, professional but human, 3-6 short paragraphs with line breaks. 150-350 words.",
+    "Write a LinkedIn post with context: why this matters, who it helps, what's new — first person, professional but human, 3-6 short paragraphs with line breaks. 150-350 words.",
   youtube:
-    "Write a short video talking-points outline an influencer could use to introduce this in their own words: a hook for the first 10 seconds, 3-4 beats covering what it is and why it's worth their audience's time, and a natural closing mention — not a script to read verbatim.",
+    "Write a YouTube title and description: a specific, non-clickbait title, and a short description expanding on it with a clear reason to watch.",
   instagram:
-    "Write a caption an influencer could post alongside a photo, reel, or story — a personal, authentic-sounding hook, why it's worth sharing, and a light call to action. Short, scannable, a couple of relevant hashtags at most.",
+    "Write a caption to go alongside a photo, reel, or story — a personal, authentic-sounding hook and a light call to action. Short, scannable, a couple of relevant hashtags at most.",
+  facebook:
+    "Write a Facebook post — slightly warmer and more explained than an X post, assuming less shared context from the reader. A clear point, no jargon, a natural length for a feed post.",
 };
 
 function buildSystemPrompt(profile: ContentProfile): string {
   const lines = [
-    "You are helping a product owner brief influencers who will genuinely promote their product or open-source repo to their own audience.",
-    "Write talking points and suggested captions the influencer can adapt in their own voice — never a corporate ad, never something that reads like it was pasted from the company.",
+    "You are helping a brand draft a social media post, adapted for the specific platform it's going out to.",
+    "Write a draft the brand can edit before posting — never generic marketing copy, never something that reads like it was pasted unchanged across every platform.",
     "Stay faithful to the source material's facts — never invent claims, numbers, or quotes.",
-    "Never suggest or imply buying followers, bots, fake engagement, vote manipulation, or anything that isn't a genuine post to a real audience.",
+    "Never suggest or imply buying followers, bots, fake engagement, or anything that isn't a genuine post from the brand's own account.",
     `Tone: ${profile.tone}.`,
     `Audience: ${profile.audience}.`,
     `Brand voice: ${profile.brandVoice}.`,
@@ -137,7 +139,7 @@ export async function refinePost(input: {
     apiKey: input.apiKey,
     model: input.model,
     system:
-      "You edit influencer campaign briefs precisely. Make only the requested change, and keep it sounding like a genuine personal post, not an ad. Output only the finished text, no preamble.",
+      "You edit social media post drafts precisely. Make only the requested change, and keep it sounding like a genuine brand post, not generic ad copy. Output only the finished text, no preamble.",
     prompt: `Channel: ${input.targetPlatform}\nInstruction: ${instruction}\n\nCurrent text:\n${input.content}`,
   });
 

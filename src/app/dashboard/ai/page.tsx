@@ -44,7 +44,7 @@ export default async function AIProvidersPage() {
     <div className="flex flex-col gap-6">
       <PageHeader
         title="BYOK"
-        description="Bring your own key. Amplibee never marks up AI usage — connect OpenAI, Anthropic, OpenRouter, or any OpenAI-compatible provider directly and pay that provider at their rates."
+        description="Bring your own key. Oyekool never marks up AI usage — connect OpenAI, Anthropic, OpenRouter, or any OpenAI-compatible provider directly and pay that provider at their rates."
       />
 
       <ProviderManager configured={configured} availableFixed={availableFixed} />

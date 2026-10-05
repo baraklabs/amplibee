@@ -8,7 +8,7 @@ import { SplitCard } from "@/components/marketing/split-card";
 
 const title = "Blog";
 const description =
-  "Notes on genuine influencer marketing, GitHub star growth, SaaS launches, and building Amplibee.";
+  "Notes on social media scheduling, cross-posting without losing your voice, content calendars, and building Oyekool.";
 
 export const metadata: Metadata = pageMetadata({
   title,
@@ -33,9 +33,9 @@ export default function BlogIndexPage() {
       <section className="border-b border-border">
         <div className="mx-auto max-w-6xl px-6 pb-16 pt-8 sm:pb-20 sm:pt-10">
           <h1 className="font-heading mx-auto max-w-4xl text-center text-3xl font-semibold tracking-tight text-foreground">
-            Learn how SaaS founders grow faster organically,
+            Learn how to plan, cross-post, and grow
             <br />
-            get more customers, reduce churn, and build better products.
+            your presence across every social platform.
           </h1>
 
           <div className="mt-12 flex flex-col gap-6">

@@ -5,7 +5,7 @@ import { pageMetadata } from "@/lib/seo/metadata";
 
 const title = "About";
 const description =
-  "Amplibee was built because growth shouldn't mean buying fake followers or bots. Here's why we bet on real influencers instead, and how we think about the product.";
+  "Oyekool exists because posting the same update to five platforms by hand is a waste of a founder's or a small team's time. Here's why we built a cross-posting tool instead of five browser tabs.";
 
 export const metadata: Metadata = pageMetadata({
   title,
@@ -30,32 +30,31 @@ export default function AboutPage() {
         <div className="mx-auto max-w-3xl px-6 py-16 sm:py-20">
           <p className="text-eyebrow">About</p>
           <h1 className="font-heading mt-3 text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
-            We got tired of watching good products lose to bought engagement.
+            We got tired of five browser tabs just to post one update.
           </h1>
 
           <div className="mt-8 flex flex-col gap-5 text-[15px] leading-relaxed text-muted-foreground">
             <p>
-              Every product owner faces the same temptation eventually: a service offering a
-              thousand GitHub stars overnight, a few hundred fake followers, an upvote bot for
-              launch day. It works for about a week, until the stars get purged, the followers get
-              detected, and the trust you actually needed is gone along with them.
+              Every brand, creator, and small team ends up in the same place eventually: an update
+              worth sharing, and five different platforms it needs to go out to — each with its
+              own app, its own format, and its own login. Writing it once should be enough. For
+              most people, it isn&apos;t.
             </p>
             <p>
-              Amplibee exists because there&apos;s a better trade that most founders never get
-              introduced to: real influencers and creators, with real audiences, who genuinely
-              believe a product is worth telling people about. That kind of reach is slower to
-              earn and impossible to fake — which is exactly why it still means something when a
-              real person&apos;s audience responds to it.
+              Oyekool exists to make writing it once actually be enough. Connect your X, LinkedIn,
+              YouTube, Instagram, and Facebook accounts, write a post, and let the composer adapt
+              it per platform — the length, the tone, the format — instead of you rewriting it five
+              times by hand. Schedule it on a shared calendar, or send it right now.
             </p>
             <p>
-              We built the product around three constraints we think matter: every profile in the
-              network is a real, opted-in person, not an engagement farm; every deliverable an
-              influencer submits gets reviewed before it counts toward your campaign; and AI helps
-              draft talking points, but it never writes the final post — that&apos;s the influencer&apos;s
-              own voice, always.
+              We built the product around three things we think matter: a composer that adapts a
+              post per platform instead of just duplicating it, a brand profile so AI-drafted posts
+              actually sound like you instead of generic marketing copy, and analytics that show
+              you how the same post did across every platform it reached — not five separate tabs
+              to check by hand.
             </p>
             <p>
-              Amplibee is built by a small team who ships in public. If you have feedback,{" "}
+              Oyekool is built by a small team who ships in public. If you have feedback,{" "}
               <a href="/contact" className="font-medium text-foreground underline underline-offset-4">
                 tell us
               </a>

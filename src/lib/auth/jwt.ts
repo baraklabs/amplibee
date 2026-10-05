@@ -3,8 +3,8 @@ import { jwtVerify } from "jose";
 // Verify-only counterpart to supabase/functions/_shared/jwt.ts — signing only ever happens
 // in the edge functions (auth-signin, auth-signup, auth-google, auth-refresh, ...). Next.js
 // just needs to check a token it was already handed, so there's no signAccessToken here.
-const ISSUER = process.env.JWT_ISSUER ?? "https://amplibee.com";
-const AUDIENCE = process.env.JWT_AUDIENCE ?? "amplibee-api";
+const ISSUER = process.env.JWT_ISSUER ?? "https://oyekool.com";
+const AUDIENCE = process.env.JWT_AUDIENCE ?? "oyekool-api";
 
 function secretKey(): Uint8Array {
   const secret = process.env.JWT_SECRET;
