@@ -36,7 +36,7 @@ export default function ContactPage() {
             Let&apos;s talk.
           </h1>
           <p className="mt-4 text-[15px] leading-relaxed text-muted-foreground">
-            Questions about a plan or briefing your first campaign — send it over.
+            Questions about a plan, a platform integration, or something broken — send it over.
           </p>
           <div className="mt-6 flex items-center gap-2.5 text-sm text-muted-foreground">
             <Mail className="size-4" />

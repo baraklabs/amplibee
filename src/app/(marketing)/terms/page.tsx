@@ -10,27 +10,23 @@ export const metadata: Metadata = pageMetadata({
 const sections = [
   {
     title: "Using Amplibee",
-    body: "You're responsible for the accuracy of any campaign brief, product profile, or network profile you submit. Influencers are responsible for what they actually post, and for disclosing sponsored or promotional content as required by each platform they post on and by applicable law.",
+    body: "You must have the right to publish content to any account you connect. You're responsible for what you approve and publish through the product, including compliance with each connected platform's own terms of service.",
   },
   {
     title: "AI-generated content",
-    body: "A campaign brief generated using an AI provider you configure is a suggested starting point, not a guarantee of accuracy. It is meant to be adapted by the influencer into their own words before posting — never published verbatim as a script. Amplibee doesn't verify claims, facts, or figures produced by the AI provider.",
+    body: "Content generated using an AI provider you configure is a draft, not a guarantee of accuracy or platform compliance. Review generated content before publishing — Amplibee doesn't verify claims, facts, or figures produced by the AI provider.",
   },
   {
     title: "Bring Your Own Key",
     body: "When you use your own AI provider API key, usage and billing for that provider is between you and them, subject to their terms. We are not responsible for AI provider outages, rate limits, or costs.",
   },
   {
-    title: "Genuine engagement only",
-    body: "Amplibee is built on real influencers reaching their own real audiences. Buying followers, using bots, faking engagement, or otherwise manipulating a campaign's results is prohibited and grounds for removal from the network and account termination.",
-  },
-  {
-    title: "Deliverables and review",
-    body: "Deliverables submitted as proof of a post are reviewed before they count toward a campaign. Amplibee doesn't control what platforms show, remove, or how they rank content — a deliverable that later becomes unavailable on the platform it was posted to is outside our control.",
+    title: "Platform integrations",
+    body: "Publishing capabilities depend on what each platform's public API supports. Where a platform doesn't support a capability (for example, scheduling or analytics), Amplibee will say so rather than simulate it.",
   },
   {
     title: "Account termination",
-    body: "You may delete your account at any time. We may suspend accounts that violate these terms, including fraudulent campaigns, fake network profiles, or attempts to manipulate engagement.",
+    body: "You may delete your account at any time. We may suspend accounts that violate these terms or misuse connected platform APIs (e.g. spam or automated abuse).",
   },
   {
     title: "Changes",

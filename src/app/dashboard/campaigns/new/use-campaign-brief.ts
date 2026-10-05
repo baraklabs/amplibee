@@ -1,9 +1,9 @@
 "use client";
 
 import * as React from "react";
-import { getPlatform } from "@/lib/platforms/registry";
+import { getChannel } from "@/lib/channels/registry";
 import type { ChannelId } from "@/types/database";
-import { refineCampaignBrief, updateCampaignBrief } from "../campaigns/actions";
+import { refineCampaignBrief, updateCampaignBrief } from "../actions";
 
 /** All state and actions for one campaign brief — shared by the editable-text and preview panels. */
 export function useCampaignBrief({
@@ -35,7 +35,7 @@ export function useCampaignBrief({
     setError(null);
   }
 
-  const platformDef = getPlatform(channel);
+  const platformDef = getChannel(channel);
 
   function updateContent(value: string) {
     setContent(value);

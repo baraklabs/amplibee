@@ -6,16 +6,19 @@ import {
   Rocket,
   GitBranch,
   Megaphone,
-  Smartphone,
+  Newspaper,
   FileText,
   Users,
-  FolderGit2,
+  Link2,
+  Wand2,
   Play,
-  ClipboardList,
+  Workflow,
+  Key,
   TrendingUp,
   Code2,
-  Radar,
+  Users2,
   Link as LinkIcon,
+  GitMerge,
   ShieldCheck,
   Sparkles,
 } from "lucide-react";
@@ -28,7 +31,7 @@ import { softwareApplicationJsonLd } from "@/lib/seo/jsonld";
 import { pageMetadata } from "@/lib/seo/metadata";
 import { siteConfig } from "@/lib/seo/config";
 import { getBlockColor } from "@/lib/block-colors";
-import { blogPosts } from "@/lib/blog/posts";
+import { getLatestPosts } from "@/lib/blog/posts";
 import { FEATURE_LIST } from "@/lib/features-data";
 import { cn } from "@/lib/utils";
 
@@ -39,29 +42,31 @@ export const metadata: Metadata = pageMetadata({
 });
 
 const useCases = [
-  { icon: Rocket, label: "SaaS launches" },
-  { icon: Smartphone, label: "App downloads" },
+  { icon: Rocket, label: "Product launches" },
+  { icon: GitBranch, label: "GitHub stars" },
   { icon: Megaphone, label: "Product Hunt launches" },
-  { icon: Users, label: "Founder-led awareness" },
-  { icon: FileText, label: "Indie build-in-public" },
-  { icon: GitBranch, label: "GitHub star growth" },
-  { icon: FolderGit2, label: "Open-source projects" },
-  { icon: Sparkles, label: "Blog post reach" },
+  { icon: FileText, label: "Blog posts" },
+  { icon: Newspaper, label: "Announcements" },
+  { icon: Wand2, label: "New features" },
+  { icon: Users, label: "Founder updates" },
+  { icon: Link2, label: "Marketing campaigns" },
 ];
 
 const featureIcons: Record<string, typeof FileText> = {
-  "campaign-brief-generator": Sparkles,
-  "product-profile": ClipboardList,
-  "influencer-network": Radar,
-  "tracked-campaign-links": LinkIcon,
-  campaigns: Megaphone,
-  "review-every-deliverable": ShieldCheck,
+  "content-transformation-engine": Sparkles,
+  "content-profiles": Wand2,
+  "bring-your-own-ai-key": Key,
+  "multiple-accounts-per-platform": Users2,
+  "auto-generated-backlinks": LinkIcon,
+  workflows: Workflow,
+  "manual-approval": ShieldCheck,
+  "quick-edits": GitMerge,
 };
 
 const exploreFeatures = FEATURE_LIST.slice(0, 2).map((feature) => ({
   href: `/features/${feature.slug}`,
   color: feature.color,
-  icon: featureIcons[feature.slug] ?? Megaphone,
+  icon: featureIcons[feature.slug] ?? Workflow,
   image: feature.thumbnail,
   eyebrow: "Feature",
   title: feature.title,
@@ -70,37 +75,13 @@ const exploreFeatures = FEATURE_LIST.slice(0, 2).map((feature) => ({
 
 const blogCategoryIcons: Record<string, typeof FileText> = {
   Growth: TrendingUp,
-  Product: Sparkles,
+  Product: Wand2,
   Engineering: Code2,
   Marketing: Megaphone,
 };
 
-const howItWorks = [
-  {
-    title: "Brief your campaign",
-    description:
-      "Tell Amplibee what you're promoting — a SaaS product, a mobile app, a GitHub repo, a Product Hunt launch, or a blog post — and the goal: stars, sign-ups, downloads, awareness, or traffic.",
-  },
-  {
-    title: "AI drafts the talking points, or you write it",
-    description:
-      "AI suggests angles and captions per channel from your product profile. Adapt them, rewrite them, or skip generation entirely and brief it yourself.",
-  },
-  {
-    title: "Real influencers discover it and post genuinely",
-    description:
-      "Creators in the network whose niche matches your campaign pick it up, put it in their own voice, and post to their own real audience — not a script, not a bot.",
-  },
-  {
-    title: "You review proof and track results",
-    description:
-      "Every deliverable is submitted as a link and reviewed before it counts. Tracked links show exactly what each influencer's post drove.",
-  },
-];
-
 export default function HomePage() {
-  // Same order as the /blog list and the features list — no date re-sorting here.
-  const latestPosts = blogPosts.slice(0, 2);
+  const latestPosts = getLatestPosts(2);
 
   return (
     <>
@@ -111,14 +92,12 @@ export default function HomePage() {
         <div className="mx-auto max-w-6xl px-6 pb-16 pt-16 sm:pb-24 sm:pt-24">
           <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-14">
             <div>
-              <p className="text-eyebrow">Influencer marketing for apps, SaaS, products, startups</p>
+              <p className="text-eyebrow">Marketing operating system for launches</p>
               <h1 className="font-heading mt-4 text-4xl font-semibold tracking-tight text-foreground sm:text-5xl">
                 Marketing muscle for your products.
               </h1>
               <p className="mt-5 max-w-xl text-lg leading-relaxed text-muted-foreground">
-                Brief a campaign for your product, app, or GitHub repo. Genuine influencers and
-                creators discover it and tell their own real audience about it on X, LinkedIn,
-                YouTube, and Instagram — never bots, never fake followers, never bought stars.
+                Publish once, turn it into platform-native posts, build backlinks, and get influencers to promote it.
               </p>
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
                 <Button size="lg" asChild>
@@ -137,14 +116,14 @@ export default function HomePage() {
 
               <dl className="mt-10 flex flex-wrap gap-x-10 gap-y-4">
                 <div>
-                  <dt className="text-eyebrow">Product owners</dt>
+                  <dt className="text-eyebrow">Network reach</dt>
                   <dd className="font-heading mt-1 text-2xl font-semibold text-foreground">
                     {siteConfig.stats.users}{" "}
-                    <span className="text-base font-normal text-muted-foreground">on Amplibee</span>
+                    <span className="text-base font-normal text-muted-foreground">users</span>
                   </dd>
                 </div>
                 <div>
-                  <dt className="text-eyebrow">Real reach</dt>
+                  <dt className="text-eyebrow">Amplification</dt>
                   <dd className="font-heading mt-1 text-2xl font-semibold text-foreground">
                     {siteConfig.stats.influencers}{" "}
                     <span className="text-base font-normal text-muted-foreground">influencers</span>
@@ -160,8 +139,8 @@ export default function HomePage() {
               />
               <div className="overflow-hidden rounded-lg border border-border">
                 <Image
-                  src="/hero-create-campaign.png"
-                  alt="A campaign created in Amplibee flows out to LinkedIn, Instagram, X, and YouTube as posts ready for a real account to share"
+                  src="/hero-workflow.png"
+                  alt="One post fans out to X, LinkedIn, Medium, and Substack, then rolls up into more reach"
                   width={1355}
                   height={1161}
                   priority
@@ -173,13 +152,13 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Use cases */}
+      {/* Boost Your Posts */}
       <section className="border-b border-border">
         <div className="mx-auto max-w-6xl px-6 py-16 sm:py-20">
           <SectionHeading
             eyebrow="Use cases"
-            title="Get a product, app, or repo in front of the people who'd genuinely care."
-            description="Amplibee works anywhere real word-of-mouth would move the needle — not just launch day."
+            title="Get your launch in front of more eyes when it matters."
+            description="Amplibee works anywhere you'd otherwise be manually rewriting the same update for every channel."
           />
           <div className="mt-10 grid grid-cols-2 gap-3 sm:grid-cols-4">
             {useCases.map(({ icon: Icon, label }, index) => {
@@ -200,35 +179,13 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* How it works */}
-      <section id="how-it-works" className="border-b border-border bg-muted/20">
+      {/* Multi-Platform Reach */}
+      <section id="integrations" className="border-b border-border bg-muted/20">
         <div className="mx-auto max-w-6xl px-6 py-16 sm:py-20">
           <SectionHeading
-            eyebrow="How it works"
-            title="One campaign. Real people. Genuine reach."
-            description="No bots, no fake followers, no platform manipulation — just real influencers talking to their real audience."
-          />
-          <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {howItWorks.map((step, index) => (
-              <div key={step.title} className="rounded-lg border border-border bg-card p-5">
-                <span className="text-eyebrow">Step {index + 1}</span>
-                <h3 className="font-heading mt-2 text-[15px] font-semibold text-foreground">
-                  {step.title}
-                </h3>
-                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{step.description}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* One campaign, many channels */}
-      <section className="border-b border-border">
-        <div className="mx-auto max-w-6xl px-6 py-16 sm:py-20">
-          <SectionHeading
-            eyebrow="Real channels"
-            title="One campaign reaches influencers across every channel that matters."
-            description="Brief it once. Influencers on X, LinkedIn, YouTube, and Instagram pick it up and post it their own way."
+            eyebrow="Multi-platform reach"
+            title="One post. Multiple platforms."
+            description="Connect multiple accounts and choose exactly which platforms each source should flow into."
           />
           <div className="mt-10">
             <WorkflowMap />
@@ -236,20 +193,21 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Genuine reach, never bots */}
-      <section className="border-b border-border bg-muted/20">
+      {/* Auto Cross-Posting */}
+      <section className="border-b border-border">
         <div className="mx-auto grid max-w-6xl gap-10 px-6 py-16 sm:py-20 md:grid-cols-2 md:items-center">
           <div>
-            <p className="text-eyebrow">Genuine, always</p>
+            <p className="text-eyebrow">Auto cross-post, free</p>
             <h2 className="font-heading mt-3 text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">
-              Real people telling real audiences about work worth talking about.
+              Publish once and let Amplibee create platform-specific versions for the channels
+              you choose.
             </h2>
             <ul className="mt-6 flex flex-col gap-3 text-sm text-muted-foreground">
               {[
-                "Every influencer profile is a real person with a real, opted-in audience",
-                "Every deliverable is reviewed before it counts toward your campaign",
-                "Tracked links show exactly what each real post drove",
-                "Genuine engagement, earned the honest way — every time",
+                "Pick a source and one or more destinations",
+                "Review an AI-generated, platform-native draft",
+                "Edit anything before it goes out",
+                "Publish now, schedule, or save as a draft",
               ].map((item) => (
                 <li key={item} className="flex items-start gap-2.5">
                   <span className="mt-1.5 size-1 shrink-0 rounded-full bg-accent" />
@@ -266,23 +224,51 @@ export default function HomePage() {
           </div>
           <div className="rounded-lg border border-border bg-card p-5">
             <div className="flex items-center justify-between border-b border-border pb-3">
-              <span className="text-sm font-medium text-foreground">Campaign brief preview</span>
+              <span className="text-sm font-medium text-foreground">Composer preview</span>
               <span className="text-xs text-muted-foreground">Draft</span>
             </div>
             <div className="mt-4 space-y-3 text-sm text-muted-foreground">
               <p className="text-foreground">
-                &ldquo;Goal: GitHub stars for an open-source CLI tool. Angle: the exact workflow it
-                replaces.&rdquo;
+                &ldquo;Shipped v2 of our onboarding flow — 40% faster signup, fewer drop-offs.&rdquo;
               </p>
               <div className="rounded-md bg-block-violet-bg p-3">
-                <p className="text-xs font-medium text-block-violet-fg">→ X talking points</p>
-                <p className="mt-1">A thread angle on the specific problem it solves for developers.</p>
+                <p className="text-xs font-medium text-block-violet-fg">→ LinkedIn version</p>
+                <p className="mt-1">
+                  More context on the problem, why it mattered, and what changed under the hood.
+                </p>
               </div>
               <div className="rounded-md bg-block-emerald-bg p-3">
-                <p className="text-xs font-medium text-block-emerald-fg">→ YouTube talking points</p>
-                <p className="mt-1">A short demo outline for a creator to record in their own voice.</p>
+                <p className="text-xs font-medium text-block-emerald-fg">→ Medium version</p>
+                <p className="mt-1">Expanded into a short write-up with headings and a walkthrough.</p>
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Backlinks */}
+      <section className="border-b border-border bg-muted/20">
+        <div className="mx-auto max-w-6xl px-6 py-16 sm:py-20">
+          <SectionHeading
+            eyebrow="Auto-generated backlinks"
+            title="Turn one launch into content that links back to you."
+            description="Generated posts on Medium, Substack, and LinkedIn can link back to your website, launch page, GitHub repo, or Product Hunt page — with anchor text and UTMs you control."
+          />
+          <div className="mt-10 grid gap-3 sm:grid-cols-4">
+            {[
+              { label: "Canonical URL", desc: "Where the content originally lives" },
+              { label: "Destination URL", desc: "Where the backlink points to" },
+              { label: "Anchor text", desc: "Exactly how the link reads" },
+              { label: "UTM parameters", desc: "Track what each post drives" },
+            ].map((field, index) => {
+              const color = getBlockColor(index + 2);
+              return (
+                <div key={field.label} className={cn("rounded-md p-4", color.bg)}>
+                  <p className={cn("text-sm font-medium", color.fg)}>{field.label}</p>
+                  <p className="mt-1 text-xs text-muted-foreground">{field.desc}</p>
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -290,17 +276,13 @@ export default function HomePage() {
       {/* Network */}
       <section className="border-b border-border">
         <div className="mx-auto max-w-6xl px-6 py-16 text-center sm:py-20">
-          <p className="text-eyebrow">The network</p>
+          <p className="text-eyebrow">Influencer campaigns</p>
           <h2 className="font-heading mx-auto mt-3 max-w-xl text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">
-            {siteConfig.stats.influencers} influencers are already discovering campaigns like yours.
+            Want more reach? Run an influencer campaign to {siteConfig.stats.influencers} real creators who post genuinely to their own audience.
           </h2>
-          <p className="mx-auto mt-3 max-w-lg text-[15px] text-muted-foreground">
-            Browse the network to see the creators who could genuinely tell their audience about
-            your product — matched by niche and channel, not cold outreach.
-          </p>
           <Button variant="outline" className="mt-7" asChild>
             <Link href="/network">
-              Explore the network
+              Explore influencer campaigns
               <ArrowRight className="size-4" />
             </Link>
           </Button>
@@ -311,11 +293,10 @@ export default function HomePage() {
       <section className="border-b border-border bg-block-violet-fg/85">
         <div className="mx-auto max-w-6xl px-6 py-14 text-center sm:py-16">
           <h2 className="font-heading text-2xl font-semibold tracking-tight text-white sm:text-3xl">
-            Your launch deserves real people talking about it.
+            Your next launch deserves more than one post.
           </h2>
           <p className="mx-auto mt-3 max-w-lg text-[15px] text-white/80">
-            Brief a campaign, let real influencers discover it, and track exactly what genuine reach
-            gets you.
+            Connect an account, write it once, and let Amplibee adapt it everywhere.
           </p>
           <Button size="lg" variant="accent" className="mt-7" asChild>
             <Link href="/login?mode=signup">
@@ -354,7 +335,7 @@ export default function HomePage() {
       <section>
         <div className="mx-auto max-w-6xl px-6 py-16 text-center sm:py-20">
           <h2 className="font-heading text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">
-            Brief once. Reach real audiences. Grow genuinely.
+            Create once. Adapt intelligently. Publish everywhere.
           </h2>
           <Button size="lg" className="mt-7" asChild>
             <Link href="/login?mode=signup">

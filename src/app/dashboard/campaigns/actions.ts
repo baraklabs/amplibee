@@ -4,13 +4,13 @@ import { revalidatePath } from "next/cache";
 import { createAdminClient } from "@/lib/supabase/admin";
 import { getCurrentUserId } from "@/lib/auth/session";
 import { campaignSchema } from "@/lib/validation/campaigns";
-import { refineActionSchema } from "@/lib/validation/compose";
-import { generateForPlatform, refinePost } from "@/lib/ai/transform";
+import { refineActionSchema } from "@/lib/validation/campaign-compose";
+import { generateForChannel, refineBrief } from "@/lib/ai/campaign-brief";
 import { loadDefaultAIProvider, loadContentProfile } from "@/lib/ai/server-helpers";
 import { buildTrackedUrl } from "@/lib/backlinks";
 import type { ActionState } from "@/lib/types/action-state";
 import type { CampaignStatus, ApplicationStatus } from "@/types/database";
-import type { PlatformId } from "@/lib/platforms/types";
+import type { ChannelId } from "@/lib/channels/types";
 
 async function assertOwnsCampaign(userId: string, campaignId: string) {
   const supabase = createAdminClient();
@@ -59,7 +59,7 @@ export async function publishCampaignToNetwork(campaignId: string): Promise<Publ
 
   revalidatePath("/dashboard/campaigns");
   revalidatePath(`/dashboard/campaigns/${campaignId}`);
-  revalidatePath("/dashboard/create");
+  revalidatePath("/dashboard/campaigns/new");
   return { status: "success" };
 }
 
@@ -146,7 +146,7 @@ export async function updateCampaignBrief(briefId: string, content: string) {
 
   await supabase.from("campaign_briefs").update({ content }).eq("id", briefId);
   revalidatePath(`/dashboard/campaigns/${brief.campaign_id}`);
-  revalidatePath("/dashboard/create");
+  revalidatePath("/dashboard/campaigns/new");
 }
 
 export async function regenerateCampaignBrief(briefId: string): Promise<BriefEditState> {
@@ -170,9 +170,9 @@ export async function regenerateCampaignBrief(briefId: string): Promise<BriefEdi
   const profile = await loadContentProfile(userId, campaign.content_profile_id ?? undefined);
 
   try {
-    const content = await generateForPlatform({
+    const content = await generateForChannel({
       sourceContent: campaign.brief,
-      targetPlatform: brief.channel as PlatformId,
+      targetPlatform: brief.channel as ChannelId,
       profile,
       providerId: aiProvider.providerId,
       apiKey: aiProvider.apiKey,
@@ -208,10 +208,10 @@ export async function refineCampaignBrief(briefId: string, action: string): Prom
   if (!aiProvider) return { status: "error", error: "No default AI provider configured." };
 
   try {
-    const content = await refinePost({
+    const content = await refineBrief({
       content: brief.content,
       action: parsedAction.data,
-      targetPlatform: brief.channel as PlatformId,
+      targetPlatform: brief.channel as ChannelId,
       providerId: aiProvider.providerId,
       apiKey: aiProvider.apiKey,
       model: aiProvider.model,

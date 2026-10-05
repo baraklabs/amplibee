@@ -1,4 +1,4 @@
-import type { PlatformId } from "@/lib/platforms/types";
+import type { ChannelId } from "@/lib/channels/types";
 
 /**
  * Illustrative profiles shown on the public network page before real,
@@ -10,7 +10,7 @@ export interface SeedInfluencer {
   photo: string;
   category: "influencer" | "creator" | "community";
   niches: string[];
-  platforms: PlatformId[];
+  platforms: ChannelId[];
   rating: number;
   reviewCount: number;
   audienceSize: number;

@@ -1,29 +1,33 @@
 import type { Metadata } from "next";
-import { redirect } from "next/navigation";
-import { getAccessTokenCookie } from "@/lib/auth/session";
-import { fetchCurrentUser } from "@/lib/auth/functions";
+import { ProfileForm } from "./profile-form";
+import { createAdminClient } from "@/lib/supabase/admin";
+import { getCurrentUserId } from "@/lib/auth/session";
 
 export const metadata: Metadata = { title: "Profile settings" };
 export const dynamic = "force-dynamic";
 
 export default async function ProfileSettingsPage() {
-  const accessToken = await getAccessTokenCookie();
-  if (!accessToken) redirect("/login");
+  const supabase = createAdminClient();
+  const userId = (await getCurrentUserId())!;
 
-  const user = await fetchCurrentUser(accessToken);
-  if (!user) redirect("/login");
+  const [{ data: profile }, { data: user }] = await Promise.all([
+    supabase.from("profiles").select("full_name, company_name, website_url").eq("id", userId).single(),
+    supabase.from("users").select("email_id").eq("id", userId).single(),
+  ]);
 
   return (
     <div>
-      <div className="mt-6 flex max-w-md flex-col gap-4">
-        <div className="flex flex-col gap-1.5">
-          <span className="text-sm font-medium text-muted-foreground">Name</span>
-          <p className="text-sm text-foreground">{user.name}</p>
-        </div>
-        <div className="flex flex-col gap-1.5">
-          <span className="text-sm font-medium text-muted-foreground">Email</span>
-          <p className="text-sm text-foreground">{user.email}</p>
-        </div>
+      <h2 className="font-heading text-base font-semibold text-foreground">Profile</h2>
+      <p className="mt-1 text-sm text-muted-foreground">
+        This is how you appear across Amplibee.
+      </p>
+      <div className="mt-6">
+        <ProfileForm
+          fullName={profile?.full_name ?? ""}
+          companyName={profile?.company_name ?? ""}
+          websiteUrl={profile?.website_url ?? ""}
+          email={user?.email_id ?? ""}
+        />
       </div>
     </div>
   );

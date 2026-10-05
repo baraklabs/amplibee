@@ -6,30 +6,30 @@ import { pageMetadata } from "@/lib/seo/metadata";
 export const metadata: Metadata = pageMetadata({
   title: "Privacy Policy",
   description:
-    "How Amplibee collects, uses, and protects your data, including campaign and network profile data, AI provider keys, and cookies.",
+    "How Amplibee collects, uses, and protects your data, including OAuth tokens, AI provider keys, and cookies.",
   path: "/privacy",
 });
 
 const sections = [
   {
     title: "What we collect",
-    body: "Account details (name, email), campaign data (product profiles, campaign briefs, goals), network profile data if you're an influencer or creator (display name, niches, channels, audience size, bio), deliverable links submitted as proof of a post, and usage data needed to operate the product.",
+    body: "Account details (name, email), content you create or import (source posts, generated posts), connected account metadata (platform, handle, account type), and usage data needed to operate the product (workflow configuration, publishing history).",
   },
   {
-    title: "AI provider API keys",
-    body: "Any AI provider API key you add under Bring Your Own Key is encrypted before being stored and is only decrypted server-side at the moment it's needed to generate a campaign brief on your behalf. It is never sent to your browser after you save it — settings only ever show a masked version.",
+    title: "OAuth tokens and API keys",
+    body: "Access and refresh tokens for connected platforms, and any AI provider API key you add under Bring Your Own Key, are encrypted before being stored and are only decrypted server-side at the moment they're needed to make a request on your behalf. They are never sent to your browser after the initial connection.",
   },
   {
     title: "How we use your data",
-    body: "To operate the product: matching campaigns with influencers whose network profile fits, generating AI campaign brief drafts using the provider you configure, reviewing submitted deliverables, and showing you which tracked links drove results. We do not sell your data.",
+    body: "To operate the product: publishing to accounts you connect, generating platform-specific content using the AI provider you configure, and showing you analytics for posts you've published. We do not sell your data.",
   },
   {
     title: "Third-party platforms",
-    body: "Amplibee doesn't connect to or post on your behalf on X, LinkedIn, YouTube, or Instagram. Influencers post independently on those platforms and submit a link as proof; each platform's own privacy policy applies to what's posted there. We only store the link and metadata about the deliverable, not the platform account itself.",
+    body: "When you connect X, LinkedIn, Medium, or Substack, those platforms' own privacy policies also apply to data you share with them. Disconnecting an account in Amplibee revokes our stored token but does not automatically revoke authorization on the platform's side — do that from the platform's own app settings if needed.",
   },
   {
     title: "Data retention",
-    body: "We retain your content and account data as long as your account is active. You can delete individual campaigns, your product profile, or your network profile at any time, or request full account deletion from Settings → Security.",
+    body: "We retain your content and account data as long as your account is active. You can delete individual posts, workflows, or connected accounts at any time, or request full account deletion from Settings → Security.",
   },
   {
     title: "Contact",
@@ -41,7 +41,7 @@ const cookieCategories = [
   {
     name: "Strictly necessary",
     detail:
-      "Keeps you signed in and protects authenticated pages. Always active — the product doesn't work without these.",
+      "Keeps you signed in and protects authenticated pages, and remembers OAuth connection state for a few minutes while you connect a platform account. Always active — the product doesn't work without these.",
     canDisable: false,
   },
   {
@@ -112,7 +112,8 @@ export default function PrivacyPage() {
             </div>
             <p className="mt-4 text-[15px] leading-relaxed text-muted-foreground">
               You can clear cookies at any time from your browser settings — doing so will simply
-              sign you out.
+              sign you out and require you to reconnect any platform accounts that were
+              mid-connection.
             </p>
           </div>
 

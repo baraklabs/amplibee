@@ -29,7 +29,7 @@ export default async function CampaignsPage() {
         description="What you're briefing influencers to genuinely promote to their own audience."
         action={
           <Button asChild>
-            <Link href="/dashboard/create">
+            <Link href="/dashboard/campaigns/new">
               <Plus className="size-4" />
               New campaign
             </Link>
@@ -60,7 +60,7 @@ export default async function CampaignsPage() {
             description="Brief what you're promoting and let real influencers discover it in the network."
             action={
               <Button size="sm" asChild>
-                <Link href="/dashboard/create">New campaign</Link>
+                <Link href="/dashboard/campaigns/new">New campaign</Link>
               </Button>
             }
             className="border-0"

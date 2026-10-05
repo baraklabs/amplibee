@@ -8,7 +8,7 @@ import { SplitCard } from "@/components/marketing/split-card";
 
 const title = "Blog";
 const description =
-  "Notes on genuine influencer marketing, GitHub star growth, SaaS launches, and building Amplibee.";
+  "Notes on cross-posting, AI-assisted content, backlinks, growth, and building Amplibee.";
 
 export const metadata: Metadata = pageMetadata({
   title,

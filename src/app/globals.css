@@ -304,3 +304,30 @@ h6 {
     animation: none;
   }
 }
+
+/* Honeycomb grid: decorative hexagon texture, used on every marketing page via the
+   layout. Same seamless tile as the Amplibee-n reference. The tile mask is intersected
+   with a radial fade so it dissolves into the page background with no visible edge.
+   Add `honeycomb-bg` to any relatively-positioned container to reuse it. */
+.honeycomb-bg {
+  position: relative;
+  isolation: isolate;
+}
+.honeycomb-bg::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: min(520px, 70%);
+  height: 380px;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0.3;
+  background-color: var(--accent);
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='48' viewBox='0 0 28 48'%3E%3Cpath d='M14 0 28 8v16L14 32 0 24V8zM14 32v16' fill='none' stroke='%23000' stroke-width='0.9'/%3E%3C/svg%3E"), radial-gradient(ellipse at 100% 0%, #000 0%, transparent 70%);
+  -webkit-mask-size: 63px 108px, 100% 100%;
+  -webkit-mask-composite: source-in;
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='48' viewBox='0 0 28 48'%3E%3Cpath d='M14 0 28 8v16L14 32 0 24V8zM14 32v16' fill='none' stroke='%23000' stroke-width='0.9'/%3E%3C/svg%3E"), radial-gradient(ellipse at 100% 0%, #000 0%, transparent 70%);
+  mask-size: 63px 108px, 100% 100%;
+  mask-composite: intersect;
+}

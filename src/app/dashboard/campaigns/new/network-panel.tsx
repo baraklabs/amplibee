@@ -4,7 +4,7 @@ import * as React from "react";
 import Link from "next/link";
 import { Globe, ArrowUpRight, CheckCircle2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { publishCampaignToNetwork } from "../campaigns/actions";
+import { publishCampaignToNetwork } from "../actions";
 
 export function NetworkPanel({ campaignId, campaignName }: { campaignId: string; campaignName: string }) {
   const [isPending, startTransition] = React.useTransition();

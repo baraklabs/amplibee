@@ -1,37 +1,27 @@
 export const faqs = [
   {
-    question: "What is Amplibee?",
+    question: "Does Amplibee post the exact same text everywhere?",
     answer:
-      "Amplibee connects product owners — SaaS founders, indie hackers, open-source maintainers — with real influencers and creators who authentically promote their product, app, or GitHub repo on X, LinkedIn, YouTube, and Instagram, to their own genuine audience.",
-  },
-  {
-    question: "Is this a service for buying GitHub stars, followers, or upvotes?",
-    answer:
-      "No, explicitly not. Amplibee doesn't sell stars, followers, or engagement directly. It matches real influencers with real audiences to campaigns that fit their niche — they post genuinely, in their own voice, to people who actually follow them.",
-  },
-  {
-    question: "How does influencer matching work?",
-    answer:
-      "You brief a campaign with what you're promoting and your goal. Influencers in the network browse or get matched to campaigns by niche and channel, and choose which ones to join based on genuine fit with their audience.",
-  },
-  {
-    question: "How does the AI campaign brief work?",
-    answer:
-      "Describe your product and goal, and Amplibee's AI drafts suggested talking points and captions per channel from your saved product profile. Influencers adapt those into their own voice before posting — it's a starting point, never a script to read verbatim.",
+      "No. Each destination gets a version rewritten for that platform's format and audience — a LinkedIn post reads differently from a Medium article or a Substack newsletter, even though they come from the same source.",
   },
   {
     question: "Can I use my own OpenAI or Anthropic API key?",
     answer:
-      "Yes. Amplibee supports Bring Your Own Key for OpenAI, Anthropic, and OpenRouter. Your key is encrypted at rest and never sent to the browser — AI generation is billed directly by your provider.",
+      "Yes. Amplibee supports Bring Your Own Key for OpenAI, Anthropic, and OpenRouter. Your key is encrypted at rest and never sent to the browser.",
   },
   {
-    question: "How do I know a campaign's results are genuine?",
+    question: "Do I have to publish automatically?",
     answer:
-      "Every influencer gets a unique tracked link, and every submitted deliverable — the post, video, or story they publish — is reviewed before it counts toward your campaign. Nothing here runs on bots or purchased engagement.",
+      "No. Every generated version is editable, and you choose manual approval, scheduled publishing, or draft-only per workflow.",
   },
   {
-    question: "What can I run a campaign for?",
+    question: "Can I connect more than one account per platform?",
     answer:
-      "A SaaS product, a mobile app, a GitHub or open-source repo, a Product Hunt launch, or a blog post — with a goal of GitHub stars, sign-ups, downloads, awareness, or traffic.",
+      "Yes. Connect multiple X accounts, a personal LinkedIn profile alongside a company page, or several Medium publications, and choose the source and destination per workflow.",
+  },
+  {
+    question: "Can Amplibee also run influencer campaigns?",
+    answer:
+      "Yes, as a secondary feature. After you sign in, you can brief a campaign and real influencers on X, LinkedIn, YouTube, and Instagram can pick it up and post genuinely to their own audience. Amplibee never sells followers, stars, or engagement.",
   },
 ];

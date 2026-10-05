@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { promotionTypeSchema, channelSchema, campaignGoalSchema } from "./compose";
+import { promotionTypeSchema, channelSchema, campaignGoalSchema } from "./campaign-compose";
 
 export const campaignSchema = z.object({
   name: z.string().trim().min(1, "Name is required").max(120),

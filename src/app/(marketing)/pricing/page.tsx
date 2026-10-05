@@ -1,105 +1,85 @@
 import Link from "next/link";
 import type { Metadata } from "next";
-import { ArrowRight } from "lucide-react";
+import { Check, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 import { JsonLd } from "@/components/seo/json-ld";
 import { breadcrumbJsonLd, faqJsonLd, pricingJsonLd } from "@/lib/seo/jsonld";
 import { pageMetadata } from "@/lib/seo/metadata";
-import { PricingPlans, type PricingPlan } from "./pricing-plans";
 
 export const metadata: Metadata = pageMetadata({
   title: "Pricing",
   description:
-    "Free to join with 25 contact views a month. Plus gets you 10 active campaigns and 250 contact views for $49/month. Business gets 100 active campaigns and 1,000 contact views for $249/month.",
+    "Start free with auto cross-posting for one destination. Upgrade for unlimited workflows, more connected accounts, and network amplification.",
   path: "/pricing",
 });
 
-const plans: PricingPlan[] = [
+const plans = [
   {
-    name: "Free",
-    monthly: 0,
-    yearlyMonthly: null,
-    yearlyBilled: null,
-    description: "Join the marketplace and see who's out there.",
+    name: "Starter",
+    price: "$0",
+    period: "forever",
+    description: "Try cross-posting on your next launch.",
     features: [
-      "Product and influencer profiles",
-      "Browse and apply in the network",
-      "1 active campaign",
-      "25 contact views / month",
-      "Manual deliverable review",
+      "1 workflow",
+      "2 connected accounts",
+      "Auto cross-post to 1 destination",
+      "BYOK AI (your own API key)",
+      "Manual approval only",
     ],
     cta: "Get started for free",
     href: "/login?mode=signup",
     highlighted: false,
   },
   {
-    name: "Plus",
-    monthly: 49,
-    yearlyMonthly: 41,
-    yearlyBilled: 490,
-    description: "For founders running campaigns every week.",
+    name: "Builder",
+    price: "$19",
+    period: "/ month",
+    description: "For solo founders shipping regularly.",
     features: [
-      "Everything in Free",
-      "10 active campaigns",
-      "250 contact views / month",
-      "AI campaign brief generation",
-      "Priority network placement",
-      "Tracked links on every deliverable",
+      "Unlimited workflows",
+      "Up to 10 connected accounts",
+      "Cross-post to all supported platforms",
+      "Content profiles & saved brand voice",
+      "Scheduling",
+      "Auto-generated backlinks",
     ],
     cta: "Get started for free",
     href: "/login?mode=signup",
     highlighted: true,
   },
   {
-    name: "Business",
-    monthly: 249,
-    yearlyMonthly: 208,
-    yearlyBilled: 2490,
-    description: "For agencies and teams running multiple brands.",
+    name: "Team",
+    price: "$49",
+    period: "/ month",
+    description: "For small teams running multiple launches.",
     features: [
-      "Everything in Plus",
-      "100 active campaigns",
-      "1,000 contact views / month",
-      "Multiple products and brands",
-      "Team support with shared workspace access",
-      "Dedicated support",
+      "Everything in Builder",
+      "Unlimited connected accounts",
+      "Multiple content profiles per brand",
+      "Priority network placement",
+      "Shared workspace",
     ],
-    cta: "Get started for free",
-    href: "/login?mode=signup",
+    cta: "Talk to us",
+    href: "/contact",
     highlighted: false,
   },
 ];
 
-const plansForJsonLd = plans.map((plan) => ({
-  name: plan.name,
-  price: `$${plan.monthly}`,
-  description: plan.description,
-}));
-
 const faqs = [
   {
-    question: "What's a contact view?",
+    question: "What does 'Bring Your Own Key' mean for billing?",
     answer:
-      "It's what's spent when you open an influencer's direct contact details to reach out yourself. Browsing profiles, matching by niche, and running campaigns through the network don't use any — contact views only apply when you go around the campaign flow to contact someone directly. Your allowance refreshes every month.",
-  },
-  {
-    question: "What counts as an active campaign?",
-    answer:
-      "Any campaign with status set to active and visible to the network. Draft, paused, and completed campaigns don't count against your plan's limit — only the ones currently open for influencers to discover and join.",
+      "Amplibee's plans cover the product itself. AI generation calls use your own OpenAI, Anthropic, or OpenRouter API key, billed directly by that provider — we don't mark up token usage.",
   },
   {
     question: "Can I change plans later?",
-    answer: "Yes, upgrade or downgrade at any time from Settings → Billing. Changes apply immediately, including your new campaign and contact-view limits.",
+    answer: "Yes, upgrade or downgrade at any time from Settings → Billing. Changes apply immediately.",
   },
   {
-    question: "Does a higher plan mean more fake engagement or faster stars?",
+    question: "Is there a limit on posts per month?",
     answer:
-      "No. Every plan runs on the same rule: real influencers, real audiences, reviewed deliverables. Paid plans unlock more active campaigns, more contact views, and better placement in the network — never shortcuts around genuine engagement.",
-  },
-  {
-    question: "Is there a limit on how many influencers can join a campaign?",
-    answer:
-      "No artificial cap on influencers per campaign. Plan limits are on how many active campaigns you can run at once, not on how much genuine reach a single campaign can attract.",
+      "No artificial post caps. Limits are on workflows and connected accounts, not on how much you publish.",
   },
 ];
 
@@ -112,50 +92,65 @@ export default function PricingPage() {
             { name: "Home", path: "/" },
             { name: "Pricing", path: "/pricing" },
           ]),
-          pricingJsonLd(plansForJsonLd),
+          pricingJsonLd(plans),
           faqJsonLd(faqs),
         ]}
       />
 
       <section className="border-b border-border">
-        <div className="mx-auto max-w-6xl px-6 pb-6 pt-10 text-center sm:pb-8 sm:pt-12">
-          <h1 className="font-heading mx-auto max-w-xl text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
-            Simple plans that scale with your campaigns.
+        <div className="mx-auto max-w-6xl px-6 py-16 text-center sm:py-20">
+          <p className="text-eyebrow">Pricing</p>
+          <h1 className="font-heading mx-auto mt-3 max-w-xl text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
+            Simple pricing. Bring your own AI key.
           </h1>
           <p className="mx-auto mt-4 max-w-lg text-[15px] text-muted-foreground">
-            Every plan includes a monthly allowance of active campaigns and contact views — no
-            per-post fees, no surprise charges.
+            You pay Amplibee for the product. You pay your AI provider for generation, at their
+            rates, with your own key.
           </p>
         </div>
       </section>
 
       <section className="border-b border-border">
-        <div className="mx-auto max-w-6xl px-6 pb-16 pt-6 sm:pb-20 sm:pt-8">
-          <PricingPlans plans={plans} />
-        </div>
-      </section>
-
-      <section className="border-b border-border">
-        <div className="mx-auto max-w-3xl px-6 py-16 sm:py-20">
-          <h2 className="font-heading text-2xl font-semibold tracking-tight text-foreground">
-            Two things every plan is built around
-          </h2>
-          <div className="mt-8 grid gap-4 sm:grid-cols-2">
-            <div className="rounded-lg border border-border bg-card p-5">
-              <p className="font-heading text-[15px] font-semibold text-foreground">Active campaigns</p>
-              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-                How many campaigns you can have live and visible to the network at once. Draft,
-                paused, and completed campaigns never count against the limit.
-              </p>
-            </div>
-            <div className="rounded-lg border border-border bg-card p-5">
-              <p className="font-heading text-[15px] font-semibold text-foreground">Contact views</p>
-              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-                A monthly allowance for opening an influencer&apos;s direct contact details.
-                Browsing the network and running campaigns through the normal flow never spends
-                one.
-              </p>
-            </div>
+        <div className="mx-auto max-w-6xl px-6 py-16 sm:py-20">
+          <div className="grid gap-6 md:grid-cols-3">
+            {plans.map((plan) => (
+              <div
+                key={plan.name}
+                className={cn(
+                  "flex flex-col rounded-lg border p-6",
+                  plan.highlighted ? "border-primary shadow-sm" : "border-border",
+                )}
+              >
+                {plan.highlighted && (
+                  <span className="mb-3 inline-flex w-fit items-center rounded-full bg-accent-soft px-2.5 py-1 text-xs font-medium text-accent">
+                    Most popular
+                  </span>
+                )}
+                <h3 className="font-heading text-lg font-semibold text-foreground">{plan.name}</h3>
+                <p className="mt-1 text-sm text-muted-foreground">{plan.description}</p>
+                <div className="mt-5 flex items-baseline gap-1">
+                  <span className="font-heading text-3xl font-semibold text-foreground">
+                    {plan.price}
+                  </span>
+                  <span className="text-sm text-muted-foreground">{plan.period}</span>
+                </div>
+                <Button
+                  className="mt-6"
+                  variant={plan.highlighted ? "primary" : "outline"}
+                  asChild
+                >
+                  <Link href={plan.href}>{plan.cta}</Link>
+                </Button>
+                <ul className="mt-6 flex flex-1 flex-col gap-2.5">
+                  {plan.features.map((feature) => (
+                    <li key={feature} className="flex items-start gap-2.5 text-sm text-muted-foreground">
+                      <Check className="mt-0.5 size-4 shrink-0 text-accent" />
+                      {feature}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
           </div>
         </div>
       </section>

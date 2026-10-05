@@ -7,7 +7,7 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Select } from "@/components/ui/select";
 import { PlatformIcon } from "@/components/platform/platform-icon";
-import { platformList } from "@/lib/platforms/registry";
+import { channelList } from "@/lib/channels/registry";
 import { idleActionState } from "@/lib/types/action-state";
 import { saveChannelProfile } from "./actions";
 
@@ -46,7 +46,7 @@ export function ProfileForm({ profile }: { profile: OwnProfile | null }) {
       <div>
         <Label>Channels you post on</Label>
         <div className="mt-2 flex flex-wrap gap-2">
-          {platformList.map((platform) => (
+          {channelList.map((platform) => (
             <label
               key={platform.id}
               className="flex items-center gap-1.5 rounded-md border border-border px-2.5 py-1.5 text-xs font-medium text-foreground"

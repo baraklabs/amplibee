@@ -51,7 +51,7 @@ export function softwareApplicationJsonLd() {
     "@id": `${siteConfig.url}/#software`,
     name: siteConfig.name,
     applicationCategory: "BusinessApplication",
-    applicationSubCategory: "Influencer marketing platform for apps, SaaS, products, and startups",
+    applicationSubCategory: "Social media automation and content repurposing",
     operatingSystem: "Web",
     description: siteConfig.description,
     url: siteConfig.url,

@@ -7,7 +7,7 @@ export const marketingNav = [
 export const footerNav = {
   resources1: [
     { label: "Pricing", href: "/pricing" },
-    { label: "Channels", href: "/channels" },
+    { label: "Platforms", href: "/platforms" },
     { label: "Network", href: "/network" },
   ],
   resources2: [

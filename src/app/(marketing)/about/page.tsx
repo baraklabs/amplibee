@@ -5,7 +5,7 @@ import { pageMetadata } from "@/lib/seo/metadata";
 
 const title = "About";
 const description =
-  "Amplibee was built because growth shouldn't mean buying fake followers or bots. Here's why we bet on real influencers instead, and how we think about the product.";
+  "Amplibee was built because launching something well shouldn't mean rewriting the same update six times. Here's why, and how we think about the product.";
 
 export const metadata: Metadata = pageMetadata({
   title,
@@ -30,29 +30,26 @@ export default function AboutPage() {
         <div className="mx-auto max-w-3xl px-6 py-16 sm:py-20">
           <p className="text-eyebrow">About</p>
           <h1 className="font-heading mt-3 text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
-            We got tired of watching good products lose to bought engagement.
+            We got tired of rewriting the same launch post six times.
           </h1>
 
           <div className="mt-8 flex flex-col gap-5 text-[15px] leading-relaxed text-muted-foreground">
             <p>
-              Every product owner faces the same temptation eventually: a service offering a
-              thousand GitHub stars overnight, a few hundred fake followers, an upvote bot for
-              launch day. It works for about a week, until the stars get purged, the followers get
-              detected, and the trust you actually needed is gone along with them.
+              Every launch — a new feature, a Product Hunt post, a GitHub release — turns into the
+              same manual work: write it for X, rewrite it for LinkedIn, expand it for a blog,
+              format it again for a newsletter. The ideas don&apos;t change. The busywork does.
             </p>
             <p>
-              Amplibee exists because there&apos;s a better trade that most founders never get
-              introduced to: real influencers and creators, with real audiences, who genuinely
-              believe a product is worth telling people about. That kind of reach is slower to
-              earn and impossible to fake — which is exactly why it still means something when a
-              real person&apos;s audience responds to it.
+              Amplibee exists to remove that busywork without removing your voice from the
+              content. You write the source once. We adapt it for each platform&apos;s format and
+              audience, you review and edit before anything goes out, and then it publishes to the
+              accounts you choose.
             </p>
             <p>
-              We built the product around three constraints we think matter: every profile in the
-              network is a real, opted-in person, not an engagement farm; every deliverable an
-              influencer submits gets reviewed before it counts toward your campaign; and AI helps
-              draft talking points, but it never writes the final post — that&apos;s the influencer&apos;s
-              own voice, always.
+              We built it around three constraints we think matter: you should always be able to
+              connect more than one account per platform, you should be able to use your own AI
+              provider key instead of paying us a markup on tokens, and nothing should publish
+              without your say-so unless you turn that off yourself.
             </p>
             <p>
               Amplibee is built by a small team who ships in public. If you have feedback,{" "}

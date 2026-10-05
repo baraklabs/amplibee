@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { Badge } from "@/components/ui/badge";
 import { PlatformIcon } from "@/components/platform/platform-icon";
-import { getPlatform } from "@/lib/platforms/registry";
+import { getChannel } from "@/lib/channels/registry";
 import { updateCampaignBrief, regenerateCampaignBrief } from "../actions";
 import type { ChannelId, CampaignBriefStatus } from "@/types/database";
 
@@ -25,7 +25,7 @@ export function BriefEditor({
   const [dirty, setDirty] = React.useState(false);
   const [pending, setPending] = React.useState<"save" | "regenerate" | null>(null);
   const [error, setError] = React.useState<string | null>(null);
-  const platform = getPlatform(channel);
+  const platform = getChannel(channel);
 
   async function handleSave() {
     setPending("save");
