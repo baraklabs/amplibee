@@ -1,7 +1,7 @@
 // Client for the JSON API. The site is a pure client of it: no database access happens here.
 
 import { API_URL } from './config.ts'
-import { getAuth } from './supabase.ts'
+import { accessToken as currentToken } from './auth.ts'
 import type { Gap, LogLine, Report } from './shared/types.ts'
 
 export interface ApiEnvelope<T> {
@@ -72,8 +72,7 @@ export type RequestType = 'directory_submission' | 'track_competitors' | 'launch
 
 /** The signed-in user's access token, or a clear error when there is no session. */
 async function accessToken(): Promise<string> {
-  const session = await getAuth()?.auth.getSession()
-  const token = session?.data.session?.access_token
+  const token = await currentToken()
   if (!token) throw new ApiError('auth_required', 'Sign in to continue.', 401)
   return token
 }

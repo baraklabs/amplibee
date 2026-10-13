@@ -73,6 +73,8 @@ supabase functions deploy maintenance --no-verify-jwt
 node supabase/scripts/verify-anon.mjs         # with SUPABASE_URL and SUPABASE_ANON_KEY set
 ```
 
+Accounts are handled by the same function under `/v1/auth/*` (migration `20261013000001_custom_auth.sql`). Set `JWT_SECRET` (and `GOOGLE_CLIENT_ID` for Google sign-in) before deploying, and `NEXT_PUBLIC_GOOGLE_CLIENT_ID` on the web app. Confirmation and reset emails need the email settings below.
+
 The API is public by design and does its own bot protection (Turnstile) and rate limiting, so it is deployed without JWT verification. The browser never needs the anon key. RLS is on for every table with no policies, and table and function grants are revoked from `anon` and `authenticated`.
 
 ### Scheduled jobs

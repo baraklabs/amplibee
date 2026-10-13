@@ -1,5 +1,5 @@
 import { z } from 'zod'
-import { verifyUser } from '../_shared/auth.ts'
+import { dbUsers, verifyUser } from '../_shared/auth.ts'
 import { getDb } from '../_shared/db.ts'
 import { denoResolver } from '../_shared/dns.ts'
 import { type EmailMessage, reportEmail, sendEmail } from '../_shared/email.ts'
@@ -33,21 +33,21 @@ function pipelineEnv(): PipelineEnv {
   }
 }
 
-function clientIp(req: Request): string {
+export function clientIp(req: Request): string {
   return req.headers.get('cf-connecting-ip') ?? req.headers.get('x-forwarded-for')?.split(',')[0].trim() ?? 'unknown'
 }
 
-function secondsToUtcMidnight(): number {
+export function secondsToUtcMidnight(): number {
   const n = new Date()
   const next = Date.UTC(n.getUTCFullYear(), n.getUTCMonth(), n.getUTCDate() + 1)
   return Math.max(1, Math.ceil((next - n.getTime()) / 1000))
 }
 
-function rateInfo(limit: number, used: number): RateInfo {
+export function rateInfo(limit: number, used: number): RateInfo {
   return { limit, remaining: limit - used, reset: Math.floor(Date.now() / 1000) + secondsToUtcMidnight() }
 }
 
-async function body<T extends z.ZodTypeAny>(req: Request, schema: T): Promise<{ data: z.infer<T> } | { error: Response }> {
+export async function body<T extends z.ZodTypeAny>(req: Request, schema: T): Promise<{ data: z.infer<T> } | { error: Response }> {
   const raw = await req.text()
   if (raw.length > MAX_BODY) return { error: fail('too_large', 'The request body is too large.', { status: 413 }) }
   let json: unknown
@@ -61,7 +61,7 @@ async function body<T extends z.ZodTypeAny>(req: Request, schema: T): Promise<{ 
   return { data: parsed.data }
 }
 
-async function hit(key: string): Promise<number> {
+export async function hit(key: string): Promise<number> {
   const { data, error } = await getDb().rpc('rl_hit', { p_key: key })
   if (error) throw new Error(`rate limit: ${error.message}`)
   return Number(data)
@@ -191,7 +191,7 @@ export async function postUnlock(req: Request): Promise<Response> {
   if ('error' in b) return b.error
   const { job_id } = b.data
 
-  const user = await verifyUser(getDb(), req.headers.get('authorization'))
+  const user = await verifyUser(dbUsers(getDb()), req.headers.get('authorization'))
   if (!user) return fail('auth_required', 'Sign in to unlock the full report.', { status: 401 })
 
   const limit = int('UNLOCKS_PER_USER_PER_DAY', 20)
@@ -268,7 +268,7 @@ export async function postRequest(req: Request): Promise<Response> {
   const { job_id, type, note } = b.data
 
   const db = getDb()
-  const user = await verifyUser(db, req.headers.get('authorization'))
+  const user = await verifyUser(dbUsers(db), req.headers.get('authorization'))
   if (!user) return fail('auth_required', 'Sign in to make a request.', { status: 401 })
 
   const limit = int('REQUESTS_PER_USER_PER_DAY', 20)
@@ -311,7 +311,7 @@ export async function postRequest(req: Request): Promise<Response> {
 
 export async function getRequests(req: Request): Promise<Response> {
   const db = getDb()
-  const user = await verifyUser(db, req.headers.get('authorization'))
+  const user = await verifyUser(dbUsers(db), req.headers.get('authorization'))
   if (!user) return fail('auth_required', 'Sign in to see your requests.', { status: 401 })
   const jobId = new URL(req.url).searchParams.get('job_id') ?? ''
   if (!uuidSchema.safeParse(jobId).success) return fail('invalid_input', 'That job id is not valid.', { status: 422 })

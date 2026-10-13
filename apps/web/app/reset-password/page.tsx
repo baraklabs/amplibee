@@ -1,4 +1,4 @@
-import { ResetPassword } from '../../components/AuthCallback.tsx'
+import { ResetPassword } from '../../components/EmailLinks.tsx'
 import { pageMeta } from '../../lib/seo.ts'
 
 export const metadata = pageMeta({ title: 'Choose a new password', description: 'Set a new password for your Amplibee account.', path: '/reset-password', noindex: true })

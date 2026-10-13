@@ -25,6 +25,24 @@ export function reportEmail(opts: { domain: string; score: number | null; link: 
   return { subject: `Your Amplibee report for ${opts.domain}`, text, html }
 }
 
+/** The email that carries a six-digit code and a one-click link, for confirming an address or resetting a password. */
+export function codeEmail(kind: 'verify' | 'reset', code: string, link: string): Omit<EmailMessage, 'to'> {
+  const verify = kind === 'verify'
+  const subject = verify ? `Your Amplibee confirmation code: ${code}` : `Reset your Amplibee password (code ${code})`
+  const lead = verify ? 'Confirm your email to finish creating your Amplibee account.' : 'Someone asked to reset the password for your Amplibee account.'
+  const action = verify ? 'Confirm my email' : 'Choose a new password'
+  const text = [
+    lead,
+    '',
+    `Your code: ${code}`,
+    `Or open this link: ${link}`,
+    '',
+    `The code and link work for ${verify ? '10' : '15'} minutes. If this was not you, ignore this email.`,
+  ].join('\n')
+  const html = `<p>${esc(lead)}</p><p style="font-size:28px;letter-spacing:6px;font-weight:700;margin:16px 0">${esc(code)}</p><p><a href="${esc(link)}">${action}</a></p><p style="color:#6b655a;font-size:13px">The code and link work for ${verify ? '10' : '15'} minutes. If this was not you, ignore this email.</p>`
+  return { subject, text, html }
+}
+
 export async function sendEmail(msg: EmailMessage, fetchImpl: typeof fetch = fetch): Promise<{ ok: boolean; error?: string }> {
   const provider = env('EMAIL_PROVIDER', 'resend')
   const from = env('EMAIL_FROM')

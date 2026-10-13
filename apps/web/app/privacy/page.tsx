@@ -33,7 +33,7 @@ export default function Privacy() {
           <li>Supabase hosts the database and the API.</li>
           <li>Vercel hosts this website.</li>
           <li>Cloudflare Turnstile checks that a visitor is not a bot. It runs in your browser and may use its own storage.</li>
-          <li>Supabase Auth handles sign-in. Passwords are stored as hashes that we never see. With Google sign-in we receive your email address and nothing else.</li>
+          <li>Accounts are handled by our own sign-in service. Passwords are stored as salted hashes that we never see. With Google sign-in we receive your email address and name, and nothing else.</li>
           <li>Resend or Brevo sends the report email.</li>
           <li>Google PageSpeed Insights receives the homepage address of the site being checked.</li>
           <li>A search provider receives queries that contain the checked domain.</li>
