@@ -11,6 +11,7 @@ import { env, siteUrl } from '../_shared/env.ts'
 import { verifyGoogleIdToken } from '../_shared/google.ts'
 import { ACCESS_TTL_SECONDS, PENDING_TTL_SECONDS, signToken, verifyToken } from '../_shared/jwt.ts'
 import { generateLinkToken, generateOtp, hashPassword, sha256Hex, timingSafeEqual, verifyPassword } from '../_shared/password.ts'
+import { newSignupMessage, notifyTelegram } from '../_shared/telegram.ts'
 import { hashIp } from '../_shared/token.ts'
 import { body, clientIp, hit } from './handlers.ts'
 
@@ -159,6 +160,7 @@ export async function postGoogle(req: Request): Promise<Response> {
     console.error('auth: google upsert failed', saved.error.message)
     return fail('internal_error', TRY_AGAIN, { status: 500 })
   }
+  if (!existing) await notifyTelegram(newSignupMessage(profile.name, profile.email, 'Google'))
   return ok(await startSession(req, saved.data.id))
 }
 
@@ -183,7 +185,7 @@ export async function postVerify(req: Request): Promise<Response> {
   if (limit) return limit
 
   const db = getDb()
-  const { data: user } = await db.from('users').select('id, otp_hash, otp_expires_at, otp_attempts, active').eq('id', userId).maybeSingle()
+  const { data: user } = await db.from('users').select('id, email, name, verified, otp_hash, otp_expires_at, otp_attempts, active').eq('id', userId).maybeSingle()
   if (!user || !user.active || !user.otp_hash) return fail('invalid_code', 'That code is not valid. Ask for a new one.', { status: 400 })
   if (user.otp_attempts >= MAX_ATTEMPTS) return fail('too_many_attempts', 'Too many wrong codes. Ask for a new one.', { status: 429 })
   if (!user.otp_expires_at || new Date(user.otp_expires_at).getTime() < Date.now()) return fail('code_expired', 'That code has expired. Ask for a new one.', { status: 400 })
@@ -192,6 +194,7 @@ export async function postVerify(req: Request): Promise<Response> {
     return fail('invalid_code', 'That code is not right.', { status: 400 })
   }
   if (!(await confirm(user.id))) return fail('invalid_code', 'That code is not valid. Ask for a new one.', { status: 400 })
+  if (!user.verified) await notifyTelegram(newSignupMessage(user.name, user.email, 'Password'))
   return ok(await startSession(req, user.id))
 }
 
@@ -202,11 +205,12 @@ export async function postVerifyLink(req: Request): Promise<Response> {
   if (limit) return limit
 
   const hash = await sha256Hex(b.data.token)
-  const { data: user } = await getDb().from('users').select('id, otp_expires_at, active').eq('verification_token_hash', hash).maybeSingle()
+  const { data: user } = await getDb().from('users').select('id, email, name, verified, otp_expires_at, active').eq('verification_token_hash', hash).maybeSingle()
   const gone = fail('invalid_link', 'This confirmation link is not valid or has expired. Sign in to get a new one.', { status: 400 })
   if (!user || !user.active || !user.otp_expires_at || new Date(user.otp_expires_at).getTime() < Date.now()) return gone
   // Clearing the hash is what makes the link single use; the guard stops two clicks racing.
   if (!(await confirm(user.id, hash))) return gone
+  if (!user.verified) await notifyTelegram(newSignupMessage(user.name, user.email, 'Email link'))
   return ok(await startSession(req, user.id))
 }
 
