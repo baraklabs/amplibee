@@ -1,1 +1,802 @@
-[]
+[
+  {
+    "name": "Birchflow",
+    "domain": "birchflow.co",
+    "tagline": "Notes clinicians finish before lunch.",
+    "category": "Health",
+    "launched": "2026-09",
+    "score": 92
+  },
+  {
+    "name": "Vesselmint",
+    "domain": "vesselmint.com",
+    "tagline": "See what customers ask before they churn.",
+    "category": "Customer support",
+    "launched": "2026-09",
+    "score": 90
+  },
+  {
+    "name": "Plainloop",
+    "domain": "plainloop.io",
+    "tagline": "A help center that updates as your product does.",
+    "category": "Customer support",
+    "launched": "2026-09",
+    "score": 80
+  },
+  {
+    "name": "Quilllight",
+    "domain": "quilllight.com",
+    "tagline": "Review pull requests in half the time.",
+    "category": "Developer tools",
+    "launched": "2026-09",
+    "score": 79
+  },
+  {
+    "name": "Pinedoor",
+    "domain": "pinedoor.io",
+    "tagline": "Turn one post into a week of content.",
+    "category": "Marketing",
+    "launched": "2026-09",
+    "score": 73
+  },
+  {
+    "name": "Maplescope",
+    "domain": "maplescope.co",
+    "tagline": "Wellness plans for remote teams.",
+    "category": "Health",
+    "launched": "2026-09",
+    "score": 66
+  },
+  {
+    "name": "Pinestack",
+    "domain": "pinestack.com",
+    "tagline": "Find the keywords your buyers actually use.",
+    "category": "Marketing",
+    "launched": "2026-09",
+    "score": 64
+  },
+  {
+    "name": "Juniperpost",
+    "domain": "juniperpost.app",
+    "tagline": "Grade written work in minutes.",
+    "category": "Education",
+    "launched": "2026-08",
+    "score": 94
+  },
+  {
+    "name": "Thistlenote",
+    "domain": "thistlenote.com",
+    "tagline": "Run email sequences that read like a person wrote them.",
+    "category": "Marketing",
+    "launched": "2026-08",
+    "score": 78
+  },
+  {
+    "name": "Northpad",
+    "domain": "northpad.com",
+    "tagline": "Hire your first ten without an agency.",
+    "category": "HR and hiring",
+    "launched": "2026-08",
+    "score": 77
+  },
+  {
+    "name": "Ledgerdesk",
+    "domain": "ledgerdesk.co",
+    "tagline": "One inbox for every task and message.",
+    "category": "Productivity",
+    "launched": "2026-08",
+    "score": 75
+  },
+  {
+    "name": "Latticespark",
+    "domain": "latticespark.com",
+    "tagline": "Preview every branch on its own address.",
+    "category": "Developer tools",
+    "launched": "2026-08",
+    "score": 64
+  },
+  {
+    "name": "Reedstack",
+    "domain": "reedstack.app",
+    "tagline": "Track runway across every account.",
+    "category": "Fintech",
+    "launched": "2026-07",
+    "score": 96
+  },
+  {
+    "name": "Plaindesk",
+    "domain": "plaindesk.app",
+    "tagline": "Security reviews for small teams.",
+    "category": "Security",
+    "launched": "2026-07",
+    "score": 86
+  },
+  {
+    "name": "Ferndock",
+    "domain": "ferndock.io",
+    "tagline": "Grade written work in minutes.",
+    "category": "Education",
+    "launched": "2026-07",
+    "score": 83
+  },
+  {
+    "name": "Stackspark",
+    "domain": "stackspark.com",
+    "tagline": "Turn one post into a week of content.",
+    "category": "Marketing",
+    "launched": "2026-07",
+    "score": 81
+  },
+  {
+    "name": "Hollowhub",
+    "domain": "hollowhub.co",
+    "tagline": "Turn logs into answers without a query language.",
+    "category": "Developer tools",
+    "launched": "2026-07",
+    "score": 79
+  },
+  {
+    "name": "Dunehub",
+    "domain": "dunehub.io",
+    "tagline": "Onboarding checklists that run themselves.",
+    "category": "HR and hiring",
+    "launched": "2026-07",
+    "score": 69
+  },
+  {
+    "name": "Harborgrid",
+    "domain": "harborgrid.app",
+    "tagline": "Track habits without a wearable.",
+    "category": "Health",
+    "launched": "2026-07",
+    "score": 66
+  },
+  {
+    "name": "Orbitsync",
+    "domain": "orbitsync.app",
+    "tagline": "Collect payments in forty currencies.",
+    "category": "Fintech",
+    "launched": "2026-07",
+    "score": 62
+  },
+  {
+    "name": "Emberlight",
+    "domain": "emberlight.co",
+    "tagline": "Passwordless login in an afternoon.",
+    "category": "Security",
+    "launched": "2026-06",
+    "score": 90
+  },
+  {
+    "name": "Alderspark",
+    "domain": "alderspark.com",
+    "tagline": "Turn one post into a week of content.",
+    "category": "Marketing",
+    "launched": "2026-06",
+    "score": 88
+  },
+  {
+    "name": "Latticekit",
+    "domain": "latticekit.com",
+    "tagline": "Find leaked secrets before attackers do.",
+    "category": "Security",
+    "launched": "2026-06",
+    "score": 87
+  },
+  {
+    "name": "Kestrelloop",
+    "domain": "kestrelloop.io",
+    "tagline": "Preview every branch on its own address.",
+    "category": "Developer tools",
+    "launched": "2026-06",
+    "score": 77
+  },
+  {
+    "name": "Kestrelworks",
+    "domain": "kestrelworks.app",
+    "tagline": "Turn a course into a cohort.",
+    "category": "Education",
+    "launched": "2026-06",
+    "score": 72
+  },
+  {
+    "name": "Lumenstack",
+    "domain": "lumenstack.app",
+    "tagline": "Find leaked secrets before attackers do.",
+    "category": "Security",
+    "launched": "2026-06",
+    "score": 70
+  },
+  {
+    "name": "Quartzpad",
+    "domain": "quartzpad.io",
+    "tagline": "Grade written work in minutes.",
+    "category": "Education",
+    "launched": "2026-06",
+    "score": 69
+  },
+  {
+    "name": "Kitemint",
+    "domain": "kitemint.io",
+    "tagline": "Collect payments in forty currencies.",
+    "category": "Fintech",
+    "launched": "2026-06",
+    "score": 68
+  },
+  {
+    "name": "Quartzkit",
+    "domain": "quartzkit.app",
+    "tagline": "Reviews you can trust, on your own store.",
+    "category": "E-commerce",
+    "launched": "2026-06",
+    "score": 67
+  },
+  {
+    "name": "Plainkit",
+    "domain": "plainkit.com",
+    "tagline": "Live classes without the setup.",
+    "category": "Education",
+    "launched": "2026-06",
+    "score": 65
+  },
+  {
+    "name": "Quillpad",
+    "domain": "quillpad.com",
+    "tagline": "Send invoices that chase themselves.",
+    "category": "Fintech",
+    "launched": "2026-06",
+    "score": 65
+  },
+  {
+    "name": "Wrenloop",
+    "domain": "wrenloop.io",
+    "tagline": "Know why users leave before they convert.",
+    "category": "Analytics",
+    "launched": "2026-06",
+    "score": 62
+  },
+  {
+    "name": "Vessellight",
+    "domain": "vessellight.io",
+    "tagline": "Onboarding checklists that run themselves.",
+    "category": "HR and hiring",
+    "launched": "2026-06",
+    "score": 62
+  },
+  {
+    "name": "Sabledesk",
+    "domain": "sabledesk.co",
+    "tagline": "Meeting notes that write their own follow-ups.",
+    "category": "Productivity",
+    "launched": "2026-05",
+    "score": 90
+  },
+  {
+    "name": "Lumendoor",
+    "domain": "lumendoor.io",
+    "tagline": "Find leaked secrets before attackers do.",
+    "category": "Security",
+    "launched": "2026-05",
+    "score": 89
+  },
+  {
+    "name": "Plainroom",
+    "domain": "plainroom.com",
+    "tagline": "Mockups from a one-line brief.",
+    "category": "Design",
+    "launched": "2026-05",
+    "score": 80
+  },
+  {
+    "name": "Larchbase",
+    "domain": "larchbase.app",
+    "tagline": "Shipping rates for every region in one place.",
+    "category": "E-commerce",
+    "launched": "2026-05",
+    "score": 79
+  },
+  {
+    "name": "Northpath",
+    "domain": "northpath.app",
+    "tagline": "Plan the week in ten minutes.",
+    "category": "Productivity",
+    "launched": "2026-05",
+    "score": 76
+  },
+  {
+    "name": "Quincepad",
+    "domain": "quincepad.io",
+    "tagline": "See which pages bring paying customers.",
+    "category": "Analytics",
+    "launched": "2026-05",
+    "score": 69
+  },
+  {
+    "name": "Kestrelbook",
+    "domain": "kestrelbook.co",
+    "tagline": "Book and remind patients automatically.",
+    "category": "Health",
+    "launched": "2026-05",
+    "score": 64
+  },
+  {
+    "name": "Larchdock",
+    "domain": "larchdock.co",
+    "tagline": "Privacy-friendly stats in a single script.",
+    "category": "Analytics",
+    "launched": "2026-04",
+    "score": 95
+  },
+  {
+    "name": "Northwise",
+    "domain": "northwise.app",
+    "tagline": "Know what data leaves your app.",
+    "category": "Security",
+    "launched": "2026-04",
+    "score": 88
+  },
+  {
+    "name": "Brightroom",
+    "domain": "brightroom.com",
+    "tagline": "Shipping rates for every region in one place.",
+    "category": "E-commerce",
+    "launched": "2026-04",
+    "score": 86
+  },
+  {
+    "name": "Gladesync",
+    "domain": "gladesync.io",
+    "tagline": "Shipping rates for every region in one place.",
+    "category": "E-commerce",
+    "launched": "2026-04",
+    "score": 84
+  },
+  {
+    "name": "Indigolight",
+    "domain": "indigolight.co",
+    "tagline": "Hire your first ten without an agency.",
+    "category": "HR and hiring",
+    "launched": "2026-04",
+    "score": 82
+  },
+  {
+    "name": "Emberwise",
+    "domain": "emberwise.io",
+    "tagline": "Collect feedback right on the page.",
+    "category": "Design",
+    "launched": "2026-04",
+    "score": 81
+  },
+  {
+    "name": "Tidebook",
+    "domain": "tidebook.io",
+    "tagline": "A help center that updates as your product does.",
+    "category": "Customer support",
+    "launched": "2026-04",
+    "score": 79
+  },
+  {
+    "name": "Birchsync",
+    "domain": "birchsync.app",
+    "tagline": "Hand off designs developers can build from.",
+    "category": "Design",
+    "launched": "2026-04",
+    "score": 76
+  },
+  {
+    "name": "Umbersync",
+    "domain": "umbersync.com",
+    "tagline": "Privacy-friendly stats in a single script.",
+    "category": "Analytics",
+    "launched": "2026-04",
+    "score": 74
+  },
+  {
+    "name": "Plainbook",
+    "domain": "plainbook.co",
+    "tagline": "Answer the same question once.",
+    "category": "Customer support",
+    "launched": "2026-04",
+    "score": 74
+  },
+  {
+    "name": "Pebbleworks",
+    "domain": "pebbleworks.io",
+    "tagline": "A help center that updates as your product does.",
+    "category": "Customer support",
+    "launched": "2026-04",
+    "score": 72
+  },
+  {
+    "name": "Aldersync",
+    "domain": "aldersync.com",
+    "tagline": "Plan the week in ten minutes.",
+    "category": "Productivity",
+    "launched": "2026-04",
+    "score": 66
+  },
+  {
+    "name": "Onyxkit",
+    "domain": "onyxkit.io",
+    "tagline": "See what customers ask before they churn.",
+    "category": "Customer support",
+    "launched": "2026-03",
+    "score": 83
+  },
+  {
+    "name": "Quartzspark",
+    "domain": "quartzspark.co",
+    "tagline": "Product pages that load before the click.",
+    "category": "E-commerce",
+    "launched": "2026-03",
+    "score": 77
+  },
+  {
+    "name": "Reedly",
+    "domain": "reedly.com",
+    "tagline": "Privacy-friendly stats in a single script.",
+    "category": "Analytics",
+    "launched": "2026-03",
+    "score": 65
+  },
+  {
+    "name": "Nimbusly",
+    "domain": "nimbusly.app",
+    "tagline": "Route tickets to the person who can fix them.",
+    "category": "Customer support",
+    "launched": "2026-02",
+    "score": 86
+  },
+  {
+    "name": "Larchdesk",
+    "domain": "larchdesk.app",
+    "tagline": "Preview every branch on its own address.",
+    "category": "Developer tools",
+    "launched": "2026-02",
+    "score": 78
+  },
+  {
+    "name": "Oaknote",
+    "domain": "oaknote.co",
+    "tagline": "Turn one post into a week of content.",
+    "category": "Marketing",
+    "launched": "2026-02",
+    "score": 78
+  },
+  {
+    "name": "Yarrowloop",
+    "domain": "yarrowloop.io",
+    "tagline": "Funnels you can read without a data team.",
+    "category": "Analytics",
+    "launched": "2026-02",
+    "score": 78
+  },
+  {
+    "name": "Onyxroom",
+    "domain": "onyxroom.com",
+    "tagline": "Schedule interviews in one click.",
+    "category": "HR and hiring",
+    "launched": "2026-02",
+    "score": 75
+  },
+  {
+    "name": "Pebblehub",
+    "domain": "pebblehub.app",
+    "tagline": "Turn one post into a week of content.",
+    "category": "Marketing",
+    "launched": "2026-02",
+    "score": 68
+  },
+  {
+    "name": "Kestrelforms",
+    "domain": "kestrelforms.co",
+    "tagline": "Practice problems that adapt to the learner.",
+    "category": "Education",
+    "launched": "2026-01",
+    "score": 88
+  },
+  {
+    "name": "Mosslight",
+    "domain": "mosslight.app",
+    "tagline": "Meeting notes that write their own follow-ups.",
+    "category": "Productivity",
+    "launched": "2026-01",
+    "score": 87
+  },
+  {
+    "name": "Ledgerflow",
+    "domain": "ledgerflow.co",
+    "tagline": "See which pages bring paying customers.",
+    "category": "Analytics",
+    "launched": "2026-01",
+    "score": 81
+  },
+  {
+    "name": "Nettledesk",
+    "domain": "nettledesk.app",
+    "tagline": "Find leaked secrets before attackers do.",
+    "category": "Security",
+    "launched": "2026-01",
+    "score": 72
+  },
+  {
+    "name": "Juniperpad",
+    "domain": "juniperpad.com",
+    "tagline": "Book and remind patients automatically.",
+    "category": "Health",
+    "launched": "2026-01",
+    "score": 69
+  },
+  {
+    "name": "Nimbushub",
+    "domain": "nimbushub.co",
+    "tagline": "Track habits without a wearable.",
+    "category": "Health",
+    "launched": "2026-01",
+    "score": 68
+  },
+  {
+    "name": "Quartzpost",
+    "domain": "quartzpost.com",
+    "tagline": "Answer the same question once.",
+    "category": "Customer support",
+    "launched": "2026-01",
+    "score": 65
+  },
+  {
+    "name": "Emberspark",
+    "domain": "emberspark.io",
+    "tagline": "Compare offers across countries.",
+    "category": "HR and hiring",
+    "launched": "2026-01",
+    "score": 65
+  },
+  {
+    "name": "Nettlenote",
+    "domain": "nettlenote.com",
+    "tagline": "Turn one post into a week of content.",
+    "category": "Marketing",
+    "launched": "2026-01",
+    "score": 64
+  },
+  {
+    "name": "Fernlight",
+    "domain": "fernlight.co",
+    "tagline": "Funnels you can read without a data team.",
+    "category": "Analytics",
+    "launched": "2026-01",
+    "score": 64
+  },
+  {
+    "name": "Hollowdesk",
+    "domain": "hollowdesk.com",
+    "tagline": "One inbox for every task and message.",
+    "category": "Productivity",
+    "launched": "2026-01",
+    "score": 62
+  },
+  {
+    "name": "Pixellight",
+    "domain": "pixellight.app",
+    "tagline": "Funnels you can read without a data team.",
+    "category": "Analytics",
+    "launched": "2025-12",
+    "score": 96
+  },
+  {
+    "name": "Onyxspark",
+    "domain": "onyxspark.com",
+    "tagline": "Know what data leaves your app.",
+    "category": "Security",
+    "launched": "2025-12",
+    "score": 91
+  },
+  {
+    "name": "Quincestack",
+    "domain": "quincestack.app",
+    "tagline": "Track runway across every account.",
+    "category": "Fintech",
+    "launched": "2025-12",
+    "score": 91
+  },
+  {
+    "name": "Northscope",
+    "domain": "northscope.com",
+    "tagline": "Product pages that load before the click.",
+    "category": "E-commerce",
+    "launched": "2025-12",
+    "score": 83
+  },
+  {
+    "name": "Zephyrflow",
+    "domain": "zephyrflow.app",
+    "tagline": "Collect feedback right on the page.",
+    "category": "Design",
+    "launched": "2025-12",
+    "score": 81
+  },
+  {
+    "name": "Orbitdesk",
+    "domain": "orbitdesk.com",
+    "tagline": "Mockups from a one-line brief.",
+    "category": "Design",
+    "launched": "2025-12",
+    "score": 73
+  },
+  {
+    "name": "Cobaltcast",
+    "domain": "cobaltcast.io",
+    "tagline": "Collect payments in forty currencies.",
+    "category": "Fintech",
+    "launched": "2025-11",
+    "score": 96
+  },
+  {
+    "name": "Oakkit",
+    "domain": "oakkit.com",
+    "tagline": "Practice problems that adapt to the learner.",
+    "category": "Education",
+    "launched": "2025-11",
+    "score": 91
+  },
+  {
+    "name": "Nimbusstack",
+    "domain": "nimbusstack.app",
+    "tagline": "Ship feature flags without a redeploy.",
+    "category": "Developer tools",
+    "launched": "2025-11",
+    "score": 78
+  },
+  {
+    "name": "Oakdoor",
+    "domain": "oakdoor.app",
+    "tagline": "One inbox for every task and message.",
+    "category": "Productivity",
+    "launched": "2025-11",
+    "score": 78
+  },
+  {
+    "name": "Wrendoor",
+    "domain": "wrendoor.co",
+    "tagline": "Onboarding checklists that run themselves.",
+    "category": "HR and hiring",
+    "launched": "2025-11",
+    "score": 71
+  },
+  {
+    "name": "Fernflow",
+    "domain": "fernflow.io",
+    "tagline": "Book and remind patients automatically.",
+    "category": "Health",
+    "launched": "2025-11",
+    "score": 63
+  },
+  {
+    "name": "Sablely",
+    "domain": "sablely.co",
+    "tagline": "Wellness plans for remote teams.",
+    "category": "Health",
+    "launched": "2025-11",
+    "score": 62
+  },
+  {
+    "name": "Quincepath",
+    "domain": "quincepath.io",
+    "tagline": "Send invoices that chase themselves.",
+    "category": "Fintech",
+    "launched": "2025-10",
+    "score": 92
+  },
+  {
+    "name": "Lumenworks",
+    "domain": "lumenworks.com",
+    "tagline": "Review pull requests in half the time.",
+    "category": "Developer tools",
+    "launched": "2025-10",
+    "score": 91
+  },
+  {
+    "name": "Juniperdock",
+    "domain": "juniperdock.com",
+    "tagline": "Meeting notes that write their own follow-ups.",
+    "category": "Productivity",
+    "launched": "2025-10",
+    "score": 89
+  },
+  {
+    "name": "Plainlight",
+    "domain": "plainlight.com",
+    "tagline": "Product pages that load before the click.",
+    "category": "E-commerce",
+    "launched": "2025-10",
+    "score": 89
+  },
+  {
+    "name": "Mailcast",
+    "domain": "mailcast.app",
+    "tagline": "Product pages that load before the click.",
+    "category": "E-commerce",
+    "launched": "2025-10",
+    "score": 89
+  },
+  {
+    "name": "Hollowforms",
+    "domain": "hollowforms.com",
+    "tagline": "Turn a course into a cohort.",
+    "category": "Education",
+    "launched": "2025-10",
+    "score": 86
+  },
+  {
+    "name": "Indigolane",
+    "domain": "indigolane.io",
+    "tagline": "Plan the week in ten minutes.",
+    "category": "Productivity",
+    "launched": "2025-10",
+    "score": 71
+  },
+  {
+    "name": "Harborworks",
+    "domain": "harborworks.co",
+    "tagline": "Collect payments in forty currencies.",
+    "category": "Fintech",
+    "launched": "2025-10",
+    "score": 65
+  },
+  {
+    "name": "Mapleroom",
+    "domain": "mapleroom.com",
+    "tagline": "Hire your first ten without an agency.",
+    "category": "HR and hiring",
+    "launched": "2025-10",
+    "score": 63
+  },
+  {
+    "name": "Oakmint",
+    "domain": "oakmint.io",
+    "tagline": "Mockups from a one-line brief.",
+    "category": "Design",
+    "launched": "2025-09",
+    "score": 94
+  },
+  {
+    "name": "Oakforms",
+    "domain": "oakforms.co",
+    "tagline": "Preview every branch on its own address.",
+    "category": "Developer tools",
+    "launched": "2025-09",
+    "score": 87
+  },
+  {
+    "name": "Cinderpath",
+    "domain": "cinderpath.co",
+    "tagline": "Collect feedback right on the page.",
+    "category": "Design",
+    "launched": "2025-09",
+    "score": 87
+  },
+  {
+    "name": "Emberforms",
+    "domain": "emberforms.co",
+    "tagline": "Collect payments in forty currencies.",
+    "category": "Fintech",
+    "launched": "2025-09",
+    "score": 79
+  },
+  {
+    "name": "Hollowroom",
+    "domain": "hollowroom.com",
+    "tagline": "Turn logs into answers without a query language.",
+    "category": "Developer tools",
+    "launched": "2025-09",
+    "score": 76
+  },
+  {
+    "name": "Ledgerpath",
+    "domain": "ledgerpath.com",
+    "tagline": "Collect feedback right on the page.",
+    "category": "Design",
+    "launched": "2025-09",
+    "score": 68
+  }
+]
