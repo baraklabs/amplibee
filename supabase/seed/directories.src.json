@@ -1,0 +1,211 @@
+[
+  {
+    "slug": "product-hunt",
+    "name": "Product Hunt",
+    "url": "https://www.producthunt.com/",
+    "category": "launch",
+    "priority": 1,
+    "submit_url": "https://www.producthunt.com/posts/new",
+    "check_url_template": "https://www.producthunt.com/products/{slug}",
+    "known_slug": "notion",
+    "description": "A site where makers post new products and visitors vote and comment. A launch runs for a day, so prepare the page, images and first comment before you post."
+  },
+  {
+    "slug": "hacker-news",
+    "name": "Hacker News",
+    "url": "https://news.ycombinator.com/",
+    "category": "community",
+    "priority": 2,
+    "submit_url": "https://news.ycombinator.com/submit",
+    "check_method": "hn_api",
+    "description": "A discussion site run by Y Combinator. A story titled Show HN is for something you made that people can try. Read the Show HN rules before you post."
+  },
+  {
+    "slug": "alternativeto",
+    "name": "AlternativeTo",
+    "url": "https://alternativeto.net/",
+    "category": "alternatives",
+    "priority": 3,
+    "submit_url": "https://alternativeto.net/software/new/",
+    "check_url_template": "https://alternativeto.net/software/{slug}/",
+    "known_slug": "notion",
+    "description": "A directory of software listed as alternatives to other software. Buyers search it by the product they want to replace."
+  },
+  {
+    "slug": "saashub",
+    "name": "SaaSHub",
+    "url": "https://www.saashub.com/",
+    "category": "alternatives",
+    "priority": 4,
+    "submit_url": "https://www.saashub.com/submit",
+    "check_url_template": "https://www.saashub.com/{slug}",
+    "known_slug": "notion",
+    "description": "A directory of software products with alternatives and short reviews."
+  },
+  {
+    "slug": "g2",
+    "name": "G2",
+    "url": "https://www.g2.com/",
+    "category": "reviews",
+    "priority": 5,
+    "submit_url": "https://sell.g2.com/create-a-profile",
+    "check_url_template": "https://www.g2.com/products/{slug}/reviews",
+    "known_slug": "notion",
+    "description": "A software review site. Buyers compare products by user reviews, and vendors can claim a profile for their product."
+  },
+  {
+    "slug": "trustpilot",
+    "name": "Trustpilot",
+    "url": "https://www.trustpilot.com/",
+    "category": "reviews",
+    "priority": 6,
+    "submit_url": "https://business.trustpilot.com/",
+    "check_url_template": "https://www.trustpilot.com/review/{domain}",
+    "known_slug": "notion.so",
+    "description": "A public review site for businesses. A page exists once a business has been reviewed, and the business can claim it."
+  },
+  {
+    "slug": "capterra",
+    "name": "Capterra",
+    "url": "https://www.capterra.com/",
+    "category": "reviews",
+    "priority": 7,
+    "submit_url": "https://vendors.capterra.com/",
+    "check_method": "search_hit",
+    "description": "A business software directory and review site. Vendors can list a product and collect reviews."
+  },
+  {
+    "slug": "betalist",
+    "name": "BetaList",
+    "url": "https://betalist.com/",
+    "category": "launch",
+    "priority": 8,
+    "submit_url": "https://betalist.com/submit",
+    "check_url_template": "https://betalist.com/startups/{slug}",
+    "known_slug": "notion",
+    "description": "A site that lists startups before launch and collects early sign-ups."
+  },
+  {
+    "slug": "indie-hackers",
+    "name": "Indie Hackers",
+    "url": "https://www.indiehackers.com/",
+    "category": "community",
+    "priority": 9,
+    "submit_url": "https://www.indiehackers.com/products/new",
+    "check_url_template": "https://www.indiehackers.com/product/{slug}",
+    "known_slug": "notion",
+    "description": "A community of founders who share what they build, with product pages and discussion groups."
+  },
+  {
+    "slug": "devhunt",
+    "name": "DevHunt",
+    "url": "https://devhunt.org/",
+    "category": "launch",
+    "priority": 10,
+    "submit_url": null,
+    "check_url_template": "https://devhunt.org/tool/{slug}",
+    "known_slug": "notion",
+    "description": "A launch site where developers discover and vote on new developer tools."
+  },
+  {
+    "slug": "stackshare",
+    "name": "StackShare",
+    "url": "https://stackshare.io/",
+    "category": "developer",
+    "priority": 11,
+    "submit_url": null,
+    "check_url_template": "https://stackshare.io/{slug}",
+    "known_slug": "notion",
+    "description": "A site where companies and developers list the tools they use. Developer products appear on tool pages and in alternatives."
+  },
+  {
+    "slug": "crunchbase",
+    "name": "Crunchbase",
+    "url": "https://www.crunchbase.com/",
+    "category": "company-data",
+    "priority": 12,
+    "submit_url": null,
+    "check_method": "search_hit",
+    "description": "A database of companies, funding and people. Investors and journalists use it to look up startups."
+  },
+  {
+    "slug": "trustradius",
+    "name": "TrustRadius",
+    "url": "https://www.trustradius.com/",
+    "category": "reviews",
+    "priority": 13,
+    "submit_url": null,
+    "check_method": "search_hit",
+    "description": "A software review site for business buyers."
+  },
+  {
+    "slug": "getapp",
+    "name": "GetApp",
+    "url": "https://www.getapp.com/",
+    "category": "reviews",
+    "priority": 14,
+    "submit_url": null,
+    "check_method": "search_hit",
+    "description": "A business software directory with user reviews."
+  },
+  {
+    "slug": "sourceforge",
+    "name": "SourceForge",
+    "url": "https://sourceforge.net/",
+    "category": "software",
+    "priority": 15,
+    "submit_url": null,
+    "check_method": "search_hit",
+    "description": "A long-running software hosting and download directory."
+  },
+  {
+    "slug": "reddit-sideproject",
+    "name": "Reddit r/SideProject",
+    "url": "https://www.reddit.com/r/SideProject/",
+    "category": "community",
+    "priority": 16,
+    "submit_url": "https://www.reddit.com/r/SideProject/submit",
+    "check_method": "none",
+    "description": "A subreddit where people share projects they built. Read the community rules before posting, and expect questions in the thread."
+  },
+  {
+    "slug": "dev-to",
+    "name": "DEV Community",
+    "url": "https://dev.to/",
+    "category": "publishing",
+    "priority": 17,
+    "submit_url": "https://dev.to/new",
+    "check_method": "none",
+    "description": "A publishing site for developers. A post about how you built or use the product is indexed by search engines."
+  },
+  {
+    "slug": "hashnode",
+    "name": "Hashnode",
+    "url": "https://hashnode.com/",
+    "category": "publishing",
+    "priority": 18,
+    "submit_url": null,
+    "check_method": "none",
+    "description": "A blogging platform for developers that can run on your own domain."
+  },
+  {
+    "slug": "uneed",
+    "name": "Uneed",
+    "url": "https://www.uneed.best/",
+    "category": "launch",
+    "priority": 19,
+    "submit_url": null,
+    "check_method": "search_hit",
+    "description": "A launch site for new tools."
+  },
+  {
+    "slug": "peerlist",
+    "name": "Peerlist",
+    "url": "https://peerlist.io/",
+    "category": "launch",
+    "priority": 20,
+    "submit_url": null,
+    "check_method": "search_hit",
+    "description": "A network for professionals with a weekly launch section for projects."
+  }
+]

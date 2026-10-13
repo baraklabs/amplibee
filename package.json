@@ -1,0 +1,26 @@
+{
+  "name": "amplibee",
+  "private": true,
+  "version": "0.1.0",
+  "workspaces": [
+    "apps/web"
+  ],
+  "scripts": {
+    "test": "vitest run",
+    "typecheck": "tsc -p tsconfig.supabase.json && npm run typecheck -w apps/web",
+    "lint:copy": "node scripts/copy-lint.mjs",
+    "seed:build": "node supabase/scripts/build-seed.mjs",
+    "sync:shared": "node scripts/sync-shared.mjs",
+    "e2e": "tsx scripts/e2e-local.mts",
+    "sample": "tsx scripts/generate-sample.mts",
+    "dev": "npm run dev -w apps/web",
+    "build": "npm run build -w apps/web"
+  },
+  "devDependencies": {
+    "@supabase/supabase-js": "^2.45.4",
+    "tsx": "^4.23.15",
+    "typescript": "^5.6.0",
+    "vitest": "^3.0.0",
+    "zod": "^3.23.8"
+  }
+}

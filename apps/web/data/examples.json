@@ -1,0 +1,73 @@
+{
+  "taken_at": "2026-10-10",
+  "items": [
+    {
+      "domain": "linear.app",
+      "score": 84,
+      "sub_scores": {
+        "discoverability": 87,
+        "buzz": 100,
+        "trust": 69,
+        "technical": 76
+      },
+      "gap_total": 6,
+      "top_gap": "We confirmed 4 listings across the 17 directories we looked at. 12 of them could not be confirmed automatically, so they may hold a listing we did not see. Listings give buyers and crawlers a second place to find you.",
+      "rank": 9797,
+      "hn": 132,
+      "github": 5004,
+      "tech_passed": 12,
+      "tech_total": 17
+    },
+    {
+      "domain": "plausible.io",
+      "score": 89,
+      "sub_scores": {
+        "discoverability": 73,
+        "buzz": 100,
+        "trust": 100,
+        "technical": 89
+      },
+      "gap_total": 3,
+      "top_gap": "We confirmed 3 listings across the 17 directories we looked at. 12 of them could not be confirmed automatically, so they may hold a listing we did not see. Listings give buyers and crawlers a second place to find you.",
+      "rank": 4236,
+      "hn": 68,
+      "github": 1450,
+      "tech_passed": 15,
+      "tech_total": 17
+    },
+    {
+      "domain": "resend.com",
+      "score": 95,
+      "sub_scores": {
+        "discoverability": 83,
+        "buzz": 100,
+        "trust": 100,
+        "technical": 100
+      },
+      "gap_total": 1,
+      "top_gap": "We confirmed 4 listings across the 17 directories we looked at. 12 of them could not be confirmed automatically, so they may hold a listing we did not see. Listings give buyers and crawlers a second place to find you.",
+      "rank": 16576,
+      "hn": 40,
+      "github": 25475,
+      "tech_passed": 17,
+      "tech_total": 17
+    },
+    {
+      "domain": "posthog.com",
+      "score": 94,
+      "sub_scores": {
+        "discoverability": 87,
+        "buzz": 100,
+        "trust": 100,
+        "technical": 91
+      },
+      "gap_total": 3,
+      "top_gap": "We confirmed 4 listings across the 17 directories we looked at. 12 of them could not be confirmed automatically, so they may hold a listing we did not see. Listings give buyers and crawlers a second place to find you.",
+      "rank": 2198,
+      "hn": 296,
+      "github": 4169,
+      "tech_passed": 15,
+      "tech_total": 17
+    }
+  ]
+}

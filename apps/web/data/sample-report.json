@@ -1,0 +1,504 @@
+{
+  "taken_at": "2026-10-10",
+  "note": "Taken with the live check code. No search provider key was set, so indexing, web mentions and review checks were skipped and do not count toward the score.",
+  "report": {
+    "domain": "linear.app",
+    "mode": "website",
+    "generated_at": "2026-10-10T08:23:59.665Z",
+    "version": 1,
+    "score": 84,
+    "sub_scores": {
+      "discoverability": 87,
+      "buzz": 100,
+      "trust": 69,
+      "technical": 76
+    },
+    "gaps": [
+      {
+        "id": "directories",
+        "category": "discoverability",
+        "fix_type": "directory_submission",
+        "fix_ref": "alternativeto,g2,trustpilot",
+        "message": "We confirmed 4 listings across the 17 directories we looked at. 12 of them could not be confirmed automatically, so they may hold a listing we did not see. Listings give buyers and crawlers a second place to find you.",
+        "severity": "medium",
+        "impact": 4
+      },
+      {
+        "category": "technical",
+        "fix_type": "free_guide",
+        "id": "structured_data",
+        "fix_ref": "technical-basics",
+        "message": "Your homepage has no JSON-LD structured data, so search engines and answer engines get no machine-readable facts about the product.",
+        "severity": "low",
+        "impact": 1.9
+      },
+      {
+        "category": "technical",
+        "fix_type": "free_guide",
+        "id": "og_tags",
+        "fix_ref": "what-an-og-image-is",
+        "message": "Your homepage is missing this Open Graph tag: og:url. Shared links show less than they could.",
+        "severity": "low",
+        "impact": 1.4
+      },
+      {
+        "category": "technical",
+        "fix_type": "free_guide",
+        "id": "headings",
+        "fix_ref": "technical-basics",
+        "message": "Your homepage heading levels jump from h1 to h3, skipping a level. Screen readers and crawlers use the order to read the page.",
+        "severity": "low",
+        "impact": 1.4
+      },
+      {
+        "category": "technical",
+        "fix_type": "free_guide",
+        "id": "image_alt",
+        "fix_ref": "technical-basics",
+        "message": "27 images on your homepage have no alt text, so screen readers skip them and image search cannot read them.",
+        "severity": "low",
+        "impact": 0.9
+      },
+      {
+        "category": "technical",
+        "fix_type": "free_guide",
+        "id": "og_type",
+        "fix_ref": "what-an-og-image-is",
+        "message": "Your homepage has no og:type tag, so link previews cannot tell whether it is a website or an article.",
+        "severity": "low",
+        "impact": 0.5
+      }
+    ],
+    "gap_total": 6,
+    "self": {
+      "domain": "linear.app",
+      "rank": 9797,
+      "tech_passed": 12,
+      "tech_total": 17,
+      "og_image": true,
+      "structured_data": false,
+      "hn": 132,
+      "github": 5004,
+      "indexed": null,
+      "web": null
+    },
+    "competitors": [
+      {
+        "domain": "asana.com",
+        "rank": 2221,
+        "tech_passed": 15,
+        "tech_total": 17,
+        "og_image": true,
+        "structured_data": true,
+        "hn": 158,
+        "github": 1793,
+        "indexed": null,
+        "web": null
+      },
+      {
+        "domain": "clickup.com",
+        "rank": 2683,
+        "tech_passed": 9,
+        "tech_total": 17,
+        "og_image": true,
+        "structured_data": false,
+        "hn": 17,
+        "github": 1852,
+        "indexed": null,
+        "web": null
+      },
+      {
+        "domain": "monday.com",
+        "rank": 3198,
+        "tech_passed": 14,
+        "tech_total": 17,
+        "og_image": true,
+        "structured_data": true,
+        "hn": 26,
+        "github": 8044,
+        "indexed": null,
+        "web": null
+      }
+    ],
+    "plan": [
+      {
+        "gap_id": "directories",
+        "title": "Submit to the directories listed below",
+        "fix_type": "directory_submission",
+        "href": "/directories/alternativeto"
+      },
+      {
+        "gap_id": "structured_data",
+        "title": "Add JSON-LD for the organization and product",
+        "fix_type": "free_guide",
+        "href": "/blog/technical-basics"
+      },
+      {
+        "gap_id": "og_tags",
+        "title": "Add the missing Open Graph tags",
+        "fix_type": "free_guide",
+        "href": "/blog/what-an-og-image-is"
+      },
+      {
+        "gap_id": "headings",
+        "title": "Use one h1 and keep heading levels in order",
+        "fix_type": "free_guide",
+        "href": "/blog/technical-basics"
+      },
+      {
+        "gap_id": "image_alt",
+        "title": "Add alt text to every image",
+        "fix_type": "free_guide",
+        "href": "/blog/technical-basics"
+      },
+      {
+        "gap_id": "og_type",
+        "title": "Add an og:type tag",
+        "fix_type": "free_guide",
+        "href": "/blog/what-an-og-image-is"
+      }
+    ],
+    "directories": [
+      {
+        "slug": "product-hunt",
+        "name": "Product Hunt",
+        "submit_url": "https://www.producthunt.com/posts/new",
+        "status": "listed"
+      },
+      {
+        "slug": "hacker-news",
+        "name": "Hacker News",
+        "submit_url": "https://news.ycombinator.com/submit",
+        "status": "listed"
+      },
+      {
+        "slug": "alternativeto",
+        "name": "AlternativeTo",
+        "submit_url": "https://alternativeto.net/software/new/",
+        "status": "unknown"
+      },
+      {
+        "slug": "saashub",
+        "name": "SaaSHub",
+        "submit_url": "https://www.saashub.com/submit",
+        "status": "listed"
+      },
+      {
+        "slug": "g2",
+        "name": "G2",
+        "submit_url": "https://sell.g2.com/create-a-profile",
+        "status": "unknown"
+      },
+      {
+        "slug": "trustpilot",
+        "name": "Trustpilot",
+        "submit_url": "https://business.trustpilot.com/",
+        "status": "unknown"
+      },
+      {
+        "slug": "capterra",
+        "name": "Capterra",
+        "submit_url": null,
+        "status": "unknown"
+      },
+      {
+        "slug": "betalist",
+        "name": "BetaList",
+        "submit_url": "https://betalist.com/submit",
+        "status": "not_found"
+      },
+      {
+        "slug": "indie-hackers",
+        "name": "Indie Hackers",
+        "submit_url": "https://www.indiehackers.com/products/new",
+        "status": "unknown"
+      },
+      {
+        "slug": "devhunt",
+        "name": "DevHunt",
+        "submit_url": null,
+        "status": "listed"
+      },
+      {
+        "slug": "stackshare",
+        "name": "StackShare",
+        "submit_url": null,
+        "status": "unknown"
+      },
+      {
+        "slug": "crunchbase",
+        "name": "Crunchbase",
+        "submit_url": null,
+        "status": "unknown"
+      },
+      {
+        "slug": "trustradius",
+        "name": "TrustRadius",
+        "submit_url": null,
+        "status": "unknown"
+      },
+      {
+        "slug": "getapp",
+        "name": "GetApp",
+        "submit_url": null,
+        "status": "unknown"
+      },
+      {
+        "slug": "sourceforge",
+        "name": "SourceForge",
+        "submit_url": null,
+        "status": "unknown"
+      },
+      {
+        "slug": "reddit-sideproject",
+        "name": "Reddit r/SideProject",
+        "submit_url": "https://www.reddit.com/r/SideProject/submit",
+        "status": "unknown"
+      },
+      {
+        "slug": "dev-to",
+        "name": "DEV Community",
+        "submit_url": "https://dev.to/new",
+        "status": "unknown"
+      },
+      {
+        "slug": "uneed",
+        "name": "Uneed",
+        "submit_url": null,
+        "status": "unknown"
+      },
+      {
+        "slug": "peerlist",
+        "name": "Peerlist",
+        "submit_url": null,
+        "status": "unknown"
+      }
+    ],
+    "checklist": [],
+    "locked": false,
+    "query_count": 0,
+    "query_cap": 30
+  },
+  "product": {
+    "title": "Linear – The system for product development",
+    "description": "Purpose-built for planning and building products with AI agents."
+  },
+  "technical": [
+    {
+      "id": "https",
+      "pass": true,
+      "detail": "Served over HTTPS.",
+      "value": "https://linear.app/"
+    },
+    {
+      "id": "title",
+      "pass": true,
+      "detail": "Title is 43 characters.",
+      "value": 43
+    },
+    {
+      "id": "description",
+      "pass": true,
+      "detail": "Meta description is 64 characters.",
+      "value": 64
+    },
+    {
+      "id": "canonical",
+      "pass": true,
+      "detail": "Canonical is https://linear.app.",
+      "value": "https://linear.app"
+    },
+    {
+      "id": "og_tags",
+      "pass": false,
+      "detail": "Missing og:url.",
+      "value": [
+        "og:url"
+      ]
+    },
+    {
+      "id": "og_image",
+      "pass": true,
+      "detail": "og:image is https://linear.app/api/og/main?title=Linear&v=4.",
+      "value": "https://linear.app/api/og/main?title=Linear&v=4"
+    },
+    {
+      "id": "og_image_reachable",
+      "pass": true,
+      "detail": "The OG image loads.",
+      "value": 200
+    },
+    {
+      "id": "twitter_card",
+      "pass": true,
+      "detail": "twitter:card is summary_large_image.",
+      "value": "summary_large_image"
+    },
+    {
+      "id": "sitemap",
+      "pass": true,
+      "detail": "sitemap.xml is present.",
+      "value": 200
+    },
+    {
+      "id": "robots",
+      "pass": true,
+      "detail": "robots.txt is present.",
+      "value": 200
+    },
+    {
+      "id": "structured_data",
+      "pass": false,
+      "detail": "No JSON-LD structured data.",
+      "value": []
+    },
+    {
+      "id": "headings",
+      "pass": false,
+      "detail": "Heading levels skip from h1 to h3.",
+      "value": "h1 to h3"
+    },
+    {
+      "id": "viewport",
+      "pass": true,
+      "detail": "Viewport meta tag is set.",
+      "value": "width=device-width, height=device-height, initial-scale=1, viewport-fit=cover"
+    },
+    {
+      "id": "lang",
+      "pass": true,
+      "detail": "Page language is en.",
+      "value": "en"
+    },
+    {
+      "id": "image_alt",
+      "pass": false,
+      "detail": "27 of 38 images have no alt text.",
+      "value": 27
+    },
+    {
+      "id": "indexable",
+      "pass": true,
+      "detail": "No noindex tag.",
+      "value": null
+    },
+    {
+      "id": "og_type",
+      "pass": false,
+      "detail": "No og:type.",
+      "value": null
+    }
+  ],
+  "log": [
+    {
+      "domain": "linear.app",
+      "level": "warn",
+      "msg": "linear.app: 12 of 17 technical checks passed. Failed: og_tags, structured_data, headings, image_alt, og_type."
+    },
+    {
+      "domain": "linear.app",
+      "level": "warn",
+      "msg": "linear.app: speed skipped. PageSpeed Insights quota reached. Set PSI_API_KEY to raise it."
+    },
+    {
+      "domain": "linear.app",
+      "level": "ok",
+      "msg": "linear.app: Tranco rank 9,797."
+    },
+    {
+      "domain": "linear.app",
+      "level": "info",
+      "msg": "linear.app: 132 Hacker News stories link to the domain."
+    },
+    {
+      "domain": "linear.app",
+      "level": "info",
+      "msg": "linear.app: 5,004 public GitHub repositories mention the domain in a README."
+    },
+    {
+      "domain": "linear.app",
+      "level": "warn",
+      "msg": "linear.app: indexing skipped. No search provider is configured."
+    },
+    {
+      "domain": "linear.app",
+      "level": "warn",
+      "msg": "linear.app: web skipped. No search provider is configured."
+    },
+    {
+      "domain": "linear.app",
+      "level": "info",
+      "msg": "linear.app: 3 confirmed, 1 not found, 13 could not be checked yet."
+    },
+    {
+      "domain": "asana.com",
+      "level": "warn",
+      "msg": "asana.com: 15 of 17 technical checks passed. Failed: headings, image_alt."
+    },
+    {
+      "domain": "asana.com",
+      "level": "ok",
+      "msg": "asana.com: Tranco rank 2,221."
+    },
+    {
+      "domain": "asana.com",
+      "level": "info",
+      "msg": "asana.com: 158 Hacker News stories link to the domain."
+    },
+    {
+      "domain": "asana.com",
+      "level": "info",
+      "msg": "asana.com: 1,793 public GitHub repositories mention the domain in a README."
+    },
+    {
+      "domain": "clickup.com",
+      "level": "warn",
+      "msg": "clickup.com: 9 of 17 technical checks passed. Failed: title, og_tags, twitter_card, structured_data, headings, lang, image_alt, og_type."
+    },
+    {
+      "domain": "clickup.com",
+      "level": "ok",
+      "msg": "clickup.com: Tranco rank 2,683."
+    },
+    {
+      "domain": "clickup.com",
+      "level": "info",
+      "msg": "clickup.com: 17 Hacker News stories link to the domain."
+    },
+    {
+      "domain": "clickup.com",
+      "level": "info",
+      "msg": "clickup.com: 1,852 public GitHub repositories mention the domain in a README."
+    },
+    {
+      "domain": "monday.com",
+      "level": "warn",
+      "msg": "monday.com: 14 of 17 technical checks passed. Failed: og_tags, headings, image_alt."
+    },
+    {
+      "domain": "monday.com",
+      "level": "ok",
+      "msg": "monday.com: Tranco rank 3,198."
+    },
+    {
+      "domain": "monday.com",
+      "level": "info",
+      "msg": "monday.com: 26 Hacker News stories link to the domain."
+    },
+    {
+      "domain": "monday.com",
+      "level": "info",
+      "msg": "monday.com: 8,044 public GitHub repositories mention the domain in a README."
+    }
+  ],
+  "scan_skipped": {
+    "linear.app": {
+      "speed": "PageSpeed Insights quota reached. Set PSI_API_KEY to raise it.",
+      "indexing": "No search provider is configured.",
+      "web": "No search provider is configured."
+    },
+    "asana.com": {},
+    "clickup.com": {},
+    "monday.com": {}
+  }
+}

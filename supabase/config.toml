@@ -1,0 +1,33 @@
+project_id = "amplibee"
+
+[api]
+enabled = true
+port = 55321
+schemas = ["public"]
+max_rows = 1000
+
+[db]
+port = 55322
+major_version = 15
+
+[db.seed]
+enabled = true
+sql_paths = ["./seed.sql"]
+
+# The public API does its own bot protection (Turnstile) and rate limiting, so it is served without a JWT.
+[functions.api]
+verify_jwt = false
+
+# Called by pg_cron with a shared secret header instead of a JWT.
+[functions.maintenance]
+verify_jwt = false
+
+# Ports shifted by +1000 so this project can run next to another local Supabase project on the default ports.
+[studio]
+port = 55323
+
+[inbucket]
+port = 55324
+
+[analytics]
+port = 55327

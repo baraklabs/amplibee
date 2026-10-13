@@ -1,0 +1,25 @@
+{
+  "name": "@amplibee/web",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "predev": "node ../../scripts/sync-shared.mjs",
+    "dev": "next dev",
+    "prebuild": "node ../../scripts/sync-shared.mjs",
+    "build": "next build",
+    "start": "next start",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.45.4",
+    "next": "^16.4.0",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "typescript": "^5.6.0"
+  }
+}
