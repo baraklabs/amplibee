@@ -143,13 +143,13 @@ function Sidebar({ view, selected, onSelect }: { view: CheckView; selected: numb
 }
 
 /** Centre card shown while the scan runs and no report exists yet. */
-function Waiting({ view }: { view: CheckView }) {
+function Waiting({ view, skipIntro }: { view: CheckView; skipIntro: boolean }) {
   const current = view.steps.find((s) => s.status === 'running')
   return (
     <div className="ws-card">
       <p className="ws-card-label mono">{current ? VERB[current.key] : 'Working'}</p>
       <p className="ws-big">{view.domain ?? 'Your launch plan'}</p>
-      <StepPreview steps={view.steps} />
+      <StepPreview steps={view.steps} skipIntro={skipIntro} />
     </div>
   )
 }
@@ -164,9 +164,9 @@ const STEP_INFO: Record<string, string> = {
 }
 
 /** Two passes: the step titles appear one by one, then the detail under each one appears in the same order. */
-function StepPreview({ steps }: { steps: StepView[] }) {
-  const [shown, setShown] = useState(0)
-  const [detailed, setDetailed] = useState(0)
+function StepPreview({ steps, skipIntro = false }: { steps: StepView[]; skipIntro?: boolean }) {
+  const [shown, setShown] = useState(skipIntro ? steps.length : 0)
+  const [detailed, setDetailed] = useState(skipIntro ? steps.length : 0)
   useEffect(() => {
     const total = steps.length
     if (shown >= total && detailed >= total) return
@@ -201,6 +201,31 @@ const STEP_SKELETON: [string, string][] = [
   ['launch', 'Launch'],
 ]
 
+const SHELL_LINES = ['Connecting to the site', 'Fetching the homepage', 'Reading the page title and description', 'Reading the headings', 'Working out what you sell and who it is for']
+
+/** Placeholder processing lines for step 1, shown one by one until the real log arrives. */
+function ShellLog({ domain }: { domain: string | null }) {
+  const [n, setN] = useState(1)
+  useEffect(() => {
+    if (n >= SHELL_LINES.length) return
+    const t = setTimeout(() => setN((x) => x + 1), 1100)
+    return () => clearTimeout(t)
+  }, [n])
+  return (
+    <ul className="trk-list" aria-label="Processing">
+      {SHELL_LINES.slice(0, n).map((l, i) => {
+        const live = i === n - 1
+        return (
+          <li key={l} className={`trk-row${live ? ' live' : ''}`}>
+            <span className="ico" aria-hidden="true"><span className="spin" /><span className="tick" /></span>
+            <span>{l}{domain && i === 0 ? ` ${domain}` : ''}</span>
+          </li>
+        )
+      })}
+    </ul>
+  )
+}
+
 /** The workspace before the first response arrives: step 1 already shows as running, so there is no separate loading page. */
 function Shell({ domain }: { domain: string | null }) {
   const steps: StepView[] = STEP_SKELETON.map(([key, title], i) => ({ step: i + 1, key, title, status: i === 0 ? 'running' : 'pending', log: [] }))
@@ -215,7 +240,7 @@ function Shell({ domain }: { domain: string | null }) {
               {s.step === 1 && domain ? <p className="ws-company"><strong>{domain}</strong></p> : null}
             </div>
           ))}
-          <div className="ws-live"><p className="agent-line"><span className="agent-mark" /><span className="shimmer">Amplibee is working on step 1 of 6</span></p></div>
+          <div className="ws-live"><p className="agent-line"><span className="agent-mark" /><span className="shimmer">Amplibee is working on step 1 of 6</span></p><ShellLog domain={domain} /></div>
         </aside>
         <main className="ws-main">
           <div className="ws-card">
@@ -235,12 +260,15 @@ function Shell({ domain }: { domain: string | null }) {
  * the next one starts. A live run is never held back for long: a step can only be shown once the server has it.
  * `auto` is the step number whose outcome should be on screen; null once playback is over.
  */
-const HOLD_MS = 2400
+const HOLD_MS = 3500 // a finished step stays on screen with its outcome
+const INTRO_MS = 4500 // the list of steps is shown on its own before step 1 starts
+const LIST_MS = 2200 // between steps the list is shown again, with the finished step ticked and the next one processing
 
 function usePaced(raw: CheckView | null): { view: CheckView | null; auto: number | null; playing: boolean } {
   const [shown, setShown] = useState(0) // steps fully played
   const [lines, setLines] = useState(0) // log lines revealed on the step being played
   const [held, setHeld] = useState(false) // the step being played is finished and its outcome is on screen
+  const [gap, setGap] = useState(true) // the list is on screen before the step being played starts
   const total = raw?.steps.length ?? 0
   const passthrough = !raw || raw.status === 'error' || raw.status === 'awaiting_input' || raw.steps.some((x) => x.status === 'error' || x.status === 'awaiting_input')
 
@@ -248,6 +276,10 @@ function usePaced(raw: CheckView | null): { view: CheckView | null; auto: number
     if (!raw || passthrough || shown >= total) return
     const cur = raw.steps[shown]
     if (cur.status === 'pending') return
+    if (gap) {
+      const t = setTimeout(() => setGap(false), shown === 0 ? INTRO_MS : LIST_MS)
+      return () => clearTimeout(t)
+    }
     if (cur.log.length > lines) {
       const t = setTimeout(() => setLines((n) => n + 1), cur.log.length - lines > 6 ? 90 : 160)
       return () => clearTimeout(t)
@@ -261,15 +293,19 @@ function usePaced(raw: CheckView | null): { view: CheckView | null; auto: number
       setShown((n) => n + 1)
       setLines(0)
       setHeld(false)
+      setGap(true)
     }, HOLD_MS)
     return () => clearTimeout(t)
-  }, [raw, passthrough, shown, lines, held, total])
+  }, [raw, passthrough, shown, lines, held, gap, total])
 
   if (!raw || passthrough || shown >= total) return { view: raw, auto: null, playing: false }
   const reveal = shown + (held ? 1 : 0)
   const steps = raw.steps.map((x, i): StepView => {
     if (i < shown) return x
-    if (i === shown) return x.status === 'pending' ? x : { ...x, status: held ? 'done' : 'running', log: x.log.slice(0, lines) }
+    if (i === shown) {
+      if (x.status === 'pending' || (gap && shown === 0)) return { ...x, status: 'pending', log: [] }
+      return { ...x, status: held ? 'done' : 'running', log: x.log.slice(0, lines) }
+    }
     return { ...x, status: 'pending', log: [] }
   })
   const view: CheckView = {
@@ -283,7 +319,8 @@ function usePaced(raw: CheckView | null): { view: CheckView | null; auto: number
     competitor_suggestions: reveal >= 2 ? raw.competitor_suggestions : [],
     competitor_more: reveal >= 2 ? raw.competitor_more : 0,
   }
-  return { view, auto: shown + 1, playing: true }
+  // Only the finished step is opened on the right; while a step processes, the list of steps stays there.
+  return { view, auto: held ? shown + 1 : null, playing: true }
 }
 
 export function CheckRunner({ id }: { id: string }) {
@@ -295,6 +332,7 @@ export function CheckRunner({ id }: { id: string }) {
   const [kick, setKick] = useState(0)
   const [notice, setNotice] = useState('')
   const [selected, setSelected] = useState<number | null>(null)
+  const introPlayed = useRef(false) // the step list has been shown once, so coming back to it does not replay the build-up
 
   useEffect(() => {
     let cancelled = false
@@ -366,6 +404,7 @@ export function CheckRunner({ id }: { id: string }) {
   }
   const current = manual ? selected : playing ? auto : selected
   const selectedStep = view.steps.find((x) => x.step === current && x.status !== 'pending') ?? null
+  if (selectedStep) introPlayed.current = true
   const title = view.mode === 'website' ? view.domain : 'Your launch plan'
 
   return (
@@ -386,7 +425,7 @@ export function CheckRunner({ id }: { id: string }) {
                   : `Running ${title}. Each line is a real request or measurement.`}
           </p>
           {selectedStep ? <StepDetail view={view} step={selectedStep} onClose={() => pick(null)} /> : null}
-          {!selectedStep && !view.report && view.status === 'running' ? <Waiting view={view} /> : null}
+          {!selectedStep && (!view.report || playing) && view.status === 'running' ? <Waiting view={view} skipIntro={introPlayed.current} /> : null}
           {!selectedStep && view.report && !playing ? (
             <section aria-label="Report">
               <ReportView

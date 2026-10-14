@@ -1,11 +1,5 @@
 import Link from 'next/link'
-import { AuthLink } from './AuthLink.tsx'
-
-const NAV = [
-  { href: '/how-it-works', label: 'How it works' },
-  { href: '/case-studies', label: 'Case Studies' },
-  { href: '/pricing', label: 'Pricing' },
-]
+import { HeaderNav } from './HeaderNav.tsx'
 
 export function Header() {
   return (
@@ -16,14 +10,7 @@ export function Header() {
           <img src="/logo.png" alt="" width={30} height={30} />
           Amplibee
         </Link>
-        <div className="header-right">
-          <nav className="nav" aria-label="Main">
-            {NAV.map((n) => (
-              <Link key={n.href} href={n.href}>{n.label}</Link>
-            ))}
-            <AuthLink />
-          </nav>
-        </div>
+        <HeaderNav />
       </div>
     </header>
   )

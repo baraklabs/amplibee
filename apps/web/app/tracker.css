@@ -635,7 +635,15 @@ h2 {
   pointer-events: none;
   background:
     radial-gradient(ellipse 50% 66% at 50% 52%, var(--paper) 46%, transparent 86%),
-    linear-gradient(to bottom, var(--paper) 0%, var(--paper) 13%, transparent 36%, transparent 62%, var(--paper) 98%);
+    /* the art is 460px tall centred at 60%, so anchor the top fade to its real top edge (60% - 230px) */
+    linear-gradient(
+      to bottom,
+      var(--paper) 0,
+      var(--paper) calc(60% - 226px),
+      transparent calc(60% - 80px),
+      transparent 62%,
+      var(--paper) 98%
+    );
 }
 
 /* ---------- check workspace: step bar, sidebar, centre card ---------- */

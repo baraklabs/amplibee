@@ -1,5 +1,4 @@
 import Link from 'next/link'
-import { SITE } from '../lib/config.ts'
 import { GUIDES } from '../lib/content/guides.ts'
 
 export function Footer() {
@@ -47,9 +46,7 @@ export function Footer() {
           </div>
         </div>
         <p className="fineprint">
-          &copy; {new Date().getFullYear()} Amplibee. All rights reserved.
-          {SITE.contactEmail ? <> Contact: <a href={`mailto:${SITE.contactEmail}`}>{SITE.contactEmail}</a>.</> : null}
-        </p>
+          &copy; {new Date().getFullYear()} Amplibee. All rights reserved.        </p>
       </div>
     </footer>
   )

@@ -26,6 +26,30 @@
   height: 100%;
   overflow-y: auto;
 }
+.auth-face .auth-card {
+  max-width: none;
+}
+@media (max-width: 520px) {
+  .auth-wrap {
+    padding-top: 16px;
+    padding-bottom: 24px;
+    min-height: 0;
+  }
+  .auth-flip-inner {
+    min-height: min(640px, calc(100svh - 140px));
+  }
+  .auth-face .auth-card {
+    padding: 22px 18px;
+  }
+  .auth-face .auth-title {
+    font-size: 1.45rem;
+  }
+}
+@media (max-height: 640px) {
+  .auth-flip-inner {
+    min-height: 560px;
+  }
+}
 @media (prefers-reduced-motion: reduce) {
   .auth-flip-inner {
     transition: none;
