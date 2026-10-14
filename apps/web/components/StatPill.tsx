@@ -7,6 +7,9 @@ export interface Stat {
   label: string
 }
 
+const STEP_MS = 450 // first rotation, and the point where the text swaps (matches the 0.45s slide in social.css)
+const INTERVAL_MS = 2000 // time between rotations
+
 /** The top pill: rotates through facts with a blur-and-slide transition, like explee.com's stat badge. */
 export function StatPill({ stats }: { stats: Stat[] }) {
   const [i, setI] = useState(0)
@@ -21,13 +24,13 @@ export function StatPill({ stats }: { stats: Stat[] }) {
       swap = setTimeout(() => {
         setI((n) => (n + 1) % stats.length)
         setPhase('in')
-      }, 450)
+      }, STEP_MS)
     }
-    // The first fact stays still while the page loads, then the rotation starts.
+    // The first rotation starts almost immediately, then it repeats on the interval.
     const start = setTimeout(() => {
       rotate()
-      tick = setInterval(rotate, 3800)
-    }, 7000)
+      tick = setInterval(rotate, INTERVAL_MS)
+    }, STEP_MS)
     return () => {
       clearTimeout(start)
       clearInterval(tick)
