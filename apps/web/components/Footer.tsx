@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { GUIDES } from '../lib/content/guides.ts'
+import { AskAi } from './AskAi.tsx'
 import { CookieSettingsLink } from './CookieSettingsLink.tsx'
 
 export function Footer() {
@@ -16,6 +17,7 @@ export function Footer() {
             <p className="muted" style={{ maxWidth: '34ch', marginTop: 12 }}>
               Researches your product, maps where competitors are listed, finds the gaps and launches your product for you.
             </p>
+            <AskAi />
           </div>
           <div>
             <span className="label">Product</span>

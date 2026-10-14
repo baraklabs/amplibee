@@ -1245,3 +1245,47 @@ noscript .form-error {
     display: none;
   }
 }
+
+/* footer: ask an AI assistant about Amplibee. Each button takes its colour from the assistant's brand. */
+.ask-ai {
+  margin-top: 20px;
+}
+.ask-ai h2 {
+  margin: 0 0 10px;
+  font-size: 1rem;
+  letter-spacing: 0.09em;
+}
+.ask-ai ul {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 0;
+  margin: 0;
+}
+.ask-ai a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px 6px 6px;
+  border: 1px solid color-mix(in srgb, var(--brand) 35%, var(--rule));
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--brand) 9%, var(--card));
+  text-decoration: none;
+  font-size: 0.93rem;
+  color: var(--ink);
+}
+.ask-ai a:hover {
+  border-color: var(--brand);
+  background: color-mix(in srgb, var(--brand) 18%, var(--card));
+  color: var(--ink);
+}
+.ask-ai img {
+  display: block;
+  width: 22px;
+  height: 22px;
+  padding: 2px;
+  border-radius: 50%;
+  background: #fff;
+  object-fit: contain;
+}
