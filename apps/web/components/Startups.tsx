@@ -1,13 +1,12 @@
-// "Startups launched with Amplibee". Reads apps/web/data/startups.json (real entries). With
-// NEXT_PUBLIC_DEMO_CUSTOMERS=true it reads startups.demo.json instead: fictional startups for previewing the
-// layout. Without data the section is not rendered, so a production build never shows invented startups.
+// "Latest product launches on Amplibee". Reads apps/web/data/startups.json, the same data locally and in production.
+// Without data the section is not rendered.
 
 import startupsData from '../data/startups.json'
-import startupsDemo from '../data/startups.demo.json'
 
 interface Startup {
   name: string
   domain: string
+  url?: string // when set, the card links to the product
   tagline: string
   category: string
   launched: string // YYYY-MM
@@ -15,8 +14,7 @@ interface Startup {
   logo?: string // optional real logo path; otherwise a symbol mark is drawn from the name
 }
 
-const demo = process.env.NEXT_PUBLIC_DEMO_CUSTOMERS === 'true'
-const startups = (demo ? startupsDemo : startupsData) as Startup[]
+const startups = startupsData as Startup[]
 
 /** How many cards the home page shows. */
 const SHOWN = 16
@@ -101,8 +99,17 @@ function Card({ s, index }: { s: Startup; index: number }) {
         {/* eslint-disable-next-line @next/next/no-img-element */}
         {s.logo ? <img className="su-mark" src={s.logo} alt="" width={44} height={44} loading="lazy" /> : <Mark name={s.name} index={index} />}
         <div className="su-id">
-          <strong>{s.name}</strong>
-          <span className="muted">{s.domain}</span>
+          {s.url ? (
+            <a className="su-link" href={s.url} target="_blank" rel="noopener">
+              <strong>{s.name}</strong>
+              <span className="muted">{s.domain}</span>
+            </a>
+          ) : (
+            <>
+              <strong>{s.name}</strong>
+              <span className="muted">{s.domain}</span>
+            </>
+          )}
         </div>
         {s.score !== undefined ? <span className="su-score" title="Visibility score">{s.score}</span> : null}
       </div>
@@ -120,7 +127,7 @@ export function StartupsLaunched() {
   return (
     <section className="section" aria-labelledby="su-h">
       <div className="wrap">
-        <h2 id="su-h" style={{ textAlign: 'center', borderTop: 0 }}>{startups.length} startups launched with Amplibee</h2>
+        <h2 id="su-h" style={{ textAlign: 'center', borderTop: 0 }}>Latest product launches with Amplibee</h2>
         <p className="measure" style={{ margin: '8px auto 0', textAlign: 'center' }}>Products that checked their visibility, closed the gaps and launched. The number on each card is the visibility score at launch.</p>
         <ul className="su-grid">
           {startups.slice(0, SHOWN).map((s, i) => <Card key={s.domain} s={s} index={i} />)}

@@ -1174,3 +1174,18 @@
 .gate .gate-primary:hover {
   filter: brightness(1.05);
 }
+
+/* a linked startup: the name and address are one link, shown as plain text until hovered */
+.su-link {
+  display: flex;
+  flex-direction: column;
+  color: inherit;
+  text-decoration: none;
+}
+.su-link:hover strong,
+.su-link:hover span {
+  color: var(--accent-ink);
+  text-decoration: underline;
+  text-decoration-color: var(--accent);
+  text-underline-offset: 3px;
+}

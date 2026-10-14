@@ -27,8 +27,9 @@ export function Footer() {
             </ul>
           </div>
           <div>
-            <span className="label">Blog</span>
+            <Link href="/blog" className="label" style={{ textDecoration: 'none', color: 'inherit' }}>Blog</Link>
             <ul>
+              <li><Link href="/blog"><strong>All posts</strong></Link></li>
               {GUIDES.map((g) => (
                 <li key={g.slug}><Link href={`/blog/${g.slug}`}>{g.title}</Link></li>
               ))}

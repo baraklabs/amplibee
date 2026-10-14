@@ -1,15 +1,10 @@
 // "What our customers got out of it" and "What customers are saying".
-// Both read real entries from apps/web/data/customers.json and testimonials.json. Nothing is invented here.
-// With NEXT_PUBLIC_DEMO_CUSTOMERS=true they read the *.demo.json files instead and show a visible banner,
-// so the layout can be reviewed before real customers exist. Without data, the results section falls back
-// to the real example checks and the quote section is hidden.
+// Both read entries from apps/web/data/customers.json and testimonials.json (the same data locally and in production).
+// Without data, the results section falls back to the real example checks and the quote section is hidden.
 
 import customersData from '../data/customers.json'
-import customersDemo from '../data/customers.demo.json'
 import metaData from '../data/customers.meta.json'
-import metaDemo from '../data/customers.meta.demo.json'
 import quotesData from '../data/testimonials.json'
-import quotesDemo from '../data/testimonials.demo.json'
 import { ExampleCards } from './Landing.tsx'
 
 interface Stat {
@@ -34,11 +29,10 @@ interface Quote {
   avatar?: string
 }
 
-const demo = process.env.NEXT_PUBLIC_DEMO_CUSTOMERS === 'true'
-const customers = (demo ? customersDemo : customersData) as Customer[]
-const quotes = (demo ? quotesDemo : quotesData) as Quote[]
+const customers = customersData as Customer[]
+const quotes = quotesData as Quote[]
 // Optional real totals for the whole customer base, when it is larger than the cards shown: { "total_customers": 1200 }
-const meta = (demo ? metaDemo : metaData) as { total_customers?: number; pill_first?: Stat; pill_middle?: Stat; pill_last?: Stat }
+const meta = metaData as { total_customers?: number; pill_first?: Stat; pill_middle?: Stat; pill_last?: Stat }
 
 function Avatar({ name, src }: { name: string; src?: string }) {
   // eslint-disable-next-line @next/next/no-img-element

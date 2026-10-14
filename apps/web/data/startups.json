@@ -1,11 +1,12 @@
 [
   {
-    "name": "Birchflow",
-    "domain": "birchflow.co",
-    "tagline": "Notes clinicians finish before lunch.",
-    "category": "Health",
-    "launched": "2026-09",
-    "score": 92
+    "name": "EdgeVolume",
+    "domain": "edgevolume.vercel.app",
+    "url": "https://edgevolume.vercel.app/",
+    "tagline": "Control your Mac’s volume from your trackpad edge",
+    "category": "Mac utilities",
+    "launched": "2026-10",
+    "logo": "/customers/edgevolume-logo.svg"
   },
   {
     "name": "Vesselmint",
