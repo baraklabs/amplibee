@@ -1,7 +1,9 @@
 import type { Metadata } from 'next'
 import { absolute, SITE } from './config.ts'
 
-export const OG_ALT = 'Amplibee: get your product launch on auto-pilot'
+export const OG_ALT = 'Amplibee: your product launch engine'
+/** Default share image, used by every page that does not set its own. */
+export const OG_DEFAULT = { path: '/og-default.jpg', width: 1200, height: 628 }
 
 /**
  * Per-page metadata. A page that sets openGraph replaces the parent's whole openGraph object, so the share image is set
@@ -22,7 +24,8 @@ export function pageMeta(o: {
   modified?: string
   keywords?: string[]
 }): Metadata {
-  const image = { url: absolute(o.image ?? '/opengraph-image'), width: 1200, height: 630, alt: o.title }
+  const size = o.image ? { width: 1200, height: 630 } : { width: OG_DEFAULT.width, height: OG_DEFAULT.height }
+  const image = { url: absolute(o.image ?? OG_DEFAULT.path), ...size, alt: o.image ? o.title : OG_ALT }
   return {
     title: o.absoluteTitle ? { absolute: o.title } : o.title,
     description: o.description,

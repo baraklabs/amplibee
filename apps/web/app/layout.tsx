@@ -11,7 +11,7 @@ import { Header } from '../components/Header.tsx'
 import { JsonLd } from '../components/JsonLd.tsx'
 import { SITE } from '../lib/config.ts'
 import { organization, website } from '../lib/jsonld.ts'
-import { OG_ALT } from '../lib/seo.ts'
+import { OG_ALT, OG_DEFAULT } from '../lib/seo.ts'
 
 const ui = Geist({ subsets: ['latin'], variable: '--font-ui', display: 'swap', weight: ['400', '600', '700'] })
 const mono = Geist_Mono({ subsets: ['latin'], variable: '--font-mono', display: 'swap', weight: ['400'], preload: false })
@@ -30,8 +30,8 @@ export const metadata: Metadata = {
   category: 'technology',
   formatDetection: { email: false, address: false, telephone: false },
   manifest: '/manifest.webmanifest',
-  openGraph: { type: 'website', siteName: SITE.name, locale: 'en_US', url: SITE.url, title: 'Amplibee: free visibility check for your product', description: 'Check how visible your product is online, compare it with competitors and get a fix list.', images: [{ url: '/opengraph-image', width: 1200, height: 630, alt: OG_ALT }] },
-  twitter: { card: 'summary_large_image', title: 'Amplibee: free visibility check for your product', description: 'Check how visible your product is online, compare it with competitors and get a fix list.', images: ['/opengraph-image'] },
+  openGraph: { type: 'website', siteName: SITE.name, locale: 'en_US', url: SITE.url, title: 'Amplibee: free visibility check for your product', description: 'Check how visible your product is online, compare it with competitors and get a fix list.', images: [{ url: OG_DEFAULT.path, width: OG_DEFAULT.width, height: OG_DEFAULT.height, alt: OG_ALT }] },
+  twitter: { card: 'summary_large_image', title: 'Amplibee: free visibility check for your product', description: 'Check how visible your product is online, compare it with competitors and get a fix list.', images: [OG_DEFAULT.path] },
   alternates: { canonical: '/', types: { 'text/plain': [{ url: '/llms.txt', title: 'LLM-readable site summary' }] } },
   robots: { index: true, follow: true, googleBot: { index: true, follow: true, 'max-image-preview': 'large', 'max-snippet': -1, 'max-video-preview': -1 } },
   verification: { google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION, other: process.env.NEXT_PUBLIC_BING_SITE_VERIFICATION ? { 'msvalidate.01': process.env.NEXT_PUBLIC_BING_SITE_VERIFICATION } : undefined },
