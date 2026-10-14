@@ -6,6 +6,8 @@ import './tracker.css'
 import './social.css'
 import './auth-flip.css'
 import './features.css'
+import './cookie.css'
+import { CookieConsent } from '../components/CookieConsent.tsx'
 import { Footer } from '../components/Footer.tsx'
 import { Header } from '../components/Header.tsx'
 import { JsonLd } from '../components/JsonLd.tsx'
@@ -47,6 +49,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <Header />
         <main id="main">{children}</main>
         <Footer />
+        <CookieConsent />
         <JsonLd data={[organization, website]} />
       </body>
     </html>

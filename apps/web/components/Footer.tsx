@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { GUIDES } from '../lib/content/guides.ts'
+import { CookieSettingsLink } from './CookieSettingsLink.tsx'
 
 export function Footer() {
   return (
@@ -42,6 +43,7 @@ export function Footer() {
               <li><Link href="/sign-in">Sign in</Link></li>
               <li><Link href="/privacy">Privacy</Link></li>
               <li><Link href="/terms">Terms</Link></li>
+              <li><CookieSettingsLink /></li>
             </ul>
           </div>
         </div>

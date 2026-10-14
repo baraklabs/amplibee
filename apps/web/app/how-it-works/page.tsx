@@ -52,9 +52,6 @@ export default function HowItWorks() {
             <li>One search provider receives queries such as <code>site:yourdomain.com</code>. The free check runs at most 2 queries. The full check runs at most 30.</li>
             <li>Domain rank is looked up live from the public Tranco list of top websites. Only the domain name is sent.</li>
           </ul>
-
-          <h2>What we store</h2>
-          <p>We store the domain, the measurements and the log for 30 days. Scan results are cached per domain for 7 days, so a repeat check of the same domain is faster and costs no new queries. If you sign in to unlock a report we store your account email, the check you unlocked, any requests you make, and any UTM tags on the page address. The privacy page has the full list.</p>
         </div>
         <aside className="aside" aria-label="Related">
           <span className="label">Related</span>
