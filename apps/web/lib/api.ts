@@ -133,6 +133,7 @@ export const api = {
     call<{ already: boolean; type: RequestType; status: string }>('/requests', { method: 'POST', json: { job_id, type, note }, auth: true }),
   listRequests: (job_id: string) =>
     call<{ type: RequestType; status: string; created_at: string }[]>(`/requests?job_id=${encodeURIComponent(job_id)}`, { auth: true }),
+  switchPlan: (plan: string) => call<{ plan: string }>('/plan', { method: 'POST', json: { plan }, auth: true }),
   getWorkspace: () => call<Workspace>('/workspace', { auth: true, cache: 'no-store' }),
   saveWorkspace: (w: Workspace) => call<Workspace>('/workspace', { method: 'PUT', json: w, auth: true }),
   report: (domain: string, k?: string) =>

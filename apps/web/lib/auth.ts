@@ -19,6 +19,7 @@ export interface Me {
   name: string | null
   has_password: boolean
   plan?: 'free' | 'starter' | 'plus' | 'growth' | 'scale' | 'authority'
+  can_switch_plan?: boolean
 }
 
 type Tokens = { access_token: string; refresh_token: string }
@@ -56,6 +57,9 @@ const setTokens = (t: Tokens | null) => write('local', SESSION_KEY, t ? { access
 
 export const hasSession = () => !!stored()
 export const getPending = () => read<{ token: string; email: string }>('session', PENDING_KEY)
+
+/** Tells every open component that the account changed, so they load it again. */
+export const notifyAccountChanged = () => window.dispatchEvent(new Event(EVENT))
 
 /** Calls fn now and whenever the login changes (this tab or another). Returns the unsubscribe function. */
 export function onAuthChange(fn: () => void): () => void {

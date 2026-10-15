@@ -32,6 +32,8 @@ export const productSchema = z.object({
   one_liner: z.string().trim().max(300).nullable().optional(),
 })
 
+export const planSchema = z.object({ plan: z.enum(['free', 'starter', 'plus', 'growth', 'scale', 'authority'], { errorMap: () => ({ message: 'Choose one of the plans.' }) }) })
+
 export const unlockSchema = z.object({
   job_id: z.string().uuid('That job id is not valid.'),
 })

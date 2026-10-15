@@ -18,7 +18,7 @@ import { assertSafeUrl, SsrfError } from '../_shared/ssrf.ts'
 import { hashIp, signReportToken, verifyReportToken } from '../_shared/token.ts'
 import { verifyTurnstile } from '../_shared/turnstile.ts'
 import type { Report } from '../_shared/types.ts'
-import { competitorsSchema, contactSchema, createCheckSchema, firstIssue, productSchema, removalSchema, requestSchema, unlockSchema, uuidSchema } from './schemas.ts'
+import { competitorsSchema, contactSchema, createCheckSchema, firstIssue, planSchema, productSchema, removalSchema, requestSchema, unlockSchema, uuidSchema } from './schemas.ts'
 
 const MAX_BODY = 16 * 1024
 
@@ -445,4 +445,25 @@ export async function putWorkspace(req: Request): Promise<Response> {
   const { error } = await db.rpc('save_workspace', { p_user: user.id, p_doc: clampWorkspace(b.data, plan) })
   if (error) throw new Error(`save workspace: ${error.message}`)
   return ok(await loadWorkspaceDoc(db, user.id))
+}
+
+// ---------- POST /v1/plan ----------
+
+/** Until payments exist, a plan can be switched on the spot, but only while ALLOW_PLAN_SWITCH=true. Leave it off in production. */
+export const planSwitchEnabled = () => flag('ALLOW_PLAN_SWITCH', false)
+
+export async function postPlan(req: Request): Promise<Response> {
+  const b = await body(req, planSchema)
+  if ('error' in b) return b.error
+  if (!planSwitchEnabled()) return fail('billing_unavailable', 'Plans are confirmed by email for now. Contact us to change yours.', { status: 403 })
+  const db = getDb()
+  const user = await verifyUser(dbUsers(db), req.headers.get('authorization'))
+  if (!user) return fail('auth_required', 'Sign in to change your plan.', { status: 401 })
+
+  const used = await hit(`plan:${user.id}`)
+  if (used > 20) return fail('rate_limited', 'Too many plan changes today.', { status: 429 })
+
+  const { error } = await db.from('users').update({ plan: b.data.plan }).eq('id', user.id)
+  if (error) throw new Error(`plan update: ${error.message}`)
+  return ok({ plan: b.data.plan })
 }

@@ -13,7 +13,7 @@ import { ACCESS_TTL_SECONDS, PENDING_TTL_SECONDS, signToken, verifyToken } from 
 import { generateLinkToken, generateOtp, hashPassword, sha256Hex, timingSafeEqual, verifyPassword } from '../_shared/password.ts'
 import { newSignupMessage, notifyTelegram } from '../_shared/telegram.ts'
 import { hashIp } from '../_shared/token.ts'
-import { body, clientIp, hit } from './handlers.ts'
+import { body, clientIp, hit, planSwitchEnabled } from './handlers.ts'
 
 const OTP_TTL_MS = 10 * 60 * 1000
 const RESET_TTL_MS = 15 * 60 * 1000
@@ -361,5 +361,5 @@ export async function getMe(req: Request): Promise<Response> {
   const user = await verifyUser(dbUsers(getDb()), req.headers.get('authorization'))
   if (!user) return fail('auth_required', SIGNED_OUT, { status: 401 })
   const { data } = await getDb().from('users').select('name, password_hash, plan').eq('id', user.id).maybeSingle()
-  return ok({ id: user.id, email: user.email, name: data?.name ?? null, has_password: !!data?.password_hash, plan: data?.plan ?? 'free' })
+  return ok({ id: user.id, email: user.email, name: data?.name ?? null, has_password: !!data?.password_hash, plan: data?.plan ?? 'free', can_switch_plan: planSwitchEnabled() })
 }
