@@ -2086,3 +2086,18 @@ html {
     animation: none;
   }
 }
+
+/* the submit button sits on the right, with the note on the left */
+.submit-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px 20px;
+}
+.submit-actions .submit-note {
+  margin: 0;
+}
+.submit-actions .btn {
+  margin-left: auto;
+}

@@ -4,6 +4,7 @@ import { useRouter } from 'next/navigation'
 import { type FormEvent, useEffect, useState } from 'react'
 import { AuthError, forgotPassword, getPending, resendCode, signIn, signOut, signUp, verifyCode, type Outcome } from '../lib/auth.ts'
 import { GoogleButton } from './GoogleButton.tsx'
+import { OtpInput } from './OtpInput.tsx'
 
 type Mode = 'signin' | 'signup'
 type Errors = { name?: string; email?: string; password?: string; form?: string }
@@ -68,10 +69,12 @@ export function AuthForm() {
     setBusy(true)
     setErrors({})
     try {
-      done(mode === 'signin' ? await signIn(addr, password) : await signUp(name.trim(), addr, password))
+      const outcome = mode === 'signin' ? await signIn(addr, password) : await signUp(name.trim(), addr, password)
+      done(outcome)
+      // Stay frozen while the browser moves on to the next page; only the code step hands control back.
+      if (outcome.kind !== 'signed_in') setBusy(false)
     } catch (err) {
       setErrors({ form: messageOf(err) })
-    } finally {
       setBusy(false)
     }
   }
@@ -103,7 +106,14 @@ export function AuthForm() {
       show={show}
       setShow={setShow}
       errors={errors}
-      setError={(form) => setErrors({ form })}
+      setError={(form) => {
+        setErrors({ form })
+        setBusy(false)
+      }}
+      onStart={() => {
+        setErrors({})
+        setBusy(true)
+      }}
       busy={busy}
       onSubmit={onSubmit}
       onSignedIn={() => router.push(next)}
@@ -143,13 +153,14 @@ function Face(p: {
   busy: boolean
   onSubmit: (e: FormEvent) => void
   onSignedIn: () => void
+  onStart: () => void
   onToggle: () => void
   onForgot: () => void
 }) {
   const c = COPY[p.mode]
   const id = (f: string) => `${p.mode}-${f}`
   return (
-    <div className="auth-card card">
+    <div className="auth-card card" aria-busy={p.busy}>
       <h1 className="auth-title">{c.heading}</h1>
 
       <form className="stack" onSubmit={p.onSubmit} noValidate>
@@ -182,7 +193,7 @@ function Face(p: {
               placeholder={p.mode === 'signup' ? 'At least 8 characters' : 'Your password'}
               disabled={p.busy}
             />
-            <button type="button" className="pass-toggle" onClick={() => p.setShow((v) => !v)} aria-pressed={p.show}>{p.show ? 'Hide' : 'Show'}</button>
+            <button type="button" className="pass-toggle" onClick={() => p.setShow((v) => !v)} aria-pressed={p.show} disabled={p.busy}>{p.show ? 'Hide' : 'Show'}</button>
           </div>
           {p.active && p.errors.password ? <p className="form-error">{p.errors.password}</p> : null}
         </div>
@@ -192,10 +203,10 @@ function Face(p: {
       </form>
 
       <div className="auth-or" role="separator"><span>or</span></div>
-      {p.active ? <GoogleButton onDone={p.onSignedIn} onError={p.setError} /> : <div style={{ minHeight: 44 }} />}
+      {p.active ? <GoogleButton onStart={p.onStart} onDone={p.onSignedIn} onError={p.setError} disabled={p.busy} /> : <div style={{ minHeight: 44 }} />}
 
       <p className="auth-switch">
-        {c.hint} <button type="button" className="auth-link" onClick={p.onToggle}>{c.cta}</button>
+        {c.hint} <button type="button" className="auth-link" onClick={p.onToggle} disabled={p.busy}>{c.cta}</button>
       </p>
     </div>
   )
@@ -285,12 +296,12 @@ function VerifyFace({ email, onDone, onBack }: { email: string; onDone: () => vo
       <p className="muted auth-sub">We sent a 6-digit code{email ? <> to <strong>{email}</strong></> : null}. Enter it below, or open the link in the email.</p>
       <form className="stack" onSubmit={onSubmit} noValidate>
         <div className="field">
-          <label className="label" htmlFor="verify-code">Verification code</label>
-          <input id="verify-code" inputMode="numeric" autoComplete="one-time-code" maxLength={6} value={code} onChange={(e) => setCode(e.target.value.replace(/\D/g, ''))} placeholder="123456" />
+          <span className="label">Verification code</span>
+          <OtpInput value={code} onChange={setCode} disabled={busy} />
         </div>
         {error ? <p className="form-error" role="alert">{error}</p> : null}
         {resent && !error ? <p className="locked-note" role="status">A new code is on its way.</p> : null}
-        <button className="btn auth-submit" type="submit" disabled={busy}>{busy ? 'Verifying' : 'Verify'}</button>
+        <button className="btn auth-submit" type="submit" disabled={busy || code.length < 6}>{busy ? 'Verifying' : 'Verify'}</button>
       </form>
       <p className="auth-switch" style={{ display: 'flex', justifyContent: 'space-between' }}>
         <button type="button" className="auth-link" onClick={onBack}>Back</button>

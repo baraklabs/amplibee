@@ -12,8 +12,8 @@ export const PROCESS_STEPS: ProcessStep[] = [
   },
   {
     title: 'Find competitors',
-    short: 'You enter your competitor sites. Leave it empty and the comparison is skipped.',
-    long: 'You type your competitor domains. Each one goes through the same address checks as your own site. If you leave the list empty, the scan still runs and the competitor comparison is left out of the report.',
+    short: 'You enter your competitor sites and we compare their listings and mentions with yours.',
+    long: 'You type your competitor domains. Each one goes through the same address checks as your own site and the same scan, so the report can show where they are listed or mentioned and you are not. If you leave the list empty, the scan still runs and the competitor comparison is left out of the report.',
   },
   {
     title: 'Scan visibility',
@@ -27,12 +27,12 @@ export const PROCESS_STEPS: ProcessStep[] = [
   },
   {
     title: 'Plan fixes',
-    short: 'Every gap maps to one action: a guide, a directory, a review step, a content task or a campaign.',
-    long: 'Each gap is matched to a fix type. Most fixes are free and point to a blog post or a directory submission page. The full gap list, the competitor comparison and the fix plan unlock when you sign in.',
+    short: 'Every gap maps to one action, including the directories you are missing and a month of content topics.',
+    long: 'Each gap is matched to a fix type. Most fixes are free and point to a blog post or a directory submission page. The plan lists the directories and platforms that do not list you yet, and a month of blog and content topics that you can adjust as competitors change what they publish. The full gap list, the competitor comparison and the fix plan unlock when you sign in.',
   },
   {
     title: 'Launch',
-    short: 'Want to get mentioned by people to improve your brand visibility? We will get it done for you.',
-    long: 'Gaps about mentions and reviews can be fixed by creators who post, write or engage. For those, the report offers a campaign with a draft brief and a suggested starting budget, and we get it done for you. You review and change both first, and nothing is bought from this page.',
+    short: 'Get listed in directories and mentioned by people. We can do the submissions for you.',
+    long: 'Directory gaps can be fixed by submitting your product, which you can do yourself or let us do on a paid plan, up to 150+ directories. Gaps about mentions and reviews can be fixed by creators who post, write or engage. For those, the report offers a campaign with a draft brief and a suggested starting budget, and we get it done for you. You review and change both first, and nothing is bought from this page.',
   },
 ]

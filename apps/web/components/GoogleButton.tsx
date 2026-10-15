@@ -37,12 +37,12 @@ function loadScript(): Promise<void> {
 }
 
 /** Google's own "Continue with Google" button. It hands back a signed credential, which the server checks. */
-export function GoogleButton({ onDone, onError }: { onDone: () => void; onError: (message: string) => void }) {
+export function GoogleButton({ onDone, onError, onStart, disabled = false }: { onDone: () => void; onError: (message: string) => void; onStart?: () => void; disabled?: boolean }) {
   const holder = useRef<HTMLDivElement>(null)
   const [busy, setBusy] = useState(false)
   // Google keeps the callback it was given at initialize(), so route through a ref to always reach the latest props.
-  const latest = useRef({ onDone, onError })
-  latest.current = { onDone, onError }
+  const latest = useRef({ onDone, onError, onStart })
+  latest.current = { onDone, onError, onStart }
 
   useEffect(() => {
     if (!CLIENT_ID) return
@@ -54,8 +54,10 @@ export function GoogleButton({ onDone, onError }: { onDone: () => void; onError:
           client_id: CLIENT_ID,
           callback: async ({ credential }) => {
             setBusy(true)
+            latest.current.onStart?.()
             try {
               await signInWithGoogle(credential)
+              // stays busy: the page is about to change
               latest.current.onDone()
             } catch (e) {
               latest.current.onError(e instanceof AuthError ? e.message : 'Google sign-in did not work. Try again.')
@@ -73,7 +75,7 @@ export function GoogleButton({ onDone, onError }: { onDone: () => void; onError:
 
   if (!CLIENT_ID) return null
   return (
-    <div className="google-slot" style={{ opacity: busy ? 0.5 : 1, pointerEvents: busy ? 'none' : 'auto', display: 'flex', justifyContent: 'center', minHeight: 44 }}>
+    <div className="google-slot" style={{ opacity: busy || disabled ? 0.5 : 1, pointerEvents: busy || disabled ? 'none' : 'auto', display: 'flex', justifyContent: 'center', minHeight: 44 }}>
       <div ref={holder} />
     </div>
   )

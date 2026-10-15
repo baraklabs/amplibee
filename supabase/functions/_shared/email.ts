@@ -46,7 +46,7 @@ export function codeEmail(kind: 'verify' | 'reset', code: string, link: string):
 export async function sendEmail(msg: EmailMessage, fetchImpl: typeof fetch = fetch): Promise<{ ok: boolean; error?: string }> {
   const provider = env('EMAIL_PROVIDER', 'resend')
   const from = env('EMAIL_FROM')
-  const key = env('EMAIL_API_KEY')
+  const key = env('EMAIL_API_KEY') || env('RESEND_API_KEY')
   if (!key || !from) return { ok: false, error: 'email_not_configured' }
   try {
     if (provider === 'brevo') {

@@ -1,4 +1,5 @@
 import { AuthForm } from '../../components/AuthForm.tsx'
+import { AuthShowcase } from '../../components/AuthShowcase.tsx'
 import { pageMeta } from '../../lib/seo.ts'
 
 export const metadata = pageMeta({
@@ -10,7 +11,8 @@ export const metadata = pageMeta({
 
 export default function SignIn() {
   return (
-    <div className="wrap auth-wrap">
+    <div className="wrap auth-wrap auth-split">
+      <AuthShowcase />
       <AuthForm />
     </div>
   )

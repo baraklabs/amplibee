@@ -218,9 +218,9 @@ export function SubmitForm() {
         {me === null ? (
           <SignInNote bottom />
         ) : (
-          <div>
-            <button className="btn" type="submit" disabled={busy || me === undefined}>{busy ? 'Sending' : 'Submit for review'}</button>
+          <div className="submit-actions">
             <p className="muted submit-note">Free to submit. We review each product by hand before it is listed.</p>
+            <button className="btn" type="submit" disabled={busy || me === undefined}>{busy ? 'Sending' : 'Submit for review'}</button>
           </div>
         )}
       </form>
