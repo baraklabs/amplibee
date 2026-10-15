@@ -3,6 +3,7 @@
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useEffect, useState } from 'react'
+import { hasSession, onAuthChange } from '../lib/auth.ts'
 import { AuthLink } from './AuthLink.tsx'
 
 const NAV = [
@@ -16,6 +17,13 @@ const NAV = [
 export function HeaderNav() {
   const [open, setOpen] = useState(false)
   const pathname = usePathname()
+  const [signedIn, setSignedIn] = useState(false)
+
+  useEffect(() => {
+    const sync = () => setSignedIn(hasSession())
+    sync()
+    return onAuthChange(sync)
+  }, [])
 
   useEffect(() => setOpen(false), [pathname])
 
@@ -39,6 +47,9 @@ export function HeaderNav() {
         <span aria-hidden="true" />
       </button>
       <nav id="main-nav" className="nav" aria-label="Main" data-open={open}>
+        {signedIn ? (
+          <Link href="/dashboard" aria-current={pathname.startsWith('/dashboard') ? 'page' : undefined}>Dashboard</Link>
+        ) : null}
         {NAV.map((n) => (
           <Link key={n.href} href={n.href} aria-current={pathname === n.href ? 'page' : undefined}>
             {n.label}

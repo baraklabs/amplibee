@@ -135,3 +135,55 @@ export const PLANS: Plan[] = [
     ],
   },
 ]
+
+export type PlanId = Plan['id']
+
+/** What each plan allows, in the same order as PLANS. Mirrors the comparison table above. */
+export interface Limits {
+  competitors: number
+  keywords: number
+  directories: number // submissions
+  analyticsDays: number // 0 = no analytics
+  blogPosts: number
+  prompts: number // AI prompts tracked daily
+  launchPlan: boolean
+  extraChecks: boolean
+  team: boolean
+  aiVisibility: boolean
+}
+
+export const LIMITS: Record<PlanId, Limits> = {
+  free: { competitors: 3, keywords: 0, directories: 0, analyticsDays: 0, blogPosts: 0, prompts: 0, launchPlan: false, extraChecks: false, team: false, aiVisibility: false },
+  starter: { competitors: 5, keywords: 10, directories: 3, analyticsDays: 7, blogPosts: 0, prompts: 0, launchPlan: false, extraChecks: false, team: false, aiVisibility: false },
+  plus: { competitors: 10, keywords: 20, directories: 10, analyticsDays: 7, blogPosts: 1, prompts: 0, launchPlan: false, extraChecks: false, team: false, aiVisibility: false },
+  growth: { competitors: 20, keywords: 20, directories: 50, analyticsDays: 7, blogPosts: 4, prompts: 0, launchPlan: true, extraChecks: true, team: false, aiVisibility: false },
+  scale: { competitors: 50, keywords: 50, directories: 100, analyticsDays: 7, blogPosts: 20, prompts: 0, launchPlan: true, extraChecks: true, team: true, aiVisibility: false },
+  authority: { competitors: 100, keywords: 100, directories: 150, analyticsDays: 30, blogPosts: 45, prompts: 50, launchPlan: true, extraChecks: true, team: true, aiVisibility: true },
+}
+
+/** A dashboard area that some plans lock. */
+export type Feature = 'keywords' | 'directories' | 'content' | 'analytics' | 'aiVisibility'
+
+const ENABLED: Record<Feature, (l: Limits) => boolean> = {
+  keywords: (l) => l.keywords > 0,
+  directories: (l) => l.directories > 0,
+  content: (l) => l.blogPosts > 0,
+  analytics: (l) => l.analyticsDays > 0,
+  aiVisibility: (l) => l.aiVisibility,
+}
+
+export const hasFeature = (plan: PlanId, feature: Feature) => ENABLED[feature](LIMITS[plan])
+
+export const planById = (id: PlanId) => PLANS.find((p) => p.id === id)!
+
+/** The cheapest plan that unlocks the feature. */
+export const planFor = (feature: Feature): Plan => PLANS.find((p) => hasFeature(p.id, feature))!
+
+/** The next plan up, or null on the top plan. */
+export const nextPlan = (id: PlanId): Plan | null => PLANS[PLANS.findIndex((p) => p.id === id) + 1] ?? null
+
+/** The next plan up whose limit for `key` is higher than the current one. */
+export function upgradeFor(id: PlanId, key: 'competitors' | 'keywords' | 'directories'): Plan | null {
+  const now = LIMITS[id][key]
+  return PLANS.find((p) => LIMITS[p.id][key] > now) ?? null
+}

@@ -30,7 +30,7 @@ export function AuthForm() {
   const [show, setShow] = useState(false)
   const [errors, setErrors] = useState<Errors>({})
   const [busy, setBusy] = useState(false)
-  const [next, setNext] = useState('/account')
+  const [next, setNext] = useState('/dashboard')
 
   // /sign-in?mode=signup opens the card on "Create your account"; ?next= is where to go afterwards.
   useEffect(() => {

@@ -18,6 +18,7 @@ export interface Me {
   email: string
   name: string | null
   has_password: boolean
+  plan?: 'free' | 'starter' | 'plus' | 'growth' | 'scale' | 'authority'
 }
 
 type Tokens = { access_token: string; refresh_token: string }

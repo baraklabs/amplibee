@@ -6,6 +6,7 @@ import { Turnstile } from './Turnstile.tsx'
 
 const TOPICS: { value: string; label: string }[] = [
   { value: 'general', label: 'A general question' },
+  { value: 'upgrade', label: 'Upgrading my plan' },
   { value: 'custom_plan', label: 'A custom plan' },
   { value: 'directory_submission', label: 'Directory submissions' },
   { value: 'content', label: 'Blog posts and content' },

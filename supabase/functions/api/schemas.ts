@@ -43,7 +43,7 @@ export const requestSchema = z.object({
   note: z.string().trim().max(1000, 'Keep the note under 1,000 characters.').optional(),
 })
 
-export const CONTACT_TOPICS = ['general', 'custom_plan', 'directory_submission', 'content', 'press'] as const
+export const CONTACT_TOPICS = ['general', 'upgrade', 'custom_plan', 'directory_submission', 'content', 'press'] as const
 export const contactSchema = z.object({
   name: z.string().trim().min(1, 'Tell us your name.').max(120),
   email: z.string().trim().email('Enter a valid email address.').max(254),

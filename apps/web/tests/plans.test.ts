@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { annualPerMonth, annualTotal, PLANS } from '../lib/content/plans.ts'
+import { annualPerMonth, annualTotal, COMPARE, hasFeature, LIMITS, PLANS, planFor, upgradeFor } from '../lib/content/plans.ts'
 
 describe('plans', () => {
   it('has Free, 10, 40, 90, 240 and 490 in that order', () => {
@@ -51,5 +51,20 @@ describe('plans', () => {
     expect(text('authority')).toMatch(/AI visibility: Google Search, ChatGPT, Perplexity, Gemini and more/)
     expect(text('authority')).toMatch(/50 prompts tracked daily/)
     expect(text('authority')).toMatch(/45 blog posts a month, with images/)
+  })
+
+  it('limits match the comparison table', () => {
+    const row = (label: string) => COMPARE.find((r) => r.label === label)!.values
+    expect(PLANS.map((p) => LIMITS[p.id].competitors)).toEqual(row('Competitors to compare').map(Number))
+    expect(PLANS.map((p) => LIMITS[p.id].keywords)).toEqual(row('Keywords tracked').map((v) => (v === false ? 0 : Number(v))))
+  })
+
+  it('finds the plan that unlocks a feature', () => {
+    expect(planFor('keywords').id).toBe('starter')
+    expect(planFor('content').id).toBe('plus')
+    expect(planFor('aiVisibility').id).toBe('authority')
+    expect(hasFeature('free', 'analytics')).toBe(false)
+    expect(upgradeFor('free', 'competitors')?.id).toBe('starter')
+    expect(upgradeFor('authority', 'keywords')).toBeNull()
   })
 })

@@ -360,6 +360,6 @@ export async function postLogout(req: Request): Promise<Response> {
 export async function getMe(req: Request): Promise<Response> {
   const user = await verifyUser(dbUsers(getDb()), req.headers.get('authorization'))
   if (!user) return fail('auth_required', SIGNED_OUT, { status: 401 })
-  const { data } = await getDb().from('users').select('name, password_hash').eq('id', user.id).maybeSingle()
-  return ok({ id: user.id, email: user.email, name: data?.name ?? null, has_password: !!data?.password_hash })
+  const { data } = await getDb().from('users').select('name, password_hash, plan').eq('id', user.id).maybeSingle()
+  return ok({ id: user.id, email: user.email, name: data?.name ?? null, has_password: !!data?.password_hash, plan: data?.plan ?? 'free' })
 }
