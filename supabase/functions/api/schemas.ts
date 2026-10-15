@@ -55,6 +55,31 @@ export const contactSchema = z.object({
   turnstile_token: z.string().min(1, 'Complete the bot check first.').max(2048),
 })
 
+export const LAUNCH_CATEGORIES = [
+  'AI', 'AI Agents', 'Analytics', 'Business software', 'Chrome Extensions', 'Customer support', 'Design', 'Developer tools', 'E-commerce',
+  'Education', 'Email', 'Finance', 'Health', 'Hiring', 'Mac utilities', 'Marketing', 'Mobile Apps', 'Productivity', 'Project Management',
+  'SaaS', 'SEO', 'Security', 'Social Media', 'Other',
+] as const
+export const LAUNCH_PRICING = ['Free', 'Freemium', 'Paid', 'Lifetime deal'] as const
+const optional = (max: number) => z.string().trim().max(max).optional()
+export const launchSchema = z.object({
+  name: z.string().trim().min(1, 'Enter the product name.').max(30),
+  url: optional(300),
+  tagline: z.string().trim().min(10, 'Write a one-line tagline of at least 10 characters.').max(140),
+  category: z.enum(LAUNCH_CATEGORIES, { message: 'Choose a category.' }),
+  pricing: z.enum(LAUNCH_PRICING, { message: 'Choose a pricing model.' }),
+  description: optional(900),
+  audience: optional(160),
+  problem: optional(200),
+  unique: optional(240),
+  logo: optional(300),
+  x: optional(120),
+  github: optional(160),
+  founder: z.string().trim().min(1, 'Enter your name.').max(120),
+  email: z.string().trim().email('Enter a valid email address.').max(254),
+  turnstile_token: z.string().min(1, 'Complete the bot check first.').max(2048),
+})
+
 export const removalSchema = z.object({
   domain: z.string().max(300),
   email: z.string().trim().email().max(254).optional(),

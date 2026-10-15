@@ -129,6 +129,8 @@ export const api = {
     call<{ report: Report | null; email_sent: boolean; report_url: string; job: CheckView }>('/unlock', { method: 'POST', json: { job_id }, auth: true }),
   sendContact: (b: { name: string; email: string; company?: string; topic: string; message: string; turnstile_token: string }) =>
     call<{ received: boolean }>('/contact', { method: 'POST', json: b }),
+  submitLaunch: (b: Record<string, string> & { name: string; tagline: string; category: string; pricing: string; founder: string; email: string; turnstile_token: string }) =>
+    call<{ received?: boolean; already?: boolean }>('/launch', { method: 'POST', json: b, auth: true }),
   createRequest: (job_id: string, type: RequestType, note?: string) =>
     call<{ already: boolean; type: RequestType; status: string }>('/requests', { method: 'POST', json: { job_id, type, note }, auth: true }),
   listRequests: (job_id: string) =>

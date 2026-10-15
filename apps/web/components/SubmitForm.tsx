@@ -78,31 +78,23 @@ export function SubmitForm() {
     const logo = f.logo.trim() ? normalizeUrl(f.logo) : null
     if (f.logo.trim() && !logo) return setError('The logo link is not a valid address.')
 
-    const line = (label: string, v: string) => (v.trim() ? `${label}: ${v.trim()}` : '')
-    const message = [
-      'LAUNCH SUBMISSION',
-      line('Product', f.name),
-      line('Website', url ?? ''),
-      line('Tagline', f.tagline),
-      line('Category', f.category),
-      line('Pricing', f.pricing),
-      line('Description', f.description),
-      line('Audience', f.audience),
-      line('Problem it solves', f.problem),
-      line('What makes it different', f.unique),
-      line('Logo', logo ?? ''),
-      line('X', f.x),
-      line('GitHub', f.github),
-    ].filter(Boolean).join('\n')
-
     setBusy(true)
     try {
-      await api.sendContact({
-        name: f.founder.trim(),
+      await api.submitLaunch({
+        name: f.name.trim(),
+        url: url ?? '',
+        tagline: f.tagline.trim(),
+        category: f.category,
+        pricing: f.pricing,
+        description: f.description.trim(),
+        audience: f.audience.trim(),
+        problem: f.problem.trim(),
+        unique: f.unique.trim(),
+        logo: logo ?? '',
+        x: f.x.trim(),
+        github: f.github.trim(),
+        founder: f.founder.trim(),
         email: f.email.trim(),
-        company: f.name.trim(),
-        topic: 'general',
-        message,
         turnstile_token: token,
       })
       setSent(true)

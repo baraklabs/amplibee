@@ -4,7 +4,7 @@ import {
 import { corsHeaders, fail, ok, withHeaders } from '../_shared/envelope.ts'
 import { allowedOrigins } from '../_shared/env.ts'
 import {
-  getCheck, getDirectories, getWorkspace, postPlan, putWorkspace, postContact, getReport, getRequests, patchCompetitors, patchProduct, postAdvance, postCheck, postRemoval, postRequest, postUnlock,
+  getCheck, getDirectories, getWorkspace, postLaunch, postPlan, putWorkspace, postContact, getReport, getRequests, patchCompetitors, patchProduct, postAdvance, postCheck, postRemoval, postRequest, postUnlock,
 } from './handlers.ts'
 
 type Handler = (req: Request, m: RegExpMatchArray) => Promise<Response>
@@ -18,6 +18,7 @@ const routes: { method: string; pattern: RegExp; handler: Handler }[] = [
   { method: 'PATCH', pattern: /^\/check\/([^/]+)\/product$/, handler: (req, m) => patchProduct(req, m[1]) },
   { method: 'POST', pattern: /^\/unlock$/, handler: (req) => postUnlock(req) },
   { method: 'POST', pattern: /^\/contact$/, handler: (req) => postContact(req) },
+  { method: 'POST', pattern: /^\/launch$/, handler: (req) => postLaunch(req) },
   { method: 'POST', pattern: /^\/requests$/, handler: (req) => postRequest(req) },
   { method: 'GET', pattern: /^\/requests$/, handler: (req) => getRequests(req) },
   { method: 'GET', pattern: /^\/report\/([^/]+)$/, handler: (req, m) => getReport(req, m[1]) },
@@ -42,7 +43,7 @@ const routes: { method: string; pattern: RegExp; handler: Handler }[] = [
 
 /** The function is served under /functions/v1/<name>/v1/..., or /<name>/v1/... locally. Route on what follows the API's own /v1. */
 export function apiPath(pathname: string): string | null {
-  const m = /\/v1(\/(?:health|check|unlock|report|directories|removal|requests|contact|workspace|plan|auth)(?:\/.*)?)$/.exec(pathname)
+  const m = /\/v1(\/(?:health|check|unlock|report|directories|removal|requests|contact|launch|workspace|plan|auth)(?:\/.*)?)$/.exec(pathname)
   return m ? m[1].replace(/\/$/, '') : null
 }
 

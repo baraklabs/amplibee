@@ -19,7 +19,7 @@ import { assertSafeUrl, SsrfError } from '../_shared/ssrf.ts'
 import { hashIp, signReportToken, verifyReportToken } from '../_shared/token.ts'
 import { verifyTurnstile } from '../_shared/turnstile.ts'
 import type { Report } from '../_shared/types.ts'
-import { competitorsSchema, contactSchema, createCheckSchema, firstIssue, planSchema, productSchema, removalSchema, requestSchema, unlockSchema, uuidSchema } from './schemas.ts'
+import { competitorsSchema, contactSchema, createCheckSchema, launchSchema, firstIssue, planSchema, productSchema, removalSchema, requestSchema, unlockSchema, uuidSchema } from './schemas.ts'
 
 const MAX_BODY = 16 * 1024
 
@@ -262,6 +262,57 @@ Topic: ${topic}
 
 ${message}`,
     html: `<p><b>${esc(name)}</b> &lt;${esc(email)}&gt;${company ? ` (${esc(company)})` : ''}<br>Topic: ${esc(topic)}</p><p>${esc(message).replace(/\n/g, '<br>')}</p>`,
+  })
+  return ok({ received: true }, { status: 201 })
+}
+
+/** A launch submission, saved as a pending row for a person to review before anything is listed. */
+export async function postLaunch(req: Request): Promise<Response> {
+  const b = await body(req, launchSchema)
+  if ('error' in b) return b.error
+  const d = b.data
+
+  const bot = await turnstile(d.turnstile_token, req)
+  if (bot) return bot
+
+  const db = getDb()
+  const user = await verifyUser(dbUsers(db), req.headers.get('authorization'))
+  if (!user) return fail('auth_required', 'Sign in to submit your product.', { status: 401 })
+
+  const limit = int('LAUNCHES_PER_USER_PER_DAY', 5)
+  const used = await hit(`launch:${user.id}`)
+  if (used > limit) return fail('rate_limited', 'You have submitted several products today. Try again tomorrow, or email hello@amplibee.com.', { status: 429, rate: rateInfo(limit, used) })
+
+  let url: string | null = null
+  let domain: string | null = null
+  if (d.url) {
+    try {
+      const u = new URL(/^https?:\/\//i.test(d.url) ? d.url : `https://${d.url}`)
+      if (!u.hostname.includes('.')) throw new Error('host')
+      url = u.toString()
+      domain = u.hostname.replace(/^www\./, '')
+    } catch {
+      return fail('invalid_input', 'The website address is not valid. Use something like example.com, or leave it empty.', { status: 400 })
+    }
+  }
+
+  const ins = await db.from('product_launches').insert({
+    user_id: user.id, name: d.name, url, domain, tagline: d.tagline, category: d.category, pricing: d.pricing,
+    description: d.description || null, audience: d.audience || null, problem: d.problem || null, differentiator: d.unique || null,
+    logo: d.logo || null, x_handle: d.x || null, github: d.github || null, founder: d.founder, email: d.email,
+  }).select('id').single()
+  if (ins.error) {
+    if ((ins.error as { code?: string }).code === '23505') return ok({ already: true }, { status: 200 })
+    throw new Error(ins.error.message)
+  }
+
+  // Tell the owner. The submission is stored either way, so a failed send never fails the request.
+  const notify = env('CONTACT_NOTIFY_EMAIL') || env('REQUESTS_NOTIFY_EMAIL') || 'hello@amplibee.com'
+  await sendEmail({
+    to: notify,
+    subject: `Launch submission: ${d.name}`,
+    text: `${d.name} (${domain ?? 'no website'}) from ${d.founder} <${d.email}>\n${d.category} · ${d.pricing}\n\n${d.tagline}\n\n${d.description ?? ''}`,
+    html: `<p><b>${esc(d.name)}</b> (${esc(domain ?? 'no website')}) from ${esc(d.founder)} &lt;${esc(d.email)}&gt;<br>${esc(d.category)} · ${esc(d.pricing)}</p><p>${esc(d.tagline)}</p><p>${esc(d.description ?? '').replace(/\n/g, '<br>')}</p>`,
   })
   return ok({ received: true }, { status: 201 })
 }
