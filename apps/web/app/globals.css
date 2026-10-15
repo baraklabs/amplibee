@@ -1331,3 +1331,17 @@ noscript .form-error {
 .hs-cal-topic { font-size: 0.78rem; line-height: 1.25; font-weight: 600; color: var(--ink); }
 .hs-cal-cell .auth-status { align-self: flex-start; font-size: 0.65rem; padding: 1px 6px; }
 @media (max-width: 820px) { .hs-cal-topic { font-size: 0.68rem; } .hs-cal-cell { min-height: 72px; } }
+
+/* signed-in menu in the header */
+.user-menu { position: relative; }
+.user-btn { display: inline-flex; align-items: center; gap: 8px; padding: 3px 10px 3px 4px; border: 1px solid var(--rule); border-radius: 999px; background: var(--card); color: var(--ink); font: inherit; cursor: pointer; }
+.user-btn:hover { border-color: var(--ink); }
+.user-dot { display: grid; place-items: center; width: 26px; height: 26px; border-radius: 50%; background: #e0a100; color: #1d1b16; font-weight: 700; font-size: 0.85rem; }
+.user-name { max-width: 10ch; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.user-caret { width: 7px; height: 7px; border-right: 1.5px solid currentColor; border-bottom: 1.5px solid currentColor; transform: rotate(45deg) translateY(-2px); }
+.user-btn[aria-expanded='true'] .user-caret { transform: rotate(225deg); }
+.user-pop { position: absolute; right: 0; top: calc(100% + 8px); min-width: 190px; padding: 6px; border: 1px solid var(--rule); border-radius: 14px; background: var(--card); box-shadow: 0 14px 34px rgba(0, 0, 0, 0.12); z-index: 30; display: flex; flex-direction: column; }
+.user-pop .user-mail { margin: 0; padding: 8px 10px 6px; font-size: 0.8rem; color: var(--muted); border-bottom: 1px solid var(--rule); overflow: hidden; text-overflow: ellipsis; }
+.nav .user-pop a, .user-pop button { display: block; width: 100%; text-align: left; padding: 9px 10px; border: 0; border-bottom: 0; border-radius: 9px; background: none; color: var(--ink); font: inherit; cursor: pointer; text-decoration: none; }
+.nav .user-pop a:hover, .user-pop button:hover { background: rgba(224, 161, 0, 0.14); border-bottom: 0; }
+@media (max-width: 820px) { .user-pop { position: static; box-shadow: none; margin-top: 8px; } }

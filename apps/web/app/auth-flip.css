@@ -125,3 +125,14 @@
 .otp input.otp-box[type='text']:focus { outline: none; border-color: #e0a100; box-shadow: 0 0 0 4px rgba(224, 161, 0, 0.25); }
 .otp input.otp-box[type='text']:disabled { opacity: 0.6; }
 @media (max-width: 420px) { .otp { gap: 6px; } .otp input.otp-box[type='text'] { height: 52px; font-size: 1.35rem; } }
+
+/* confirm-email result page */
+.auth-state { padding: 40px 32px; max-width: 440px; }
+.auth-state .auth-title { margin: 18px 0 10px; }
+.auth-state p { margin: 0 auto; max-width: 30em; }
+.auth-state-actions { margin-top: 26px !important; }
+.auth-state-icon { display: grid; place-items: center; width: 64px; height: 64px; margin: 0 auto; border-radius: 50%; font-size: 1.9rem; font-weight: 700; }
+.auth-state-icon.bad { background: #fff1c9; color: #a86f00; box-shadow: 0 0 0 8px rgba(224, 161, 0, 0.14); }
+.auth-state-icon.spin { border: 4px solid rgba(224, 161, 0, 0.25); border-top-color: #e0a100; animation: auth-spin 0.9s linear infinite; }
+@keyframes auth-spin { to { transform: rotate(360deg); } }
+@media (prefers-reduced-motion: reduce) { .auth-state-icon.spin { animation-duration: 3s; } }

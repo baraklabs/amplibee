@@ -25,15 +25,17 @@ export function VerifyEmail() {
   }, [router])
 
   return (
-    <div className="auth-card card" style={{ textAlign: 'center' }}>
+    <div className="auth-card card auth-state" aria-busy={!error}>
       {error ? (
         <>
+          <span className="auth-state-icon bad" aria-hidden="true">!</span>
           <h1 className="auth-title">We could not confirm your email</h1>
-          <p className="form-error" role="alert">{error}</p>
-          <p><Link className="btn" href="/sign-in">Back to sign in</Link></p>
+          <p className="muted" role="alert">{error}</p>
+          <p className="auth-state-actions"><Link className="btn btn-honey" href="/sign-in">Back to sign in</Link></p>
         </>
       ) : (
         <>
+          <span className="auth-state-icon spin" aria-hidden="true" />
           <h1 className="auth-title">Confirming your email</h1>
           <p className="muted" role="status">One moment.</p>
         </>
