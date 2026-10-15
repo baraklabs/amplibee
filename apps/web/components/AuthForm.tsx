@@ -4,6 +4,7 @@ import { useRouter } from 'next/navigation'
 import { type FormEvent, useEffect, useState } from 'react'
 import { AuthError, forgotPassword, getPending, resendCode, signIn, signOut, signUp, verifyCode, type Outcome } from '../lib/auth.ts'
 import { GoogleButton } from './GoogleButton.tsx'
+import { useAccount } from './useAccount.ts'
 import { OtpInput } from './OtpInput.tsx'
 
 type Mode = 'signin' | 'signup'
@@ -31,6 +32,12 @@ export function AuthForm() {
   const [errors, setErrors] = useState<Errors>({})
   const [busy, setBusy] = useState(false)
   const [next, setNext] = useState('/dashboard')
+  const me = useAccount()
+
+  // Someone who is already signed in has no use for this page.
+  useEffect(() => {
+    if (me) router.replace(next)
+  }, [me, next, router])
 
   // /sign-in?mode=signup opens the card on "Create your account"; ?next= is where to go afterwards.
   useEffect(() => {
@@ -78,6 +85,8 @@ export function AuthForm() {
       setBusy(false)
     }
   }
+
+  if (me) return <p className="muted" role="status">You are signed in. Taking you to your dashboard.</p>
 
   if (verifying) {
     return (

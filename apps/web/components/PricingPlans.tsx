@@ -3,12 +3,15 @@
 import Link from 'next/link'
 import { useState } from 'react'
 import { annualPerMonth, annualTotal, PLANS } from '../lib/content/plans.ts'
+import { useAccount } from './useAccount.ts'
 
 const usd = (n: number) => `$${n.toLocaleString('en-US')}`
 
 /** The plans with a Monthly / Annually switch. Annual billing is twelve months for the price of ten. */
 export function PricingPlans() {
   const [annual, setAnnual] = useState(false)
+  const me = useAccount()
+  const current = me ? PLANS.findIndex((p) => p.id === (me.plan ?? 'free')) : -1 // -1 when signed out
 
   return (
     <section className="section" aria-label="Plans">
@@ -23,8 +26,8 @@ export function PricingPlans() {
 
         <div className="plans">
           {PLANS.map((p, i) => (
-            <div className={`card plan${p.id === 'growth' ? ' pick' : ''}`} key={p.id}>
-              {p.id === 'growth' ? <span className="popular">Most popular</span> : null}
+            <div className={`card plan${(p.id === 'growth' && current < 0) || i === current ? ' pick' : ''}`} key={p.id}>
+              {i === current ? <span className="popular">Your current plan</span> : p.id === 'growth' && current < 0 ? <span className="popular">Most popular</span> : null}
               <h3>{p.name}</h3>
               <p className="plan-price">
                 {p.monthly === 0 ? (
@@ -43,7 +46,15 @@ export function PricingPlans() {
               <ul>
                 {p.features.map((f) => <li key={f} className={i > 1 && !PLANS[i - 1].features.includes(f) ? 'up' : undefined}>{f}</li>)}
               </ul>
-              <Link className={`btn${p.monthly === 0 ? ' secondary' : ''}`} href="/sign-in?mode=signup">{p.monthly === 0 ? 'Start free' : 'Get started'}</Link>
+              {current < 0 ? (
+                <Link className={`btn${p.monthly === 0 ? ' secondary' : ''}`} href="/sign-in?mode=signup">{p.monthly === 0 ? 'Start free' : 'Get started'}</Link>
+              ) : i === current ? (
+                <Link className="btn secondary" href="/dashboard">Go to your dashboard</Link>
+              ) : i > current ? (
+                <Link className="btn" href={`/dashboard/plan?want=${p.id}`}>Upgrade to {p.name}</Link>
+              ) : (
+                <Link className="btn secondary" href="/dashboard/plan">Switch to {p.name}</Link>
+              )}
             </div>
           ))}
         </div>
