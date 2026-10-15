@@ -144,8 +144,9 @@ export async function postGoogle(req: Request): Promise<Response> {
   const limit = await limited(req, 'google', 60)
   if (limit) return limit
 
-  const profile = await verifyGoogleIdToken(b.data.credential, env('GOOGLE_CLIENT_ID'))
-  if (!profile) return fail('google_failed', 'Google sign-in did not work. Try again.', { status: 401 })
+  const checked = await verifyGoogleIdToken(b.data.credential, env('GOOGLE_CLIENT_ID'))
+  if ('reason' in checked) return fail('google_failed', `Google sign-in did not work (${checked.reason.replace(/_/g, ' ')}). Try again.`, { status: 401 })
+  const profile = checked
 
   const db = getDb()
   const { data: existing } = await db.from('users').select('id, active, name').eq('email', profile.email).maybeSingle()
