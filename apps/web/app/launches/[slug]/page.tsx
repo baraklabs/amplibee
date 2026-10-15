@@ -48,7 +48,7 @@ export default async function LaunchPage({ params }: Props) {
     applicationCategory: l.app.category,
     ...(l.app.os ? { operatingSystem: l.app.os } : {}),
     featureList: l.app.featureList,
-    offers: { '@type': 'Offer', price: l.app.price, priceCurrency: 'USD' },
+    ...(l.app.price ? { offers: { '@type': 'Offer', price: l.app.price, priceCurrency: 'USD' } } : {}),
     ...(l.app.sameAs ? { sameAs: l.app.sameAs } : {}),
     mainEntityOfPage: { '@id': absolute(path) },
   }

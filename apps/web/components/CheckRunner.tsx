@@ -35,6 +35,12 @@ function Rows({ step, live }: { step: StepView; live: boolean }) {
   }, [step.log.length, live])
   return (
     <ul className="trk-list" ref={box}>
+      {live && step.status === 'running' && !step.log.length ? (
+        <li className="trk-row live">
+          <span className="ico" aria-hidden="true"><span className="spin" /><span className="tick" /></span>
+          <span>Processing</span>
+        </li>
+      ) : null}
       {step.log.map((l, i) => {
         const isLast = i === step.log.length - 1
         const spinning = live && isLast && step.status === 'running'
@@ -260,9 +266,12 @@ function Shell({ domain }: { domain: string | null }) {
  * the next one starts. A live run is never held back for long: a step can only be shown once the server has it.
  * `auto` is the step number whose outcome should be on screen; null once playback is over.
  */
-const HOLD_MS = 3500 // a finished step stays on screen with its outcome
-const INTRO_MS = 4500 // the list of steps is shown on its own before step 1 starts
-const LIST_MS = 2200 // between steps the list is shown again, with the finished step ticked and the next one processing
+// A step's details are never on screen for more than about 3 s once it has been fetched: a short list view, its log lines
+// (squeezed into LINES_MS in total), then its outcome for HOLD_MS. While the server is still fetching, the step shows as processing.
+const HOLD_MS = 1300 // a finished step stays on screen with its outcome
+const INTRO_MS = 1000 // the list of steps is shown on its own before step 1 starts
+const LIST_MS = 400 // between steps the list is shown again, with the finished step ticked and the next one processing
+const LINES_MS = 800 // all the log lines of one step appear within this time
 
 function usePaced(raw: CheckView | null): { view: CheckView | null; auto: number | null; playing: boolean } {
   const [shown, setShown] = useState(0) // steps fully played
@@ -281,12 +290,12 @@ function usePaced(raw: CheckView | null): { view: CheckView | null; auto: number
       return () => clearTimeout(t)
     }
     if (cur.log.length > lines) {
-      const t = setTimeout(() => setLines((n) => n + 1), cur.log.length - lines > 6 ? 90 : 160)
+      const t = setTimeout(() => setLines((n) => n + 1), Math.min(160, Math.max(25, LINES_MS / Math.max(1, cur.log.length))))
       return () => clearTimeout(t)
     }
     if (cur.status !== 'done') return
     if (!held) {
-      const t = setTimeout(() => setHeld(true), 400)
+      const t = setTimeout(() => setHeld(true), 300)
       return () => clearTimeout(t)
     }
     const t = setTimeout(() => {
@@ -303,7 +312,8 @@ function usePaced(raw: CheckView | null): { view: CheckView | null; auto: number
   const steps = raw.steps.map((x, i): StepView => {
     if (i < shown) return x
     if (i === shown) {
-      if (x.status === 'pending' || (gap && shown === 0)) return { ...x, status: 'pending', log: [] }
+      // Not fetched yet, or about to be played: show it as processing, with no lines.
+      if (x.status === 'pending' || gap) return { ...x, status: 'running', log: [] }
       return { ...x, status: held ? 'done' : 'running', log: x.log.slice(0, lines) }
     }
     return { ...x, status: 'pending', log: [] }

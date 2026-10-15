@@ -198,7 +198,7 @@ export function ClosingCta() {
         <div className="closing-body">
           <h2 id="close-h">Launch your product</h2>
           <p>Compare with your competitors and improve your brand visibility.</p>
-          <Link className="btn" href="/sign-in?mode=signup">Sign up for free</Link>
+          <Link className="btn" href="/launch-your-product">Submit your product</Link>
         </div>
       </div>
     </section>

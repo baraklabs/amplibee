@@ -42,7 +42,7 @@ export interface Launch {
     verdict: string
   }
   /** schema.org SoftwareApplication fields */
-  app: { type: string; category: string; os?: string; price: string; featureList: string[]; sameAs?: string[] }
+  app: { type: string; category: string; os?: string; price?: string; featureList: string[]; sameAs?: string[] }
   sources: { label: string; url: string }[]
 }
 
@@ -286,6 +286,124 @@ export const LAUNCHES: Launch[] = [
       { label: 'EdgeVolume home page', url: 'https://edgevolume.vercel.app/' },
       { label: 'EdgeVolume on GitHub', url: 'https://github.com/reveuse12/edge-volume' },
     ],
+  },
+  {
+    slug: 'infibis',
+    name: 'InfiBis',
+    domain: 'infibis.com',
+    url: 'https://www.infibis.com/',
+    tagline: 'AI-powered business management for MSMEs',
+    category: 'Business software',
+    title: 'InfiBis: GST billing, inventory, POS and accounting with an AI copilot',
+    description: 'InfiBis is a cloud platform for Indian MSMEs: GST billing, POS, multi-store inventory, CRM, accounting and payroll with an AI copilot. Features, alternatives and FAQ.',
+    keywords: ['InfiBis', 'GST billing software', 'MSME software India', 'POS and inventory software', 'AI business copilot', 'cloud accounting India', 'WhatsApp invoice', 'multi-store inventory', 'InfiBis alternatives', 'InfiBis vs TallyPrime', 'InfiBis vs Zoho', 'InfiBis vs Odoo'],
+    logo: '/customers/infibis-logo.png',
+    imageAlt: 'InfiBis home page: “Less Artificial. More Intelligent.” with the line “POS, GST Billing, Multi-Store Inventory, CRM & Double-Entry Accounting orchestrated by an autonomous AI Copilot”.',
+    updated: '2026-10-15',
+    launched: '2024-10-16',
+    intro: 'InfiBis is a cloud business platform for Indian MSMEs. It puts POS, GST billing, multi-store inventory, CRM, accounting and payroll in one app, with an AI copilot that flags dead stock, cashflow risks and next steps.',
+    facts: [
+      { label: 'What it is', value: 'Cloud business management platform' },
+      { label: 'Made for', value: 'Indian MSMEs, retailers and distributors' },
+      { label: 'Covers', value: 'POS, GST billing, inventory, CRM, accounting, HRM' },
+      { label: 'AI', value: 'Copilot for stock, cashflow and sales alerts' },
+      { label: 'Trial', value: '14-day free trial' },
+      { label: 'Launched', value: 'October 2024' },
+      { label: 'Website', value: 'infibis.com' },
+    ],
+    sections: [
+      {
+        h: 'What is InfiBis?',
+        a: 'InfiBis is an AI-powered business management platform for Indian MSMEs that combines POS, GST billing, inventory, CRM, accounting and payroll in one cloud app.',
+        more: [
+          'It is built to replace a stack of separate tools, such as a billing app, an inventory sheet, an accounting package and a payroll tool. Because the modules share one database, a sale at the counter updates stock, tax and the books together.',
+        ],
+      },
+      {
+        h: 'Who is InfiBis for?',
+        a: 'It is made for small and medium Indian businesses, especially retailers, distributors and multi-store brands that need GST-ready billing and stock control.',
+        more: ['It suits owners who want one place to see revenue, margins, stock and dues, without hiring a consultant to configure an ERP.'],
+      },
+      {
+        h: 'What can InfiBis do?',
+        a: 'It covers the day-to-day running of a small business across nine areas.',
+        bullets: [
+          'Dashboard: a daily view of revenue, margins and alerts with AI-generated insights.',
+          'Billing and invoicing: GST-ready invoices with CGST, SGST and IGST split by item HSN code, recurring billing, credit and debit notes, payment tracking and WhatsApp delivery.',
+          'Point of sale: counter billing with barcode scanning, UPI and cash payments, instant stock deduction, 58mm and 80mm thermal receipts and A4 bills.',
+          'Inventory: stock across warehouses and counters, reorder alerts, dead-stock detection, and batch and expiry tracking.',
+          'CRM and sales pipeline: customers, leads and follow-ups, with lifetime value and retention tracking.',
+          'Accounting: double-entry books, live profit and loss, expenses, cash flow forecasting, a balance sheet and GST return reports.',
+          'HRM and payroll: attendance, leave and monthly payroll with PF, ESIC and TDS, plus salary slips.',
+          'Smart retail: demand forecasting and multi-store support.',
+          'Reports: sales trends, product velocity, inventory ageing and customer cohorts, exportable to Excel or PDF.',
+        ],
+      },
+      {
+        h: 'What is the InfiBis AI Copilot?',
+        a: 'The AI Copilot watches your invoicing, stock, accounts and customer payments and suggests what to do next.',
+        more: [
+          'Examples on the InfiBis site include a warning that a product will run out in a few days, a prompt to send a discount to repeat buyers, and reminders about overdue payments and GST filing dates. Each alert comes with a recommended action, such as raising a purchase order.',
+        ],
+      },
+      {
+        h: 'How does InfiBis handle GST?',
+        a: 'Invoices calculate CGST, SGST and IGST per item from its HSN code, and the platform includes GST return-ready reports.',
+        more: ['Its site lists reconciliation for GSTR-1 and GSTR-3B. Have your accountant check the reports against your own filing process before you rely on them.'],
+      },
+      {
+        h: 'How much does InfiBis cost?',
+        a: 'InfiBis offers a 14-day free trial. Check infibis.com/pricing for current plans and prices.',
+      },
+    ],
+    faq: [
+      { q: 'What is InfiBis used for?', a: 'Running a small business in one place: counter billing, GST invoices, stock, customers, accounts and payroll, with an AI copilot that points out risks and next steps.' },
+      { q: 'Is InfiBis made for Indian businesses?', a: 'Yes. It is built for Indian MSMEs, with GST-ready invoicing, HSN-based tax splits, UPI payments and PF, ESIC and TDS in payroll.' },
+      { q: 'Does InfiBis have a free trial?', a: 'Yes. It offers a 14-day free trial. See infibis.com/pricing for plans after the trial.' },
+      { q: 'Can I send invoices on WhatsApp?', a: 'Yes. InfiBis can send a GST invoice and a PDF link to a customer on WhatsApp in one click.' },
+      { q: 'Does InfiBis support multiple stores and warehouses?', a: 'Yes. It tracks stock across warehouses and counters, with reorder alerts, dead-stock detection and batch and expiry tracking.' },
+      { q: 'What does the InfiBis POS support?', a: 'Barcode scanning, UPI and cash payments, instant stock deduction, and 58mm and 80mm thermal receipt printers as well as A4 bills. It also lists offline sync.' },
+      { q: 'Does InfiBis include accounting and payroll?', a: 'Yes. It includes double-entry accounting with live profit and loss, a balance sheet and GST reports, plus attendance, leave and payroll with PF, ESIC, TDS and salary slips.' },
+      { q: 'What is the InfiBis AI Copilot?', a: 'A feature that audits invoicing, stock, accounts and customer payments and recommends actions, such as reordering a low-stock item or following up on overdue payments.' },
+      { q: 'What are the alternatives to InfiBis?', a: 'Common alternatives for Indian small businesses are TallyPrime, the Zoho business apps and Odoo. They differ in whether they are desktop or cloud software, how much setup they need and how many modules come in one product.' },
+      { q: 'How does InfiBis compare with TallyPrime, Zoho and Odoo?', a: 'InfiBis puts POS, billing, inventory, CRM, accounting and payroll in one cloud product with an AI copilot. TallyPrime is a long-established accounting package, Zoho offers a suite of separate apps, and Odoo is a modular ERP that can be customised heavily.' },
+      { q: 'Can I export reports?', a: 'Yes. Its reports and analytics can be exported to Excel or PDF.' },
+    ],
+    compare: {
+      intro: 'Indian small businesses usually choose between an accounting package, a suite of separate apps and a customisable ERP. InfiBis aims to cover the whole job in one product.',
+      self: { bestFor: 'Small retailers and distributors that want POS, GST billing, stock, accounts and payroll in one cloud app', tradeoff: 'A newer product, so check that its features and reports match how you work during the free trial' },
+      alternatives: [
+        {
+          name: 'TallyPrime',
+          url: 'https://tallysolutions.com/',
+          what: 'A long-established accounting and business management package, widely used by Indian businesses and accountants.',
+          bestFor: 'Businesses and accountants who already know Tally and mainly need accounting and GST compliance',
+          tradeoff: 'Built around accounting. Billing, stock, CRM and payroll workflows may need extra setup or add-ons',
+        },
+        {
+          name: 'Zoho (Books, Inventory and related apps)',
+          url: 'https://www.zoho.com/in/',
+          what: 'A suite of cloud apps for accounting, inventory, CRM and more, with India GST support.',
+          bestFor: 'Teams that want to pick and connect individual apps from one vendor',
+          tradeoff: 'Several separate apps and subscriptions to set up and connect',
+        },
+        {
+          name: 'Odoo',
+          url: 'https://www.odoo.com/',
+          what: 'A modular open-source ERP with apps for sales, inventory, accounting, HR and more.',
+          bestFor: 'Businesses that want deep customisation and have someone to configure it',
+          tradeoff: 'More setup, and India-specific GST and local needs may need configuration or a partner',
+        },
+      ],
+      verdict: 'InfiBis is the simplest fit if you want billing, stock, accounts and payroll running together quickly. If your accountant already works in Tally, or you need heavy customisation, TallyPrime or Odoo may suit you better. Try the 14-day free trial before deciding.',
+    },
+    app: {
+      type: 'WebApplication',
+      category: 'BusinessApplication',
+      os: 'Any (web browser)',
+      featureList: ['GST-ready billing and invoicing', 'Point of sale with barcode scanning and UPI', 'Multi-store inventory with reorder alerts and batch tracking', 'CRM and sales pipeline', 'Double-entry accounting with live profit and loss', 'HRM and payroll with PF, ESIC and TDS', 'AI copilot with stock and cashflow alerts', 'WhatsApp invoice delivery'],
+    },
+    sources: [{ label: 'InfiBis home page', url: 'https://www.infibis.com/' }],
   },
 ]
 

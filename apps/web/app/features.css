@@ -1670,3 +1670,419 @@ html {
   border-radius: 16px;
   background: var(--paper-2);
 }
+
+/* submit page */
+.submit-card {
+  margin-top: 20px;
+  max-width: 1000px;
+}
+.submit-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 28px;
+}
+@media (min-width: 900px) {
+  .submit-grid {
+    grid-template-columns: minmax(0, 1fr) 280px;
+    gap: 40px;
+  }
+}
+.submit-h {
+  margin: 8px 0 0;
+  border-top: 0;
+  padding-top: 0;
+  font-size: 1.15rem;
+}
+.submit-h .muted {
+  font-size: 0.78rem;
+  font-weight: 400;
+  margin-left: 6px;
+}
+.submit-note {
+  margin: 10px 0 0;
+  font-size: 0.85rem;
+}
+.submit-preview {
+  align-self: start;
+}
+@media (min-width: 900px) {
+  .submit-preview {
+    position: sticky;
+    top: 24px;
+  }
+}
+.submit-preview .label {
+  display: block;
+  margin-bottom: 8px;
+}
+.submit-mark {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: var(--accent);
+  color: #fff;
+  font-weight: 700;
+}
+.launch-submit {
+  margin: 28px 0 0;
+  text-align: center;
+  color: var(--muted);
+}
+
+
+/* top of the launches page: the call to action sits on the right */
+.launch-top {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px 32px;
+}
+.launch-top h1 {
+  margin: 0;
+}
+.launch-top + .lede {
+  margin-top: 8px;
+}
+
+/* the "Launch your product" button: honey colour, a light sweep, a soft pulse and a nudging arrow */
+.btn-honey {
+  position: relative;
+  overflow: hidden;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #f5b301;
+  border-color: #f5b301;
+  color: #2b2100;
+  font-weight: 600;
+  animation: honey-pulse 2.8s ease-in-out infinite;
+  transition: transform 0.15s, filter 0.15s;
+}
+.btn-honey::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: -60%;
+  width: 40%;
+  background: linear-gradient(100deg, transparent, rgba(255, 255, 255, 0.6), transparent);
+  transform: skewX(-20deg);
+  animation: honey-shine 3.4s ease-in-out infinite;
+}
+.btn-honey span {
+  display: inline-block;
+  transition: transform 0.2s;
+}
+.btn-honey:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.05);
+  background: #f5b301;
+  color: #2b2100;
+}
+.btn-honey:hover span {
+  transform: translateX(4px);
+}
+@keyframes honey-pulse {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(245, 179, 1, 0.45);
+  }
+  50% {
+    box-shadow: 0 0 0 9px rgba(245, 179, 1, 0);
+  }
+}
+@keyframes honey-shine {
+  0%, 55% {
+    left: -60%;
+  }
+  100% {
+    left: 130%;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .btn-honey,
+  .btn-honey::after {
+    animation: none;
+  }
+}
+
+/* the button under the list is a hexagon. The shadow sits on a wrapper because clip-path would cut it off. */
+.hex-wrap {
+  display: inline-block;
+  filter: drop-shadow(0 4px 10px rgba(245, 179, 1, 0.35));
+  animation: hex-glow 2.8s ease-in-out infinite;
+}
+.btn-hex {
+  border: 0;
+  padding: 1rem 2.6rem;
+  clip-path: polygon(9% 0, 91% 0, 100% 50%, 91% 100%, 9% 100%, 0 50%);
+  animation: none;
+  box-shadow: none;
+}
+@keyframes hex-glow {
+  0%, 100% {
+    filter: drop-shadow(0 4px 8px rgba(245, 179, 1, 0.3));
+  }
+  50% {
+    filter: drop-shadow(0 4px 18px rgba(245, 179, 1, 0.75));
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hex-wrap {
+    animation: none;
+  }
+}
+
+/* the closing card on the launches page: the home page's honeycomb card, in honey tones */
+.launch-closing {
+  margin: 40px 0 24px;
+}
+.launch-closing .hex-outline {
+  stroke: rgba(245, 179, 1, 0.22);
+}
+.launch-closing .hex-fill {
+  fill: #f5b301;
+}
+.launch-closing .hex-fill.strong {
+  fill: #fcd34d;
+}
+.closing-dark .btn.btn-honey {
+  background: #f5b301;
+  border-color: #f5b301;
+  color: #2b2100;
+  border-radius: 0;
+}
+.closing-dark .btn.btn-honey:hover {
+  background: #f5b301;
+}
+
+/* sign-in prompt above and below the submit form */
+.submit-signin {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px 20px;
+  padding: 14px 18px;
+  border: 1px solid rgba(245, 179, 1, 0.5);
+  border-radius: 14px;
+  background: rgba(251, 191, 36, 0.14);
+}
+.submit-signin p {
+  margin: 0;
+  max-width: 56ch;
+}
+
+/* ---- launch-your-product page ---- */
+.submit-page {
+  padding-bottom: 48px;
+}
+.submit-hero {
+  position: relative;
+  overflow: hidden;
+  margin-top: 24px;
+  padding: 36px 32px 28px;
+  border: 1px solid rgba(245, 179, 1, 0.4);
+  border-radius: 24px;
+  background: radial-gradient(120% 140% at 0% 0%, rgba(251, 191, 36, 0.3) 0%, rgba(251, 191, 36, 0) 55%), var(--card);
+  box-shadow: var(--shadow-plaque);
+}
+.submit-hero::after {
+  content: '';
+  position: absolute;
+  right: -40px;
+  top: -40px;
+  width: 220px;
+  height: 220px;
+  opacity: 0.18;
+  background: #f5b301;
+  clip-path: polygon(25% 5%, 75% 5%, 100% 50%, 75% 95%, 25% 95%, 0 50%);
+  pointer-events: none;
+}
+.submit-kicker {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 999px;
+  background: #f5b301;
+  color: #2b2100;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.submit-hero h1 {
+  margin: 14px 0 8px;
+  font-size: clamp(2.1rem, 1.4rem + 3vw, 3.2rem);
+}
+.submit-hero .lede {
+  margin: 0;
+  max-width: 54ch;
+}
+.submit-steps {
+  list-style: none;
+  margin: 26px 0 0;
+  padding: 0;
+  display: grid;
+  gap: 12px;
+}
+@media (min-width: 760px) {
+  .submit-steps {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+.submit-steps li {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  padding: 12px 14px;
+  border: 1px solid var(--rule);
+  border-radius: 14px;
+  background: color-mix(in srgb, var(--card) 80%, transparent);
+}
+.submit-steps li > span {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #f5b301;
+  color: #2b2100;
+  font-weight: 700;
+  font-size: 0.85rem;
+}
+.submit-steps strong {
+  display: block;
+}
+.submit-steps em {
+  display: block;
+  margin-top: 2px;
+  font-style: normal;
+  font-size: 0.86rem;
+  color: var(--muted);
+}
+
+.submit-card {
+  margin-top: 24px;
+  padding: 0;
+  background: none;
+  border: 0;
+  box-shadow: none;
+}
+.submit-sec {
+  display: grid;
+  gap: 16px;
+  padding: 22px 24px;
+  border: 1px solid var(--rule);
+  border-radius: 20px;
+  background: var(--card);
+  box-shadow: var(--shadow-plaque);
+}
+.submit-sec .submit-h {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0;
+  font-size: 1.15rem;
+}
+.submit-n {
+  display: grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: var(--accent-soft);
+  color: var(--accent-ink);
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+.submit-sec input[type='text'],
+.submit-sec input[type='email'],
+.submit-sec textarea,
+.submit-sec select {
+  width: 100%;
+  font: inherit;
+  color: var(--ink);
+  background: var(--paper);
+  border: 1px solid var(--rule);
+  border-radius: 12px;
+  padding: 0.7rem 0.85rem;
+  transition: border-color 0.15s, box-shadow 0.15s, background 0.15s;
+}
+.submit-sec input:focus,
+.submit-sec textarea:focus,
+.submit-sec select:focus {
+  outline: none;
+  background: var(--card);
+  border-color: #f5b301;
+  box-shadow: 0 0 0 3px rgba(245, 179, 1, 0.22);
+}
+.submit-sec .label {
+  font-weight: 600;
+}
+.submit-card .contact-form {
+  gap: 18px;
+}
+.submit-card .btn[type='submit'] {
+  padding: 0.85rem 1.8rem;
+  border-radius: 999px;
+}
+.submit-preview .su-card {
+  border-color: rgba(245, 179, 1, 0.45);
+}
+.submit-mark {
+  background: #f5b301;
+  color: #2b2100;
+}
+
+/* header call to action */
+.nav {
+  align-items: center;
+}
+.nav a.nav-launch {
+  position: relative;
+  overflow: hidden;
+  padding: 7px 16px;
+  border: 0;
+  border-radius: 999px;
+  background: #f5b301;
+  color: #2b2100;
+  font-weight: 600;
+  font-size: 0.9rem;
+  white-space: nowrap;
+  transition: transform 0.15s, filter 0.15s;
+}
+.nav a.nav-launch::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: -60%;
+  width: 40%;
+  background: linear-gradient(100deg, transparent, rgba(255, 255, 255, 0.6), transparent);
+  transform: skewX(-20deg);
+  animation: honey-shine 4s ease-in-out infinite;
+}
+.nav a.nav-launch:hover,
+.nav a.nav-launch[aria-current='page'] {
+  color: #2b2100;
+  border: 0;
+  transform: translateY(-1px);
+  filter: brightness(1.05);
+}
+@media (max-width: 760px) {
+  .nav a.nav-launch {
+    margin-top: 12px;
+    padding: 12px 16px;
+    text-align: center;
+    border-bottom: 0;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .nav a.nav-launch::after {
+    animation: none;
+  }
+}

@@ -25,6 +25,7 @@ export function Footer() {
               <li><Link href="/">Check a site</Link></li>
               <li><Link href="/how-it-works">How it works</Link></li>
               <li><Link href="/launches">Browse all launches</Link></li>
+              <li><Link href="/launch-your-product">Submit your product</Link></li>
               <li><Link href="/case-studies">Case studies</Link></li>
               <li><Link href="/pricing">Pricing</Link></li>
             </ul>

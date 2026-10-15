@@ -1,4 +1,6 @@
+import Link from 'next/link'
 import { Breadcrumbs } from '../../components/Breadcrumbs.tsx'
+import { HeroArt } from '../../components/HeroArt.tsx'
 import { JsonLd } from '../../components/JsonLd.tsx'
 import { LaunchBrowser } from '../../components/LaunchBrowser.tsx'
 import { absolute } from '../../lib/config.ts'
@@ -26,10 +28,23 @@ export default function LaunchesIndex() {
       <div className="page-head">
         <Breadcrumbs trail={[{ name: 'Product launches', path: '/launches' }]} />
         <JsonLd data={[webPage({ type: 'CollectionPage', name: 'Product launches on Amplibee', description: DESCRIPTION, path: '/launches' }), list]} />
-        <h1>Product launches</h1>
+        <div className="launch-top">
+          <h1>Product launches</h1>
+          <Link className="btn btn-honey" href="/launch-your-product">Launch your product <span aria-hidden="true">→</span></Link>
+        </div>
         <p className="lede">Discover the launches and see what each product does, who it is for and how it works.</p>
       </div>
       <LaunchBrowser />
+      <section className="closing closing-dark launch-closing" aria-labelledby="lc-h">
+        <HeroArt />
+        <div className="closing-body">
+          <h2 id="lc-h">Launched something?</h2>
+          <p>Submit your product for free. We review it by hand and list it with a full write-up, alternatives and a share image.</p>
+          <span className="hex-wrap">
+            <Link className="btn btn-honey btn-hex" href="/launch-your-product">Launch your product <span aria-hidden="true">→</span></Link>
+          </span>
+        </div>
+      </section>
     </div>
   )
 }

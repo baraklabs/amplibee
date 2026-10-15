@@ -28,21 +28,25 @@ describe('plans', () => {
   })
 
   it('the 10 and 40 plans list their limits', () => {
-    for (const re of [/5 competitors/, /Track 10 keywords/, /7 days of analytics/]) expect(text('starter')).toMatch(re)
+    for (const re of [/5 competitors/, /Track 10 keywords/, /3 directory submissions/, /7 days of analytics/]) expect(text('starter')).toMatch(re)
     expect(text('starter')).not.toMatch(/blog/)
-    for (const re of [/10 competitors/, /Track 20 keywords/, /1 blog post written/]) expect(text('plus')).toMatch(re)
+    for (const re of [/10 competitors/, /Track 20 keywords/, /10 directory submissions/, /1 blog post written/]) expect(text('plus')).toMatch(re)
   })
 
   it('the 90 plan lists its limits', () => {
-    for (const re of [/10 gaps/, /10 competitors/, /10 checks a day/, /Extra checks/, /Customised launch plan/, /10 directory submissions/, /7 days of analytics/, /4 blog posts/]) {
+    for (const re of [/10 gaps/, /20 competitors/, /Track 20 keywords/, /10 checks a day/, /Extra checks/, /Customised launch plan/, /50 directory submissions/, /7 days of analytics/, /4 blog posts/]) {
       expect(text('growth')).toMatch(re)
     }
   })
 
   it('the 240 and 490 plans list their limits', () => {
-    expect(text('scale')).toMatch(/50 directory submissions/)
+    expect(text('scale')).toMatch(/100 directory submissions/)
+    expect(text('scale')).toMatch(/50 competitors/)
+    expect(text('scale')).toMatch(/Track 50 keywords/)
     expect(text('scale')).toMatch(/20 blog posts written, with images/)
-    expect(text('authority')).toMatch(/100\+ directory submissions/)
+    expect(text('authority')).toMatch(/150\+ directory submissions/)
+    expect(text('authority')).toMatch(/100 competitors/)
+    expect(text('authority')).toMatch(/Track 100 keywords/)
     expect(text('authority')).toMatch(/1 month of analytics and tracking/)
     expect(text('authority')).toMatch(/AI visibility: Google Search, ChatGPT, Perplexity, Gemini and more/)
     expect(text('authority')).toMatch(/50 prompts tracked daily/)

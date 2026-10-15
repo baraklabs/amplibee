@@ -18,6 +18,15 @@
     "logo": "/customers/edgevolume-logo.svg"
   },
   {
+    "name": "InfiBis",
+    "domain": "infibis.com",
+    "url": "https://www.infibis.com/",
+    "tagline": "AI-powered business management for MSMEs",
+    "category": "Business software",
+    "launched": "2024-10",
+    "logo": "/customers/infibis-logo.png"
+  },
+  {
     "name": "Vesselmint",
     "domain": "vesselmint.com",
     "tagline": "See what customers ask before they churn.",

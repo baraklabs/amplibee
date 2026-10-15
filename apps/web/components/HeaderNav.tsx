@@ -45,6 +45,7 @@ export function HeaderNav() {
           </Link>
         ))}
         <AuthLink />
+        <Link className="nav-launch" href="/launch-your-product">Launch your product</Link>
       </nav>
     </div>
   )
