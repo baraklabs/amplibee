@@ -38,14 +38,14 @@ export function CompetitorList({ view }: { view: CheckView }) {
         {view.competitors.map((d) => (
           <li key={d}>
             <Logo domain={d} />
-            <a href={`https://${d}`} rel="noopener noreferrer">{d}</a>
+            <a href={`https://${d}`} target="_blank" rel="noopener noreferrer">{d}</a>
           </li>
         ))}
         {unlocked
           ? view.competitor_suggestions.map((d) => (
               <li key={d}>
                 <Logo domain={d} />
-                <a href={`https://${d}`} rel="noopener noreferrer">{d}</a>
+                <a href={`https://${d}`} target="_blank" rel="noopener noreferrer">{d}</a>
               </li>
             ))
           : null}

@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+import { StatValue } from './StatValue.tsx'
 
 export interface Stat {
   value: string
@@ -42,7 +43,7 @@ export function StatPill({ stats }: { stats: Stat[] }) {
   return (
     <span className="top-pill stat-pill" aria-live="off">
       <span key={i} className={`stat-inner ${phase}`}>
-        <strong>{s.value}</strong> {s.label}
+        <strong><StatValue value={s.value} /></strong> {s.label}
       </span>
     </span>
   )

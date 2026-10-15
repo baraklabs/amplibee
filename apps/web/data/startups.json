@@ -1,5 +1,14 @@
 [
   {
+    "name": "NativeShip",
+    "domain": "nativeship.io",
+    "url": "https://nativeship.io/",
+    "tagline": "Launch your SaaS official n8n integration",
+    "category": "Developer tools",
+    "launched": "2026-09",
+    "logo": "/customers/nativeship-logo.png"
+  },
+  {
     "name": "EdgeVolume",
     "domain": "edgevolume.vercel.app",
     "url": "https://edgevolume.vercel.app/",

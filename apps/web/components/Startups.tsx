@@ -1,9 +1,11 @@
 // "Latest product launches on Amplibee". Reads apps/web/data/startups.json, the same data locally and in production.
 // Without data the section is not rendered.
 
+import Link from 'next/link'
 import startupsData from '../data/startups.json'
+import { launchSlugForDomain } from '../lib/content/launches.ts'
 
-interface Startup {
+export interface Startup {
   name: string
   domain: string
   url?: string // when set, the card links to the product
@@ -14,7 +16,7 @@ interface Startup {
   logo?: string // optional real logo path; otherwise a symbol mark is drawn from the name
 }
 
-const startups = startupsData as Startup[]
+export const startups = startupsData as Startup[]
 
 /** How many cards the home page shows. */
 const SHOWN = 16
@@ -93,22 +95,19 @@ function monthLabel(ym: string): string {
 }
 
 function Card({ s, index }: { s: Startup; index: number }) {
+  // The name and the card open the product's detail page; only the address opens the product's own site.
+  const slug = launchSlugForDomain(s.domain)
   return (
-    <li className="su-card">
+    <li className={`su-card${slug ? ' su-card-link' : ''}`}>
       <div className="su-top">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         {s.logo ? <img className="su-mark" src={s.logo} alt="" width={44} height={44} loading="lazy" /> : <Mark name={s.name} index={index} />}
         <div className="su-id">
+          {slug ? <Link className="su-name" href={`/launches/${slug}`}>{s.name}</Link> : <strong>{s.name}</strong>}
           {s.url ? (
-            <a className="su-link" href={s.url} target="_blank" rel="noopener">
-              <strong>{s.name}</strong>
-              <span className="muted">{s.domain}</span>
-            </a>
+            <a className="su-site muted" href={s.url} target="_blank" rel="noopener">{s.domain}</a>
           ) : (
-            <>
-              <strong>{s.name}</strong>
-              <span className="muted">{s.domain}</span>
-            </>
+            <span className="muted">{s.domain}</span>
           )}
         </div>
         {s.score !== undefined ? <span className="su-score" title="Visibility score">{s.score}</span> : null}
@@ -122,6 +121,15 @@ function Card({ s, index }: { s: Startup; index: number }) {
   )
 }
 
+/** Every launch as a card grid. */
+export function StartupGrid({ items }: { items: Startup[] }) {
+  return (
+    <ul className="su-grid">
+      {items.map((s, i) => <Card key={s.domain} s={s} index={i} />)}
+    </ul>
+  )
+}
+
 export function StartupsLaunched() {
   if (!startups.length) return null
   return (
@@ -129,9 +137,8 @@ export function StartupsLaunched() {
       <div className="wrap">
         <h2 id="su-h" style={{ textAlign: 'center', borderTop: 0 }}>Latest product launches with Amplibee</h2>
         <p className="measure" style={{ margin: '8px auto 0', textAlign: 'center' }}>Products that checked their visibility, closed the gaps and launched. The number on each card is the visibility score at launch.</p>
-        <ul className="su-grid">
-          {startups.slice(0, SHOWN).map((s, i) => <Card key={s.domain} s={s} index={i} />)}
-        </ul>
+        <StartupGrid items={startups.slice(0, SHOWN)} />
+        <p style={{ textAlign: 'center', marginTop: 20 }}><Link className="btn small" href="/launches">Browse all launches</Link></p>
       </div>
     </section>
   )

@@ -500,3 +500,15 @@ dialog.modal[open] {
 .page-head + .tracker {
   margin-top: 20px;
 }
+
+/* a "+" stat shown as a green up arrow */
+.stat-up {
+  color: var(--accent);
+  margin-right: 0.12em;
+  vertical-align: 0.04em;
+}
+
+/* a card with a single stat uses the full width */
+.cust-stats > div:only-child {
+  grid-column: 1 / -1;
+}

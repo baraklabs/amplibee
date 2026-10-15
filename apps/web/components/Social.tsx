@@ -6,6 +6,7 @@ import customersData from '../data/customers.json'
 import metaData from '../data/customers.meta.json'
 import quotesData from '../data/testimonials.json'
 import { ExampleCards } from './Landing.tsx'
+import { StatValue } from './StatValue.tsx'
 
 interface Stat {
   value: string
@@ -81,7 +82,7 @@ export function CustomerResults() {
               <p className="cust-quote">&ldquo;{c.quote}&rdquo;</p>
               <div className="cust-stats">
                 {c.stats.slice(0, 2).map((s) => (
-                  <div key={s.label}><strong>{s.value}</strong><span>{s.label}</span></div>
+                  <div key={s.label}><strong><StatValue value={s.value} /></strong><span>{s.label}</span></div>
                 ))}
               </div>
             </article>

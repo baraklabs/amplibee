@@ -1,5 +1,6 @@
 import { absolute } from '../../lib/config.ts'
 import { GUIDES } from '../../lib/content/guides.ts'
+import { LAUNCHES } from '../../lib/content/launches.ts'
 
 export const dynamic = 'force-static'
 
@@ -20,6 +21,11 @@ Checks are deterministic and use public information only.
 - [Case studies](${absolute('/case-studies')}): customer outcomes
 - [Contact](${absolute('/contact')}): support and questions
 - [Full text for models](${absolute('/llms-full.txt')}): the guides and FAQ in one file
+
+## Product launches
+
+- [Browse all launches](${absolute('/launches')}): products launched with Amplibee
+${LAUNCHES.map((l) => `- [${l.name}](${absolute(`/launches/${l.slug}`)}): ${l.tagline}. Alternatives: ${l.compare.alternatives.map((x) => x.name).join(', ')}.`).join('\n')}
 
 ## Blog
 
