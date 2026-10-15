@@ -55,7 +55,7 @@ export function PlanConfirm({ from, to, annual, trial = false, onClose }: { from
               {to.monthly ? `$${annual ? annualPerMonth(to.monthly) : to.monthly} a month${annual ? ', billed yearly' : ''}` : 'free'}.
               {up || trial ? '' : ' Anything over the new limits is trimmed the next time your dashboard saves.'}
             </p>
-            <p className="caption muted">{trial ? 'Test mode: nothing is charged, and your account goes back to Free when the trial ends.' : 'Test mode: the change applies straight away and nothing is charged.'}</p>
+            {trial ? <p className="caption muted">Your account goes back to Free when the trial ends.</p> : null}
             {error ? <p className="field-error" role="alert">{error}</p> : null}
             <p className="modal-actions">
               <button ref={confirmBtn} type="button" className="btn" disabled={busy} onClick={confirm}>{busy ? 'Starting' : trial ? 'Start free trial' : `${up ? 'Upgrade' : 'Switch'} to ${to.name}`}</button>
