@@ -10,6 +10,8 @@ import {
   advance, buildView, createCheck, gateReport, latestReport, loadCheck, loadDirectories, parseCompetitorList,
   type PipelineEnv, setCompetitors, unlockCheck,
 } from '../_shared/pipeline.ts'
+import { isPlan } from '../_shared/plans.ts'
+import { clampWorkspace, EMPTY_DOC, type WorkspaceDoc, workspaceSchema } from '../_shared/workspace.ts'
 import { createFetcher } from '../_shared/safe-fetch.ts'
 import { createSearchProvider } from '../_shared/search.ts'
 import { assertSafeUrl, SsrfError } from '../_shared/ssrf.ts'
@@ -47,9 +49,9 @@ export function rateInfo(limit: number, used: number): RateInfo {
   return { limit, remaining: limit - used, reset: Math.floor(Date.now() / 1000) + secondsToUtcMidnight() }
 }
 
-export async function body<T extends z.ZodTypeAny>(req: Request, schema: T): Promise<{ data: z.infer<T> } | { error: Response }> {
+export async function body<T extends z.ZodTypeAny>(req: Request, schema: T, maxBytes = MAX_BODY): Promise<{ data: z.infer<T> } | { error: Response }> {
   const raw = await req.text()
-  if (raw.length > MAX_BODY) return { error: fail('too_large', 'The request body is too large.', { status: 413 }) }
+  if (raw.length > maxBytes) return { error: fail('too_large', 'The request body is too large.', { status: 413 }) }
   let json: unknown
   try {
     json = JSON.parse(raw || '{}')
@@ -71,6 +73,7 @@ async function turnstile(token: string, req: Request): Promise<Response | null> 
   const r = await verifyTurnstile(token, env('TURNSTILE_SECRET_KEY'), clientIp(req))
   if (r.ok) return null
   if (r.reason === 'not_configured') return fail('server_misconfigured', 'Bot protection is not configured on the server.', { status: 500 })
+  console.error('turnstile rejected:', r.reason)
   return fail('bot_check_failed', 'The bot check did not pass. Reload the page and try again.', { status: 403 })
 }
 
@@ -387,4 +390,59 @@ export async function postRemoval(req: Request): Promise<Response> {
   // Hide the public report right away. A person reviews the request afterwards.
   await db.from('domains').update({ removed: true }).eq('domain', domain)
   return ok({ domain, status: 'hidden' }, { status: 201 })
+}
+
+// ---------- GET and PUT /v1/workspace ----------
+
+const WORKSPACE_MAX_BODY = 96 * 1024
+
+type Item = WorkspaceDoc['content'][number]
+
+async function loadWorkspaceDoc(db: ReturnType<typeof getDb>, userId: string): Promise<WorkspaceDoc> {
+  const [ws, comps, kws, dirs, items, hist] = await Promise.all([
+    db.from('workspaces').select('domain').eq('user_id', userId).maybeSingle(),
+    db.from('tracked_competitors').select('domain').eq('user_id', userId).order('position'),
+    db.from('tracked_keywords').select('keyword').eq('user_id', userId).order('position'),
+    db.from('directory_tracking').select('slug, status').eq('user_id', userId),
+    db.from('content_items').select('id, title, kind, state, publish_date').eq('user_id', userId).order('position'),
+    db.from('score_history').select('day, score').eq('user_id', userId).order('day', { ascending: false }).limit(120),
+  ])
+  for (const r of [ws, comps, kws, dirs, items, hist]) if (r.error) throw new Error(`workspace: ${r.error.message}`)
+  return {
+    ...EMPTY_DOC,
+    domain: (ws.data as { domain: string } | null)?.domain ?? '',
+    competitors: ((comps.data ?? []) as { domain: string }[]).map((r) => r.domain),
+    keywords: ((kws.data ?? []) as { keyword: string }[]).map((r) => r.keyword),
+    directories: Object.fromEntries(((dirs.data ?? []) as { slug: string; status: 'todo' | 'submitted' | 'listed' }[]).map((r) => [r.slug, r.status])),
+    content: ((items.data ?? []) as { id: string; title: string; kind: Item['kind']; state: Item['state']; publish_date: string | null }[]).map((r) => ({ id: r.id, title: r.title, kind: r.kind, state: r.state, date: r.publish_date ?? '' })),
+    history: ((hist.data ?? []) as { day: string; score: number }[]).map((r) => ({ date: r.day, score: r.score })).reverse(),
+  }
+}
+
+export async function getWorkspace(req: Request): Promise<Response> {
+  const db = getDb()
+  const user = await verifyUser(dbUsers(db), req.headers.get('authorization'))
+  if (!user) return fail('auth_required', 'Sign in to see your dashboard.', { status: 401 })
+  return ok(await loadWorkspaceDoc(db, user.id))
+}
+
+export async function putWorkspace(req: Request): Promise<Response> {
+  const b = await body(req, workspaceSchema, WORKSPACE_MAX_BODY)
+  if ('error' in b) return b.error
+  const db = getDb()
+  const user = await verifyUser(dbUsers(db), req.headers.get('authorization'))
+  if (!user) return fail('auth_required', 'Sign in to save your dashboard.', { status: 401 })
+
+  const limit = int('WORKSPACE_SAVES_PER_USER_PER_HOUR', 600)
+  const used = await hit(`workspace:${user.id}`)
+  if (used > limit) return fail('rate_limited', 'Too many saves. Try again in a few minutes.', { status: 429 })
+
+  const { data: row, error: planError } = await db.from('users').select('plan').eq('id', user.id).maybeSingle()
+  if (planError) throw new Error(`plan lookup: ${planError.message}`)
+  const stored = (row as { plan?: string } | null)?.plan
+  const plan = isPlan(stored) ? stored : 'free'
+
+  const { error } = await db.rpc('save_workspace', { p_user: user.id, p_doc: clampWorkspace(b.data, plan) })
+  if (error) throw new Error(`save workspace: ${error.message}`)
+  return ok(await loadWorkspaceDoc(db, user.id))
 }

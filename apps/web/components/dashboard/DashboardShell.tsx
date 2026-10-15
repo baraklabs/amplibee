@@ -89,6 +89,14 @@ function Sidebar() {
 }
 
 /** The dashboard frame: signed-in people only, a sidebar on the left and the page on the right. */
+function SyncStatus() {
+  const { sync, retrySync } = useDash()
+  if (sync === 'offline') {
+    return <span className="sync sync-bad" role="status">Not saved <button type="button" className="link-btn" onClick={retrySync}>Retry</button></span>
+  }
+  return <span className="sync" role="status" aria-live="polite">{sync === 'saving' ? 'Saving' : sync === 'loading' ? 'Loading' : 'Saved'}</span>
+}
+
 export function DashboardShell({ children }: { children: ReactNode }) {
   const router = useRouter()
   const me = useAccount()
@@ -138,6 +146,7 @@ export function DashboardShell({ children }: { children: ReactNode }) {
             Amplibee
           </Link>
           <nav className="dash-top-nav" aria-label="Site">
+            <SyncStatus />
             <Link href="/">Check a site</Link>
             <Link href="/pricing">Pricing</Link>
             <AuthLink />

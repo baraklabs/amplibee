@@ -25,7 +25,7 @@ export function corsHeaders(origin: string | null, allowed: string[]): Record<st
   const h: Record<string, string> = { vary: 'origin' }
   if (origin && allowed.includes(origin)) {
     h['access-control-allow-origin'] = origin
-    h['access-control-allow-methods'] = 'GET,POST,PATCH,OPTIONS'
+    h['access-control-allow-methods'] = 'GET,POST,PATCH,PUT,OPTIONS'
     h['access-control-allow-headers'] = 'content-type,authorization'
     h['access-control-expose-headers'] = 'x-ratelimit-limit,x-ratelimit-remaining,x-ratelimit-reset,retry-after'
     h['access-control-max-age'] = '600'

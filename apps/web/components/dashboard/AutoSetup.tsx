@@ -28,6 +28,25 @@ export function AutoSetup({ compact = false }: { compact?: boolean }) {
   const [error, setError] = useState('')
   const [result, setResult] = useState<SetupResult | null>(null)
   const running = useRef(false)
+  const tokenRef = useRef<string | null>(null)
+  const onToken = (t: string | null) => {
+    tokenRef.current = t
+    setToken(t)
+  }
+
+  /** A bot-check token works once and expires after five minutes. If the server refuses it, get a fresh one and try once more. */
+  async function startCheck(dom: string) {
+    try {
+      return await api.createCheck({ domain: dom, turnstile_token: token! })
+    } catch (err) {
+      if (!(err instanceof ApiError) || err.code !== 'bot_check_failed') throw err
+      tokenRef.current = null
+      setReset((n) => n + 1)
+      for (let i = 0; i < 40 && !tokenRef.current; i++) await sleep(500)
+      if (!tokenRef.current) throw err
+      return api.createCheck({ domain: dom, turnstile_token: tokenRef.current })
+    }
+  }
 
   async function run(e: FormEvent) {
     e.preventDefault()
@@ -42,7 +61,7 @@ export function AutoSetup({ compact = false }: { compact?: boolean }) {
     setSteps(SKELETON.map((s, i) => ({ ...s, status: i === 0 ? 'running' : 'pending' })))
     try {
       setPhase('Starting the check')
-      const created = await api.createCheck({ domain: dom, turnstile_token: token })
+      const created = await startCheck(dom)
 
       let view: CheckView = await api.getCheck(created.job_id)
       let failures = 0
@@ -97,7 +116,7 @@ export function AutoSetup({ compact = false }: { compact?: boolean }) {
         </div>
         {error ? <p className="field-error" role="alert">{error}</p> : null}
       </form>
-      <Turnstile onToken={setToken} resetKey={reset} />
+      <Turnstile onToken={onToken} resetKey={reset} />
 
       {busy ? (
         <div className="auto-run" role="status" aria-live="polite">

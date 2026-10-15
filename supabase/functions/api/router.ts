@@ -4,7 +4,7 @@ import {
 import { corsHeaders, fail, ok, withHeaders } from '../_shared/envelope.ts'
 import { allowedOrigins } from '../_shared/env.ts'
 import {
-  getCheck, getDirectories, postContact, getReport, getRequests, patchCompetitors, patchProduct, postAdvance, postCheck, postRemoval, postRequest, postUnlock,
+  getCheck, getDirectories, getWorkspace, putWorkspace, postContact, getReport, getRequests, patchCompetitors, patchProduct, postAdvance, postCheck, postRemoval, postRequest, postUnlock,
 } from './handlers.ts'
 
 type Handler = (req: Request, m: RegExpMatchArray) => Promise<Response>
@@ -33,12 +33,14 @@ const routes: { method: string; pattern: RegExp; handler: Handler }[] = [
   { method: 'POST', pattern: /^\/auth\/reset$/, handler: (req) => postReset(req) },
   { method: 'POST', pattern: /^\/auth\/refresh$/, handler: (req) => postRefresh(req) },
   { method: 'POST', pattern: /^\/auth\/logout$/, handler: (req) => postLogout(req) },
+  { method: 'GET', pattern: /^\/workspace$/, handler: (req) => getWorkspace(req) },
+  { method: 'PUT', pattern: /^\/workspace$/, handler: (req) => putWorkspace(req) },
   { method: 'GET', pattern: /^\/auth\/me$/, handler: (req) => getMe(req) },
 ]
 
 /** The function is served under /functions/v1/<name>/v1/..., or /<name>/v1/... locally. Route on what follows the API's own /v1. */
 export function apiPath(pathname: string): string | null {
-  const m = /\/v1(\/(?:health|check|unlock|report|directories|removal|requests|contact|auth)(?:\/.*)?)$/.exec(pathname)
+  const m = /\/v1(\/(?:health|check|unlock|report|directories|removal|requests|contact|workspace|auth)(?:\/.*)?)$/.exec(pathname)
   return m ? m[1].replace(/\/$/, '') : null
 }
 

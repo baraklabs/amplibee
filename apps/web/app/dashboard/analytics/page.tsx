@@ -52,7 +52,7 @@ export default function Analytics() {
         <section className="card pad">
           <h2>Visibility score</h2>
           {points.length >= 2 ? <Trend points={points} /> : <p className="muted">{points.length === 1 ? `One reading so far: ${points[0].score}. ` : ''}A line appears once there are readings from two different days. We record one each day you open the dashboard.</p>}
-          <p className="caption muted">Readings are kept in this browser.</p>
+          <p className="caption muted">Readings are saved to your account.</p>
         </section>
 
         {report ? (

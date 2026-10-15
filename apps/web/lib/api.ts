@@ -3,6 +3,7 @@
 import { API_URL } from './config.ts'
 import { accessToken as currentToken } from './auth.ts'
 import type { Gap, LogLine, Report } from './shared/types.ts'
+import type { Workspace } from './workspace.ts'
 
 export interface ApiEnvelope<T> {
   ok: boolean
@@ -132,6 +133,8 @@ export const api = {
     call<{ already: boolean; type: RequestType; status: string }>('/requests', { method: 'POST', json: { job_id, type, note }, auth: true }),
   listRequests: (job_id: string) =>
     call<{ type: RequestType; status: string; created_at: string }[]>(`/requests?job_id=${encodeURIComponent(job_id)}`, { auth: true }),
+  getWorkspace: () => call<Workspace>('/workspace', { auth: true, cache: 'no-store' }),
+  saveWorkspace: (w: Workspace) => call<Workspace>('/workspace', { method: 'PUT', json: w, auth: true }),
   report: (domain: string, k?: string) =>
     call<{ access: 'full'; report: Report } | { access: 'summary'; report: ReportSummary }>(`/report/${encodeURIComponent(domain)}${k ? `?k=${encodeURIComponent(k)}` : ''}`, { cache: 'no-store' }),
 }

@@ -230,3 +230,7 @@ body.dash-full .site-header, body.dash-full .site-footer { display: none; }
 .auto-summary { list-style: none; margin: 16px 0 0; padding: 14px 0 0; border-top: 1px solid var(--rule); display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 12px; }
 .auto-summary li { display: flex; flex-direction: column; }
 .auto-summary strong { font-size: 1.25rem; overflow: hidden; text-overflow: ellipsis; }
+
+.sync { font-size: 0.82rem; color: var(--muted); }
+.sync-bad { color: #a1261b; }
+@media (max-width: 900px) { .sync { display: inline; } }
