@@ -20,6 +20,9 @@ export interface Me {
   has_password: boolean
   plan?: 'free' | 'starter' | 'plus' | 'growth' | 'scale' | 'authority'
   can_switch_plan?: boolean
+  created_at?: string | null
+  trial_ends_at?: string | null
+  trial_available?: boolean
 }
 
 type Tokens = { access_token: string; refresh_token: string }
@@ -187,4 +190,12 @@ export async function currentUser(): Promise<Me | null> {
     if (e instanceof AuthError && e.status === 401) setTokens(null)
     return null
   }
+}
+
+/** Saves a new display name. */
+export async function updateName(name: string): Promise<void> {
+  const token = await accessToken()
+  if (!token) throw new AuthError('auth_required', 'Sign in to continue.', 401)
+  await call<{ name: string }>('/me', { method: 'PATCH', json: { name }, bearer: token })
+  notifyAccountChanged()
 }

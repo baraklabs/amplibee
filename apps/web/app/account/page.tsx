@@ -1,12 +1,6 @@
-import { AccountPanel } from '../../components/AccountPanel.tsx'
-import { pageMeta } from '../../lib/seo.ts'
+import { redirect } from 'next/navigation'
 
-export const metadata = pageMeta({ title: 'Your account', description: 'Your Amplibee account.', path: '/account', noindex: true })
-
+// The account page lives inside the dashboard now. This keeps old links and bookmarks working.
 export default function Account() {
-  return (
-    <div className="wrap auth-wrap">
-      <AccountPanel />
-    </div>
-  )
+  redirect('/dashboard/account')
 }

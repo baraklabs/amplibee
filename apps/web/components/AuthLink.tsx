@@ -53,9 +53,7 @@ export function AuthLink() {
       </button>
       {open ? (
         <div className="user-pop" role="menu">
-          {me ? <p className="user-mail">{me.email}</p> : null}
-          <Link role="menuitem" href="/dashboard" onClick={() => setOpen(false)}>Dashboard</Link>
-          <Link role="menuitem" href="/account" onClick={() => setOpen(false)}>Account</Link>
+          <Link role="menuitem" href="/dashboard/account" onClick={() => setOpen(false)}>Account</Link>
           <button type="button" role="menuitem" onClick={logout}>Sign out</button>
         </div>
       ) : null}

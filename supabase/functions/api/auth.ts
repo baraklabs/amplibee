@@ -13,7 +13,7 @@ import { ACCESS_TTL_SECONDS, PENDING_TTL_SECONDS, signToken, verifyToken } from 
 import { generateLinkToken, generateOtp, hashPassword, sha256Hex, timingSafeEqual, verifyPassword } from '../_shared/password.ts'
 import { newSignupMessage, notifyTelegram } from '../_shared/telegram.ts'
 import { hashIp } from '../_shared/token.ts'
-import { body, clientIp, hit, planSwitchEnabled } from './handlers.ts'
+import { accountPlan, body, clientIp, hit, planSwitchEnabled } from './handlers.ts'
 
 const OTP_TTL_MS = 10 * 60 * 1000
 const RESET_TTL_MS = 15 * 60 * 1000
@@ -360,6 +360,19 @@ export async function postLogout(req: Request): Promise<Response> {
 export async function getMe(req: Request): Promise<Response> {
   const user = await verifyUser(dbUsers(getDb()), req.headers.get('authorization'))
   if (!user) return fail('auth_required', SIGNED_OUT, { status: 401 })
-  const { data } = await getDb().from('users').select('name, password_hash, plan').eq('id', user.id).maybeSingle()
-  return ok({ id: user.id, email: user.email, name: data?.name ?? null, has_password: !!data?.password_hash, plan: data?.plan ?? 'free', can_switch_plan: planSwitchEnabled() })
+  const { data } = await getDb().from('users').select('name, password_hash, created_at').eq('id', user.id).maybeSingle()
+  const t = await accountPlan(getDb(), user.id)
+  return ok({ id: user.id, email: user.email, name: data?.name ?? null, has_password: !!data?.password_hash, created_at: data?.created_at ?? null, plan: t.plan, trial_ends_at: t.trial_ends_at, trial_available: !t.trial_used, can_switch_plan: planSwitchEnabled() })
+}
+
+const profileSchema = z.object({ name: z.string({ required_error: 'Enter your name.' }).trim().min(1, 'Enter your name.').max(100, 'Keep your name under 100 characters.') })
+
+export async function patchMe(req: Request): Promise<Response> {
+  const b = await body(req, profileSchema)
+  if ('error' in b) return b.error
+  const user = await verifyUser(dbUsers(getDb()), req.headers.get('authorization'))
+  if (!user) return fail('auth_required', SIGNED_OUT, { status: 401 })
+  const { error } = await getDb().from('users').update({ name: b.data.name }).eq('id', user.id)
+  if (error) throw new Error(`profile update: ${error.message}`)
+  return ok({ name: b.data.name })
 }

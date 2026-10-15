@@ -234,3 +234,24 @@ body.dash-full .site-header, body.dash-full .site-footer { display: none; }
 .sync { font-size: 0.82rem; color: var(--muted); }
 .sync-bad { color: #a1261b; }
 @media (max-width: 900px) { .sync { display: inline; } }
+
+/* confirm popup */
+.modal-back { position: fixed; inset: 0; z-index: 100; display: grid; place-items: center; padding: 20px; background: rgba(0, 0, 0, 0.45); }
+.modal { width: 100%; max-width: 440px; padding: 24px; box-shadow: 0 24px 70px rgba(0, 0, 0, 0.3); }
+.modal h2 { margin: 0 0 8px; font-size: 1.3rem; }
+.modal p { margin: 0 0 10px; }
+.modal-actions { display: flex; gap: 10px; flex-wrap: wrap; margin: 16px 0 0 !important; }
+
+.trial-tag { display: inline-block; align-self: flex-start; margin: 0 0 6px; padding: 2px 10px; border-radius: 99px; font-size: 0.78rem; font-weight: 600; background: var(--accent-soft); color: var(--accent-ink); }
+.trial-left { margin: 0; font-size: 0.85rem; font-weight: 600; color: var(--accent-ink); }
+
+.account-list { margin: 16px 0 0; padding-top: 14px; border-top: 1px solid var(--rule); display: grid; gap: 12px; }
+.account-list dd { margin: 0; overflow-wrap: anywhere; }
+
+/* the account menu inside the full-screen top bar: same look as in the site header, always a dropdown under the button */
+.dash-top .user-menu { display: flex; }
+.dash-top .user-pop { position: absolute; right: 0; top: calc(100% + 10px); min-width: 180px; box-shadow: 0 14px 34px rgba(0, 0, 0, 0.14); }
+.dash-top-nav .user-pop a { display: block; width: 100%; padding: 9px 10px; border-radius: 9px; font-size: 1rem; color: var(--ink); text-decoration: none; }
+.dash-top-nav .user-pop a:hover, .dash-top .user-pop button:hover { background: rgba(224, 161, 0, 0.14); }
+.dash-top .user-pop button { display: block; width: 100%; text-align: left; padding: 9px 10px; }
+.dash-top-nav { margin-left: auto; }

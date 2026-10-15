@@ -67,6 +67,9 @@ function Sidebar() {
         ))}
         <div className="dash-group">
           <p className="dash-group-title">Account</p>
+          <Link href="/dashboard/account" title="Account" className="dash-link" aria-current={path.startsWith('/dashboard/account') ? 'page' : undefined}>
+            {icon('M12 12a4 4 0 100-8 4 4 0 000 8zM4 21a8 8 0 0116 0')}<span>Account</span>
+          </Link>
           <Link href="/dashboard/plan" title="Plan and billing" className="dash-link" aria-current={path.startsWith('/dashboard/plan') ? 'page' : undefined}>
             {icon('M3 7h18v12H3zM3 11h18')}<span>Plan and billing</span>
           </Link>
@@ -76,6 +79,7 @@ function Sidebar() {
       <div className="plan-card">
         <p className="plan-card-top"><span className="label">Your plan</span><strong>{planById(plan).name}</strong></p>
         <p className="muted plan-card-mail">{me.email}</p>
+        {me.trial_ends_at ? <p className="trial-left">Free trial: {Math.max(0, Math.ceil((new Date(me.trial_ends_at).getTime() - Date.now()) / 86_400_000))} days left</p> : null}
         {limits.keywords > 0 ? <Meter used={ws.keywords.length} max={limits.keywords} label="Keywords" /> : null}
         <Meter used={ws.competitors.length} max={limits.competitors} label="Competitors" />
         {next ? (

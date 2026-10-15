@@ -10,7 +10,8 @@ import {
   advance, buildView, createCheck, gateReport, latestReport, loadCheck, loadDirectories, parseCompetitorList,
   type PipelineEnv, setCompetitors, unlockCheck,
 } from '../_shared/pipeline.ts'
-import { isPlan } from '../_shared/plans.ts'
+import { isPlan, type PlanId } from '../_shared/plans.ts'
+import { afterSwitch, settle, type TrialState } from '../_shared/trial.ts'
 import { clampWorkspace, EMPTY_DOC, type WorkspaceDoc, workspaceSchema } from '../_shared/workspace.ts'
 import { createFetcher } from '../_shared/safe-fetch.ts'
 import { createSearchProvider } from '../_shared/search.ts'
@@ -437,10 +438,7 @@ export async function putWorkspace(req: Request): Promise<Response> {
   const used = await hit(`workspace:${user.id}`)
   if (used > limit) return fail('rate_limited', 'Too many saves. Try again in a few minutes.', { status: 429 })
 
-  const { data: row, error: planError } = await db.from('users').select('plan').eq('id', user.id).maybeSingle()
-  if (planError) throw new Error(`plan lookup: ${planError.message}`)
-  const stored = (row as { plan?: string } | null)?.plan
-  const plan = isPlan(stored) ? stored : 'free'
+  const { plan } = await accountPlan(db, user.id)
 
   const { error } = await db.rpc('save_workspace', { p_user: user.id, p_doc: clampWorkspace(b.data, plan) })
   if (error) throw new Error(`save workspace: ${error.message}`)
@@ -450,6 +448,20 @@ export async function putWorkspace(req: Request): Promise<Response> {
 // ---------- POST /v1/plan ----------
 
 /** Until payments exist, a plan can be switched on the spot, but only while ALLOW_PLAN_SWITCH=true. Leave it off in production. */
+/** The account's plan and trial. A trial that has run out is ended here, so every caller sees the plan the person really has. */
+export async function accountPlan(db: ReturnType<typeof getDb>, userId: string): Promise<TrialState> {
+  const { data, error } = await db.from('users').select('plan, trial_ends_at, trial_used').eq('id', userId).maybeSingle()
+  if (error) throw new Error(`plan lookup: ${error.message}`)
+  const row = data as { plan?: string; trial_ends_at?: string | null; trial_used?: boolean } | null
+  const stored: TrialState = { plan: (isPlan(row?.plan) ? row!.plan : 'free') as PlanId, trial_ends_at: row?.trial_ends_at ?? null, trial_used: !!row?.trial_used }
+  const now = settle(stored)
+  if (now !== stored) {
+    const { error: e } = await db.from('users').update(now).eq('id', userId)
+    if (e) throw new Error(`trial end: ${e.message}`)
+  }
+  return now
+}
+
 export const planSwitchEnabled = () => flag('ALLOW_PLAN_SWITCH', false)
 
 export async function postPlan(req: Request): Promise<Response> {
@@ -463,7 +475,8 @@ export async function postPlan(req: Request): Promise<Response> {
   const used = await hit(`plan:${user.id}`)
   if (used > 20) return fail('rate_limited', 'Too many plan changes today.', { status: 429 })
 
-  const { error } = await db.from('users').update({ plan: b.data.plan }).eq('id', user.id)
+  const next = afterSwitch(await accountPlan(db, user.id), b.data.plan)
+  const { error } = await db.from('users').update(next).eq('id', user.id)
   if (error) throw new Error(`plan update: ${error.message}`)
-  return ok({ plan: b.data.plan })
+  return ok(next)
 }

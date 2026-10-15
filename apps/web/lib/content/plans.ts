@@ -138,6 +138,9 @@ export const PLANS: Plan[] = [
 
 export type PlanId = Plan['id']
 
+/** Every paid plan starts with a free trial of this many days. */
+export const TRIAL_DAYS = 7
+
 /** What each plan allows, in the same order as PLANS. Mirrors the comparison table above. */
 export interface Limits {
   competitors: number

@@ -1,5 +1,5 @@
 import {
-  getMe, postForgot, postGoogle, postLogout, postRefresh, postReset, postResend, postSignin, postSignup, postVerify, postVerifyLink,
+  getMe, patchMe, postForgot, postGoogle, postLogout, postRefresh, postReset, postResend, postSignin, postSignup, postVerify, postVerifyLink,
 } from './auth.ts'
 import { corsHeaders, fail, ok, withHeaders } from '../_shared/envelope.ts'
 import { allowedOrigins } from '../_shared/env.ts'
@@ -37,6 +37,7 @@ const routes: { method: string; pattern: RegExp; handler: Handler }[] = [
   { method: 'GET', pattern: /^\/workspace$/, handler: (req) => getWorkspace(req) },
   { method: 'PUT', pattern: /^\/workspace$/, handler: (req) => putWorkspace(req) },
   { method: 'GET', pattern: /^\/auth\/me$/, handler: (req) => getMe(req) },
+  { method: 'PATCH', pattern: /^\/auth\/me$/, handler: (req) => patchMe(req) },
 ]
 
 /** The function is served under /functions/v1/<name>/v1/..., or /<name>/v1/... locally. Route on what follows the API's own /v1. */

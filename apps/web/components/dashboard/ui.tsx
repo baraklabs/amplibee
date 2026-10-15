@@ -5,7 +5,8 @@ import type { ReactNode } from 'react'
 import { type Feature, hasFeature, planFor, type Plan } from '../../lib/content/plans.ts'
 import { useDash } from './DashboardContext.tsx'
 
-export const upgradeHref = (plan: Plan | null) => (plan ? `/dashboard/plan?want=${plan.id}` : '/dashboard/plan')
+/** Every upgrade button ends up on the pricing page. With a plan, its confirm popup opens there straight away. */
+export const upgradeHref = (plan?: Plan | null) => (plan ? `/pricing?plan=${plan.id}` : '/pricing')
 
 export function PageHead({ title, sub, action }: { title: string; sub?: string; action?: ReactNode }) {
   return (
