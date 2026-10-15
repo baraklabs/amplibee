@@ -5,7 +5,7 @@
 import { z } from 'zod'
 import { dbUsers, verifyUser } from '../_shared/auth.ts'
 import { getDb } from '../_shared/db.ts'
-import { codeEmail, sendEmail } from '../_shared/email.ts'
+import { AUTH_FROM, codeEmail, REPLY_TO, sendEmail, WELCOME_FROM, welcomeEmail } from '../_shared/email.ts'
 import { fail, ok } from '../_shared/envelope.ts'
 import { env, siteUrl } from '../_shared/env.ts'
 import { verifyGoogleIdToken } from '../_shared/google.ts'
@@ -80,8 +80,14 @@ async function sendVerification(userId: string, to: string): Promise<void> {
     verification_token_hash: await sha256Hex(link),
   }).eq('id', userId)
   if (error) throw new Error(`verification update: ${error.message}`)
-  const sent = await sendEmail({ to, ...codeEmail('verify', otp, `${siteUrl()}/verify-email?token=${encodeURIComponent(link)}`) })
+  const sent = await sendEmail({ to, from: AUTH_FROM, ...codeEmail('verify', otp, `${siteUrl()}/verify-email?token=${encodeURIComponent(link)}`) })
   if (!sent.ok) console.error('auth: confirmation email not sent', sent.error)
+}
+
+/** One welcome email, when an account is first confirmed. A failed send is logged and never blocks sign-in. */
+async function welcome(name: string | null, to: string): Promise<void> {
+  const sent = await sendEmail({ to, from: WELCOME_FROM, replyTo: REPLY_TO, ...welcomeEmail(name, siteUrl()) })
+  if (!sent.ok) console.error('auth: welcome email not sent', sent.error)
 }
 
 async function pending(userId: string, to: string): Promise<Session> {
@@ -161,7 +167,10 @@ export async function postGoogle(req: Request): Promise<Response> {
     console.error('auth: google upsert failed', saved.error.message)
     return fail('internal_error', TRY_AGAIN, { status: 500 })
   }
-  if (!existing) await notifyTelegram(newSignupMessage(profile.name, profile.email, 'Google'))
+  if (!existing) {
+    await notifyTelegram(newSignupMessage(profile.name, profile.email, 'Google'))
+    await welcome(profile.name, profile.email)
+  }
   return ok(await startSession(req, saved.data.id))
 }
 
@@ -195,7 +204,10 @@ export async function postVerify(req: Request): Promise<Response> {
     return fail('invalid_code', 'That code is not right.', { status: 400 })
   }
   if (!(await confirm(user.id))) return fail('invalid_code', 'That code is not valid. Ask for a new one.', { status: 400 })
-  if (!user.verified) await notifyTelegram(newSignupMessage(user.name, user.email, 'Password'))
+  if (!user.verified) {
+    await notifyTelegram(newSignupMessage(user.name, user.email, 'Password'))
+    await welcome(user.name, user.email)
+  }
   return ok(await startSession(req, user.id))
 }
 
@@ -211,7 +223,10 @@ export async function postVerifyLink(req: Request): Promise<Response> {
   if (!user || !user.active || !user.otp_expires_at || new Date(user.otp_expires_at).getTime() < Date.now()) return gone
   // Clearing the hash is what makes the link single use; the guard stops two clicks racing.
   if (!(await confirm(user.id, hash))) return gone
-  if (!user.verified) await notifyTelegram(newSignupMessage(user.name, user.email, 'Email link'))
+  if (!user.verified) {
+    await notifyTelegram(newSignupMessage(user.name, user.email, 'Email link'))
+    await welcome(user.name, user.email)
+  }
   return ok(await startSession(req, user.id))
 }
 
@@ -255,7 +270,7 @@ export async function postForgot(req: Request): Promise<Response> {
       console.error('auth: reset insert failed', error.message)
       return fail('internal_error', TRY_AGAIN, { status: 500 })
     }
-    const sent = await sendEmail({ to: user.email, ...codeEmail('reset', otp, `${siteUrl()}/reset-password?token=${encodeURIComponent(link)}`) })
+    const sent = await sendEmail({ to: user.email, from: AUTH_FROM, ...codeEmail('reset', otp, `${siteUrl()}/reset-password?token=${encodeURIComponent(link)}`) })
     if (!sent.ok) console.error('auth: reset email not sent', sent.error)
   }
   return ok({ sent: true })
