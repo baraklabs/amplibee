@@ -647,6 +647,20 @@
     grid-column: 2;
   }
 }
+.one-time {
+  margin-top: 14px;
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.one-time h3 { margin: 6px 0; }
+.one-time .plan-blurb { margin: 0; max-width: 56ch; }
+.one-time-buy { display: flex; align-items: center; gap: 18px; flex-wrap: wrap; }
+.one-time-buy .plan-price { margin: 0; }
+@media (min-width: 700px) {
+  .one-time { flex-direction: row; align-items: center; justify-content: space-between; }
+}
 .plan {
   padding: 24px 22px;
   display: flex;

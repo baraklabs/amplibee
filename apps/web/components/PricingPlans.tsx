@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
-import { annualPerMonth, annualTotal, PLANS, TRIAL_DAYS } from '../lib/content/plans.ts'
+import { annualPerMonth, annualTotal, MANUAL_SUBMISSION_PRICE, PLANS, TRIAL_DAYS } from '../lib/content/plans.ts'
 import { PlanConfirm } from './PlanConfirm.tsx'
 import { useAccount } from './useAccount.ts'
 
@@ -73,6 +73,18 @@ export function PricingPlans() {
               )}
             </div>
           ))}
+        </div>
+
+        <div className="card one-time">
+          <div>
+            <span className="trial-tag">One-time offer</span>
+            <h3>Manual directory submission</h3>
+            <p className="plan-blurb">We manually submit your website to 100+ curated directories to build foundational backlinks. No subscription and no recurring charge.</p>
+          </div>
+          <div className="one-time-buy">
+            <p className="plan-price">{usd(MANUAL_SUBMISSION_PRICE)}<small>one time</small></p>
+            <Link className="btn" href="/contact?topic=directory_submission">Get it done for me</Link>
+          </div>
         </div>
 
         {target !== null && current >= 0 ? <PlanConfirm from={PLANS[current]} to={PLANS[target]} annual={annual} trial={trialFor(PLANS[target].monthly)} onClose={() => setTarget(null)} /> : null}

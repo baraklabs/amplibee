@@ -14,6 +14,9 @@ export const annualTotal = (monthly: number) => monthly * ANNUAL_PAID_MONTHS
 /** What annual billing works out to per month, rounded to whole dollars. */
 export const annualPerMonth = (monthly: number) => Math.round(annualTotal(monthly) / 12)
 
+/** One-time price in US dollars for submitting a site by hand to 100+ curated directories. Not part of any plan. */
+export const MANUAL_SUBMISSION_PRICE = 250
+
 /** The comparison table. A string is shown as text, true as a tick and false as "not included". */
 export type Cell = string | boolean
 export const COMPARE: { label: string; values: [Cell, Cell, Cell, Cell, Cell, Cell] }[] = [
