@@ -46,13 +46,15 @@ export const viewport: Viewport = { themeColor: [{ media: '(prefers-color-scheme
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en" className={`${ui.variable} ${mono.variable} ${hand.variable}`}>
+      <head>
+        <GoogleAnalytics />
+      </head>
       <body>
         <a className="skip" href="#main">Skip to content</a>
         <Header />
         <main id="main">{children}</main>
         <Footer />
         <CookieConsent />
-        <GoogleAnalytics />
         <JsonLd data={[organization, website]} />
       </body>
     </html>

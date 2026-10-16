@@ -4,41 +4,32 @@ import { useEffect } from 'react'
 import { getConsent, onConsent } from '../lib/consent.ts'
 
 const GA_ID = process.env.NEXT_PUBLIC_GA_ID
+const VALID = !!GA_ID && /^G-[A-Z0-9]+$/i.test(GA_ID)
 
-type Gtag = (...args: unknown[]) => void
 declare global {
   interface Window {
-    dataLayer?: unknown[]
-    gtag?: Gtag
+    gtag?: (...args: unknown[]) => void
   }
 }
 
-/** Loads Google Analytics only after the visitor accepts analytics cookies, and stops it if they withdraw. */
+/**
+ * The Google tag sits in the page HTML (so Google can detect it) under Consent Mode: analytics storage is denied
+ * until the visitor accepts analytics cookies, and it follows later changes made in the cookie settings.
+ */
 export function GoogleAnalytics() {
   useEffect(() => {
-    if (!GA_ID || !/^G-[A-Z0-9]+$/i.test(GA_ID)) return
-
-    const apply = (analytics: boolean) => {
-      // GA honours this flag, so turning analytics off takes effect without a reload.
-      ;(window as unknown as Record<string, unknown>)[`ga-disable-${GA_ID}`] = !analytics
-      if (!analytics || document.getElementById('ga-script')) return
-      window.dataLayer = window.dataLayer || []
-      window.gtag = function gtag() {
-        // eslint-disable-next-line prefer-rest-params
-        window.dataLayer!.push(arguments)
-      }
-      window.gtag('js', new Date())
-      window.gtag('config', GA_ID)
-      const s = document.createElement('script')
-      s.id = 'ga-script'
-      s.async = true
-      s.src = `https://www.googletagmanager.com/gtag/js?id=${encodeURIComponent(GA_ID)}`
-      document.head.appendChild(s)
-    }
-
-    apply(getConsent()?.analytics === true)
-    return onConsent((c) => apply(c.analytics))
+    if (!VALID) return
+    const update = (analytics: boolean) => window.gtag?.('consent', 'update', { analytics_storage: analytics ? 'granted' : 'denied' })
+    update(getConsent()?.analytics === true)
+    return onConsent((c) => update(c.analytics))
   }, [])
 
-  return null
+  if (!VALID) return null
+  const init = `window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}window.gtag=gtag;gtag('consent','default',{analytics_storage:'denied',ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied'});gtag('js',new Date());gtag('config','${GA_ID}');`
+  return (
+    <>
+      <script async src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`} />
+      <script dangerouslySetInnerHTML={{ __html: init }} />
+    </>
+  )
 }
