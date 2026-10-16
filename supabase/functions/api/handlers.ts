@@ -15,6 +15,7 @@ import { afterSwitch, settle, type TrialState } from '../_shared/trial.ts'
 import { clampWorkspace, EMPTY_DOC, type WorkspaceDoc, workspaceSchema } from '../_shared/workspace.ts'
 import { createFetcher } from '../_shared/safe-fetch.ts'
 import { createSearchProvider } from '../_shared/search.ts'
+import { newLaunchMessage, notifyTelegram } from '../_shared/telegram.ts'
 import { assertSafeUrl, SsrfError } from '../_shared/ssrf.ts'
 import { hashIp, signReportToken, verifyReportToken } from '../_shared/token.ts'
 import { verifyTurnstile } from '../_shared/turnstile.ts'
@@ -314,6 +315,7 @@ export async function postLaunch(req: Request): Promise<Response> {
     text: `${d.name} (${domain ?? 'no website'}) from ${d.founder} <${d.email}>\n${d.category} · ${d.pricing}\n\n${d.tagline}\n\n${d.description ?? ''}`,
     html: `<p><b>${esc(d.name)}</b> (${esc(domain ?? 'no website')}) from ${esc(d.founder)} &lt;${esc(d.email)}&gt;<br>${esc(d.category)} · ${esc(d.pricing)}</p><p>${esc(d.tagline)}</p><p>${esc(d.description ?? '').replace(/\n/g, '<br>')}</p>`,
   })
+  await notifyTelegram(newLaunchMessage({ name: d.name, domain, tagline: d.tagline, category: d.category, pricing: d.pricing, founder: d.founder, email: d.email, x: d.x }))
   return ok({ received: true }, { status: 201 })
 }
 

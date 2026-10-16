@@ -20,5 +20,8 @@ export async function notifyTelegram(text: string, fetchImpl: typeof fetch = fet
   }
 }
 
+export const newLaunchMessage = (l: { name: string; domain: string | null; tagline: string; category: string; pricing: string; founder: string; email: string; x?: string | null }) =>
+  `🚀 New Amplibee Launch Submission\n\n📦 Product: ${l.name}\n🌐 Site: ${l.domain ?? '(no website)'}\n💬 ${l.tagline}\n🏷 ${l.category} · ${l.pricing}\n👤 Founder: ${l.founder}\n📧 Email: ${l.email}${l.x ? `\n🐦 X: ${l.x}` : ''}`
+
 export const newSignupMessage = (name: string | null, email: string, via: 'Password' | 'Email link' | 'Google') =>
   `🎉 New Amplibee Signup\n\n👤 Name: ${name ?? '(no name)'}\n📧 Email: ${email}\n🔑 Via: ${via}`
