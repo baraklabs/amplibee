@@ -36,7 +36,12 @@
     "company": "",
     "quote": "They help us locate our local competitors, and accordingly we updated our SEO and other details.",
     "url": "https://x.com/stanislawrajm",
-    "stats": [],
+    "stats": [
+      {
+        "value": "4",
+        "label": "gaps fixed"
+      }
+    ],
     "platform": "x",
     "avatar": "/customers/stas.jpg"
   },
