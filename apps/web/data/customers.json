@@ -18,8 +18,8 @@
     ]
   },
   {
-    "name": "bhshekhaliya",
-    "company": "",
+    "name": "Bhavy Shekhaliya",
+    "company": "NativeShip",
     "quote": "Our robots.txt blocked a folder by mistake and we had no sitemap. We found both before launch day instead of after. The log made it easy to trust.",
     "url": "https://x.com/bhshekhaliya/status/2110602465934709028?s=20",
     "platform": "x",
@@ -49,20 +49,17 @@
     "avatar": "/demo/p02.jpg"
   },
   {
-    "name": "Tomasz Wrobel",
-    "company": "Harborstack",
-    "quote": "I asked ChatGPT about our category before and after the fixes. We were missing the first time and named the second. I cannot prove the fixes caused it, but the gaps were real: no sitemap, no structured data, one listing.",
+    "name": "Ethical Daddy",
+    "company": "IndieCrew",
+    "quote": "Out of the top 10 directories, we were present on only 2. Amplibee listed the ones we were missing, and that increased our flow of clients.",
+    "url": "https://x.com/ethical_daddy",
     "stats": [
       {
-        "value": "+26",
-        "label": "score gain"
-      },
-      {
-        "value": "8",
-        "label": "directories submitted"
+        "value": "2 of 10",
+        "label": "top directories we were on"
       }
     ],
-    "platform": "linkedin",
-    "avatar": "/demo/p03.jpg"
+    "platform": "x",
+    "avatar": "/customers/ethical-daddy.jpg"
   }
 ]

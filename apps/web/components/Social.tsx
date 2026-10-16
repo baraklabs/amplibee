@@ -56,7 +56,7 @@ function PlatformIcon({ platform, url, name }: { platform?: 'linkedin' | 'x'; ur
     </svg>
   )
   return url ? (
-    <a className="li-link" href={url} rel="noopener" aria-label={`${name} on ${i.label}`}>{svg}</a>
+    <a className="li-link" href={url} target="_blank" rel="noopener noreferrer" aria-label={`${name} on ${i.label}`}>{svg}</a>
   ) : (
     <span className="li-link" role="img" aria-label={i.label}>{svg}</span>
   )
