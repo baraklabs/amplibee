@@ -1,5 +1,14 @@
 [
   {
+    "name": "Next Everything",
+    "domain": "nexteverything.io",
+    "url": "https://nexteverything.io/",
+    "tagline": "Order every part of your hardware project, straight from your AI",
+    "category": "Hardware",
+    "launched": "2026-10",
+    "logo": "/customers/nexteverything-logo.svg"
+  },
+  {
     "name": "NativeShip",
     "domain": "nativeship.io",
     "url": "https://nativeship.io/",
@@ -818,13 +827,5 @@
     "category": "Developer tools",
     "launched": "2025-09",
     "score": 76
-  },
-  {
-    "name": "Ledgerpath",
-    "domain": "ledgerpath.com",
-    "tagline": "Collect feedback right on the page.",
-    "category": "Design",
-    "launched": "2025-09",
-    "score": 68
   }
 ]
