@@ -9,6 +9,7 @@ import './features.css'
 import './cookie.css'
 import './dashboard.css'
 import { CookieConsent } from '../components/CookieConsent.tsx'
+import { GoogleAnalytics } from '../components/GoogleAnalytics.tsx'
 import { Footer } from '../components/Footer.tsx'
 import { Header } from '../components/Header.tsx'
 import { JsonLd } from '../components/JsonLd.tsx'
@@ -51,6 +52,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <main id="main">{children}</main>
         <Footer />
         <CookieConsent />
+        <GoogleAnalytics />
         <JsonLd data={[organization, website]} />
       </body>
     </html>
