@@ -1,5 +1,59 @@
 [
   {
+    "name": "Vaneform",
+    "domain": "vaneform.com",
+    "url": "https://vaneform.com/",
+    "tagline": "Check any website’s traffic for free",
+    "category": "SEO",
+    "launched": "2026-10",
+    "logo": "/customers/vaneform-logo.png"
+  },
+  {
+    "name": "BRCKS",
+    "domain": "brcks.io",
+    "url": "https://www.brcks.io/",
+    "tagline": "The chat app for building sites",
+    "category": "Project Management",
+    "launched": "2026-10",
+    "logo": "/customers/brcks-logo.png"
+  },
+  {
+    "name": "MangaTranslate",
+    "domain": "mangatranslate.com",
+    "url": "https://www.mangatranslate.com/",
+    "tagline": "Translate manga pages and edit the dialogue and typesetting online",
+    "category": "AI",
+    "launched": "2026-10",
+    "logo": "/customers/mangatranslate-logo.svg"
+  },
+  {
+    "name": "Dime Dime Baby AI",
+    "domain": "dimedimebabyai.video",
+    "url": "https://dimedimebabyai.video/",
+    "tagline": "Make your own Dime Dime Baby AI dance video from one photo",
+    "category": "AI",
+    "launched": "2026-10",
+    "logo": "/customers/dimedimebabyai-logo.png"
+  },
+  {
+    "name": "dcs4",
+    "domain": "dcs4.com",
+    "url": "https://dcs4.com/",
+    "tagline": "Find available 4-letter .com domains before they hit the open market",
+    "category": "Developer tools",
+    "launched": "2026-10",
+    "logo": "/customers/dcs4-logo.png"
+  },
+  {
+    "name": "tta1",
+    "domain": "tta1.com",
+    "url": "https://www.tta1.com/",
+    "tagline": "Listen to any article, X thread or PDF, in your language",
+    "category": "Productivity",
+    "launched": "2026-10",
+    "logo": "/customers/tta1-logo.png"
+  },
+  {
     "name": "Next Everything",
     "domain": "nexteverything.io",
     "url": "https://nexteverything.io/",

@@ -1,0 +1,159 @@
+<svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <!-- 主渐变 - 苹果风格红色渐变 -->
+                <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style="stop-color:#FF3B30;stop-opacity:1" />
+                    <stop offset="100%" style="stop-color:#FF2D55;stop-opacity:1" />
+                </linearGradient>
+                
+                <!-- 冲击波渐变 - 更强的视觉效果 -->
+                <radialGradient id="impactGradient" cx="70%" cy="50%" r="60%">
+                    <stop offset="0%" style="stop-color:#FFFFFF;stop-opacity:0.4" />
+                    <stop offset="50%" style="stop-color:#FFFFFF;stop-opacity:0.2" />
+                    <stop offset="100%" style="stop-color:#FFFFFF;stop-opacity:0" />
+                </radialGradient>
+                
+                <!-- 拳头渐变 -->
+                <linearGradient id="fistGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style="stop-color:#FFE0D0;stop-opacity:1" />
+                    <stop offset="70%" style="stop-color:#FFD0B8;stop-opacity:1" />
+                    <stop offset="100%" style="stop-color:#FFCBB0;stop-opacity:1" />
+                </linearGradient>
+                
+                <!-- 手臂渐变 -->
+                <linearGradient id="armGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" style="stop-color:#FFD5C0;stop-opacity:1" />
+                    <stop offset="100%" style="stop-color:#FFE0D0;stop-opacity:1" />
+                </linearGradient>
+                
+                <!-- 气泡阴影 -->
+                <filter id="bubbleShadow">
+                    <feDropShadow dx="2" dy="2" stdDeviation="1" 
+                                 flood-color="#000000" flood-opacity="0.3"/>
+                </filter>
+            </defs>
+            
+            <!-- 背景 -->
+            <rect x="0" y="0" width="512" height="512" rx="102.4" 
+                  fill="url(#logoGradient)"/>
+            
+            <!-- 冲击波效果 -->
+            <circle cx="358.4" cy="332.8" r="230.4"
+                    fill="url(#impactGradient)"/>
+            
+            <!-- 对话框 - 居中放置 -->
+            <g transform="translate(51.19999999999999, 51.2)">
+                <path d="M 0 0
+                        a 76.8 76.8 0 0 1 76.8 -76.8
+                        h 256.0
+                        a 76.8 76.8 0 0 1 76.8 76.8
+                        v 102.4
+                        a 76.8 76.8 0 0 1 -76.8 76.8
+                        l -76.8 102.4
+                        l -76.8 -102.4
+                        h -102.40000000000003
+                        a 76.8 76.8 0 0 1 -76.8 -76.8
+                        z"
+                      fill="#FFFFFF" 
+                      stroke="#FF3B30" 
+                      stroke-width="5.12"
+                      filter="url(#bubbleShadow)"/>
+                
+                <!-- MT文字 - 居中对齐 -->
+                <text x="204.8" y="128.0"
+                      font-family="Arial Black, Helvetica, sans-serif"
+                      font-weight="900"
+                      font-size="204.8"
+                      fill="#FF3B30"
+                      text-anchor="middle"
+                      dominant-baseline="middle">
+                    MT
+                </text>
+            </g>
+            
+            <!-- 动漫风格拳头 - 更多细节 -->
+            <g transform="translate(102.4, 332.8)" filter="url(#fistShadow)">
+                <!-- 手臂 - 添加肌肉线条 -->
+                <path d="M 0 0
+                        h -76.8
+                        c -51.2 0 -76.8 25.6 -76.8 51.2
+                        v 51.2
+                        c 0 25.6 25.6 51.2 76.8 51.2
+                        h 76.8
+                        z"
+                      fill="url(#armGradient)" 
+                      stroke="#000000" 
+                      stroke-width="2.56"/>
+                
+                <!-- 手臂肌肉线条 -->
+                <path d="M -51.2 25.6
+                        c 25.6 -10.24 51.2 -10.24 76.8 0"
+                      fill="none"
+                      stroke="#000000"
+                      stroke-width="1.536"
+                      opacity="0.3"/>
+                
+                <!-- 拳头主体 - 更立体的表现 -->
+                <path d="M 0 0
+                        c 76.8 -25.6 153.6 0 179.2 25.6
+                        c 25.6 25.6 25.6 76.8 0 102.4
+                        c -25.6 25.6 -102.4 25.6 -179.2 0
+                        c -25.6 -25.6 -25.6 -76.8 0 -102.4
+                        z"
+                      fill="url(#fistGradient)"
+                      stroke="#000000"
+                      stroke-width="2.56"/>
+                
+                <!-- 指节细节 -->
+                <g>
+                    <!-- 主要指节线 -->
+                    <path d="M 51.2 -10.24
+                            l 51.2 20.48
+                            M 76.8 0
+                            l 51.2 20.48
+                            M 102.4 10.24
+                            l 51.2 20.48"
+                          stroke="#000000"
+                          stroke-width="2.048"
+                          opacity="0.4"/>
+                    
+                    <!-- 次要指节线 -->
+                    <path d="M 61.44 -5.12
+                            l 40.96 15.36
+                            M 87.04 5.12
+                            l 40.96 15.36"
+                          stroke="#000000"
+                          stroke-width="1.024"
+                          opacity="0.3"/>
+                </g>
+                
+                <!-- 拳头高光 -->
+                <path d="M 51.2 -15.36
+                        q 76.8 -25.6 128.0 0"
+                      fill="none"
+                      stroke="#FFFFFF"
+                      stroke-width="2.048"
+                      opacity="0.4"/>
+                
+                <!-- 动感线条 -->
+                <g>
+                    <line x1="179.2" y1="-20.48" x2="204.8" y2="-20.48" stroke="#FFFFFF" stroke-width="1.024" opacity="0.3"/> <line x1="179.2" y1="-10.24" x2="204.8" y2="-10.24" stroke="#FFFFFF" stroke-width="1.024" opacity="0.3"/> <line x1="179.2" y1="0.0" x2="204.8" y2="0.0" stroke="#FFFFFF" stroke-width="1.024" opacity="0.3"/> <line x1="179.2" y1="10.24" x2="204.8" y2="10.24" stroke="#FFFFFF" stroke-width="1.024" opacity="0.3"/> <line x1="179.2" y1="20.48" x2="204.8" y2="20.48" stroke="#FFFFFF" stroke-width="1.024" opacity="0.3"/>
+                </g>
+            </g>
+            
+            <!-- 冲击效果装饰 - 集中在右侧 -->
+            <g>
+                <circle cx="460.79999999999995" cy="332.8" r="7.68" fill="#FFFFFF" opacity="0.7"/> <circle cx="447.0810013475265" cy="384.0" r="7.68" fill="#FFFFFF" opacity="0.7"/> <circle cx="409.6" cy="421.48100134752656" r="7.68" fill="#FFFFFF" opacity="0.7"/> <circle cx="358.4" cy="435.20000000000005" r="7.68" fill="#FFFFFF" opacity="0.7"/> <circle cx="307.2" cy="421.48100134752656" r="7.68" fill="#FFFFFF" opacity="0.7"/> <circle cx="269.71899865247343" cy="384.0" r="7.68" fill="#FFFFFF" opacity="0.7"/> <circle cx="255.99999999999997" cy="332.8" r="7.68" fill="#FFFFFF" opacity="0.7"/> <circle cx="269.71899865247343" cy="281.6" r="7.68" fill="#FFFFFF" opacity="0.7"/> <circle cx="307.19999999999993" cy="244.11899865247352" r="7.68" fill="#FFFFFF" opacity="0.7"/> <circle cx="358.4" cy="230.4" r="7.68" fill="#FFFFFF" opacity="0.7"/> <circle cx="409.59999999999997" cy="244.1189986524735" r="7.68" fill="#FFFFFF" opacity="0.7"/> <circle cx="447.08100134752647" cy="281.59999999999997" r="7.68" fill="#FFFFFF" opacity="0.7"/>
+            </g>
+            
+            <!-- 额外的动态效果 -->
+            <g>
+                <path d="M 307.2 332.8
+                        l 51.2 0
+                        m -25.6 -25.6
+                        l 25.6 25.6
+                        l -25.6 25.6"
+                      stroke="#FFFFFF" stroke-width="5.12"
+                      stroke-linecap="round" opacity="0.6"/>
+            </g>
+        </svg>
