@@ -662,6 +662,16 @@ dialog.auth-modal {
 .cs-cta span {
   opacity: 0.8;
 }
+/* the default button is dark, which vanishes on the dark banner, so it takes the closing banner's mint */
+.cs-cta .btn {
+  background: #6ee7b7;
+  color: #06241a;
+  border-color: #6ee7b7;
+  border-radius: 999px;
+}
+.cs-cta .btn:hover {
+  background: #a7f3d0;
+}
 @media (max-width: 720px) {
   .cs-row-text {
     padding: 20px 18px;

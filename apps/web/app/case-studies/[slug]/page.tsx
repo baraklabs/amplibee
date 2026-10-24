@@ -25,7 +25,7 @@ export async function generateMetadata({ params }: Props) {
     type: 'article',
     image: caseImage(s),
     modified: s.updated,
-    keywords: ['Amplibee case study', `${s.domain} visibility check`],
+    keywords: ['Amplibee case study', `${s.name.toLowerCase()} visibility check`],
   })
 }
 
@@ -54,7 +54,7 @@ export default async function CaseStudyPage({ params }: Props) {
           </div>
           {thumb ? (
             // eslint-disable-next-line @next/next/no-img-element
-            <img className="launch-thumb" src={thumb} alt={`${s.domain} home page`} width={800} height={420} fetchPriority="high" decoding="async" />
+            <img className="launch-thumb" src={thumb} alt={s.name} width={800} height={420} fetchPriority="high" decoding="async" />
           ) : null}
         </header>
 

@@ -17,7 +17,7 @@ export default async function Image({ params }: { params: Promise<{ slug: string
   return new ImageResponse(
     (
       <div style={{ width: '100%', height: '100%', background: bg, color: '#ffffff', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center', padding: 80 }}>
-        <div style={{ fontSize: 120, lineHeight: 1.05, fontWeight: 600, letterSpacing: -2 }}>{s?.domain ?? 'Case study'}</div>
+        <div style={{ fontSize: 120, lineHeight: 1.05, fontWeight: 600, letterSpacing: -2 }}>{s?.name ?? 'Case study'}</div>
         {s?.tagline ? <div style={{ fontSize: 46, lineHeight: 1.3, marginTop: 28, opacity: 0.78 }}>{s.tagline}</div> : null}
       </div>
     ),
