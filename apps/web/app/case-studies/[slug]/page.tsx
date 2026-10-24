@@ -25,7 +25,7 @@ export async function generateMetadata({ params }: Props) {
     type: 'article',
     image: caseImage(s),
     modified: s.updated,
-    keywords: ['Amplibee case study', ...(s.product ? [`${s.product} case study`] : []), ...(s.domain ? [`${s.domain} visibility check`] : [])],
+    keywords: ['Amplibee case study', `${s.domain} visibility check`],
   })
 }
 
@@ -36,7 +36,6 @@ export default async function CaseStudyPage({ params }: Props) {
   const path = `/case-studies/${s.slug}`
   const thumb = caseThumb(s)
   const others = CASE_STUDIES.filter((x) => x.slug !== s.slug)
-  const source = c.platform === 'linkedin' ? 'LinkedIn' : 'X'
   return (
     <>
       <div className="wrap cs-page">
@@ -47,15 +46,15 @@ export default async function CaseStudyPage({ params }: Props) {
           <h1>{s.headline}</h1>
           <p className="launch-lede">{s.summary}</p>
           <div className="cs-who">
-            <CaseAvatar name={c.name} src={c.avatar} size={48} />
+            <CaseAvatar name={c.name} size={48} />
             <div>
               <strong>{c.name}</strong>
-              {c.sub ? <span className="muted">{c.sub}</span> : null}
+              <span className="muted">{c.sub}</span>
             </div>
           </div>
           {thumb ? (
             // eslint-disable-next-line @next/next/no-img-element
-            <img className="launch-thumb" src={thumb} alt={`${s.product} home page`} width={800} height={420} fetchPriority="high" decoding="async" />
+            <img className="launch-thumb" src={thumb} alt={`${s.domain} home page`} width={800} height={420} fetchPriority="high" decoding="async" />
           ) : null}
         </header>
 
@@ -73,17 +72,7 @@ export default async function CaseStudyPage({ params }: Props) {
               {sec.bullets ? <ul className="launch-list">{sec.bullets.map((b) => <li key={b}>{b}</li>)}</ul> : null}
             </section>
           ))}
-          {c.quote ? (
-            <figure className="cs-quote">
-              <blockquote><p>&ldquo;{c.quote}&rdquo;</p></blockquote>
-              <figcaption>
-                {c.name}{s.product ? `, ${s.product}` : ''}
-                {c.url ? <> · <a href={c.url} target="_blank" rel="noopener noreferrer">See the post on {source}</a></> : null}
-              </figcaption>
-            </figure>
-          ) : null}
-          {s.launchSlug ? <p><Link className="btn secondary" href={`/launches/${s.launchSlug}`}>See {s.product} on Amplibee</Link></p> : null}
-          {c.example ? <p><Link className="btn" href="/">Check your own product for free</Link></p> : null}
+          <p><Link className="btn" href="/">Check your own product for free</Link></p>
         </article>
 
         <section className="launch-more" aria-labelledby="more-cs-h">

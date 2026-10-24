@@ -21,9 +21,9 @@ function CaseRow({ s }: { s: CaseStudy }) {
     <article className="cs-row">
       <div className="cs-row-text">
         <header className="cs-row-who">
-          <CaseAvatar name={c.name} src={c.avatar} size={24} />
+          <CaseAvatar name={c.name} size={24} />
           <strong>{c.name}</strong>
-          {c.sub ? <span className="muted">· {c.sub}</span> : null}
+          <span className="muted">· {c.sub}</span>
         </header>
         <h3 className="cs-row-title"><Link className="cs-row-link" href={`/case-studies/${s.slug}`}>{s.headline}</Link></h3>
         <p className="cs-row-sum">{s.summary}</p>
