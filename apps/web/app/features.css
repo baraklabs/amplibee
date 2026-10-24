@@ -1189,7 +1189,7 @@
   filter: brightness(1.05);
 }
 
-/* a launch card: the name's link covers the whole card, the address stays a separate link to the product's own site */
+/* a launch card: the name's link covers the whole card */
 .su-card {
   position: relative;
 }
@@ -1214,20 +1214,6 @@
   inset: 0;
   border-radius: 16px;
 }
-.su-site {
-  position: relative;
-  z-index: 1;
-  align-self: flex-start;
-  max-width: 100%;
-  text-decoration: none;
-}
-.su-site:hover {
-  color: var(--ink);
-  text-decoration: underline;
-  text-decoration-color: var(--rule);
-  text-underline-offset: 3px;
-}
-
 /* launch detail page */
 .launch-facts {
   display: grid;

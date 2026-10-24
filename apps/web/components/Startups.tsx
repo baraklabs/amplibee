@@ -8,7 +8,7 @@ import { launchSlugForDomain } from '../lib/content/launches.ts'
 export interface Startup {
   name: string
   domain: string
-  url?: string // when set, the card links to the product
+  url?: string // the product's own site, kept as data; cards link to the detail page instead
   tagline: string
   category: string
   launched: string // YYYY-MM
@@ -95,7 +95,7 @@ function monthLabel(ym: string): string {
 }
 
 function Card({ s, index }: { s: Startup; index: number }) {
-  // The name and the card open the product's detail page; only the address opens the product's own site.
+  // The name and the whole card open the product's detail page. The address is text, not a link to the product's own site.
   const slug = launchSlugForDomain(s.domain)
   return (
     <li className={`su-card${slug ? ' su-card-link' : ''}`}>
@@ -104,11 +104,7 @@ function Card({ s, index }: { s: Startup; index: number }) {
         {s.logo ? <img className="su-mark" src={s.logo} alt="" width={44} height={44} loading="lazy" /> : <Mark name={s.name} index={index} />}
         <div className="su-id">
           {slug ? <Link className="su-name" href={`/launches/${slug}`}>{s.name}</Link> : <strong>{s.name}</strong>}
-          {s.url ? (
-            <a className="su-site muted" href={s.url} target="_blank" rel="noopener">{s.domain}</a>
-          ) : (
-            <span className="muted">{s.domain}</span>
-          )}
+          <span className="muted">{s.domain}</span>
         </div>
         {s.score !== undefined ? <span className="su-score" title="Visibility score">{s.score}</span> : null}
       </div>
@@ -136,7 +132,6 @@ export function StartupsLaunched() {
     <section className="section" aria-labelledby="su-h">
       <div className="wrap">
         <h2 id="su-h" style={{ textAlign: 'center', borderTop: 0 }}>Latest product launches with Amplibee</h2>
-        <p className="measure" style={{ margin: '8px auto 0', textAlign: 'center' }}>Products that checked their visibility, closed the gaps and launched. The number on each card is the visibility score at launch.</p>
         <StartupGrid items={startups.slice(0, SHOWN)} />
         <p style={{ textAlign: 'center', marginTop: 20 }}><Link className="btn small" href="/launches">Browse all launches</Link></p>
       </div>
