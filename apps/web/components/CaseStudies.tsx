@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { CASE_STUDIES, type CaseStudy, caseThumb, getCustomer } from '../lib/content/case-studies.ts'
+import { CASE_STUDIES, type CaseStudy, caseThumb, getFacts } from '../lib/content/case-studies.ts'
 import { StatValue } from './StatValue.tsx'
 
 /** The first letter of a name in a circle, or the photo when there is one. */
@@ -9,33 +9,34 @@ export function CaseAvatar({ name, src, size = 40 }: { name: string; src?: strin
   return <span className="avatar" aria-hidden="true">{name.trim()[0]}</span>
 }
 
-/** One study in the list. The title link covers the whole card; the thumbnail is shown only when the study has one. */
-function CaseCard({ s }: { s: CaseStudy }) {
-  const c = getCustomer(s)
+/**
+ * One study as a row, like a post in a feed: who it is about, the title and a short summary on the left, and on the
+ * right a thumbnail in the share image's shape. The thumbnail is optional; without one the text uses the full row.
+ * The title link covers the whole row.
+ */
+function CaseRow({ s }: { s: CaseStudy }) {
+  const c = getFacts(s)
   const thumb = caseThumb(s)
   return (
-    <article className="card cs-card">
-      {thumb ? (
-        // eslint-disable-next-line @next/next/no-img-element
-        <img className="cs-thumb" src={thumb} alt="" width={800} height={420} loading="lazy" decoding="async" />
-      ) : null}
-      <div className="cs-card-body">
-        <header className="cust-head">
-          <CaseAvatar name={c.name} src={c.avatar} />
-          <div>
-            <strong>{c.name}</strong>
-            <span className="muted">{s.product ?? c.company}</span>
-          </div>
+    <article className="cs-row">
+      <div className="cs-row-text">
+        <header className="cs-row-who">
+          <CaseAvatar name={c.name} src={c.avatar} size={24} />
+          <strong>{c.name}</strong>
+          {c.sub ? <span className="muted">· {c.sub}</span> : null}
         </header>
-        <h2 className="cs-card-title"><Link className="cs-card-link" href={`/case-studies/${s.slug}`}>{s.headline}</Link></h2>
-        <p className="muted cs-card-sum">{s.summary}</p>
-        <div className="cs-card-stats">
+        <h3 className="cs-row-title"><Link className="cs-row-link" href={`/case-studies/${s.slug}`}>{s.headline}</Link></h3>
+        <p className="cs-row-sum">{s.summary}</p>
+        <div className="cs-row-meta">
           {c.stats.slice(0, 2).map((x) => (
-            <span key={x.label}><strong><StatValue value={x.value} /></strong> {x.label}</span>
+            <span className="cs-chip" key={x.label}><strong><StatValue value={x.value} /></strong> {x.label}</span>
           ))}
         </div>
-        <span className="cs-more" aria-hidden="true">Read the case study →</span>
       </div>
+      {thumb ? (
+        // eslint-disable-next-line @next/next/no-img-element
+        <img className="cs-row-thumb" src={thumb} alt="" width={240} height={126} loading="lazy" decoding="async" />
+      ) : null}
     </article>
   )
 }
@@ -56,12 +57,12 @@ export function CaseCta() {
 /** The list of studies, with a call to action after the 5th one when the list is longer than that. */
 export function CaseList({ items = CASE_STUDIES }: { items?: CaseStudy[] }) {
   const AFTER = 5
-  const cards = items.map((s) => <CaseCard s={s} key={s.slug} />)
+  const rows = items.map((s) => <CaseRow s={s} key={s.slug} />)
   return (
     <div className="cs-list">
-      {cards.slice(0, AFTER)}
+      {rows.slice(0, AFTER)}
       {items.length > AFTER ? <CaseCta /> : null}
-      {cards.slice(AFTER)}
+      {rows.slice(AFTER)}
     </div>
   )
 }

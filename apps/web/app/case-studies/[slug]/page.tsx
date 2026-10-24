@@ -5,7 +5,7 @@ import { CaseAvatar } from '../../../components/CaseStudies.tsx'
 import { JsonLd } from '../../../components/JsonLd.tsx'
 import { ClosingCta } from '../../../components/Landing.tsx'
 import { StatValue } from '../../../components/StatValue.tsx'
-import { CASE_STUDIES, caseImage, caseThumb, getCaseStudy, getCustomer } from '../../../lib/content/case-studies.ts'
+import { CASE_STUDIES, caseImage, caseThumb, getCaseStudy, getFacts } from '../../../lib/content/case-studies.ts'
 import { article } from '../../../lib/jsonld.ts'
 import { pageMeta } from '../../../lib/seo.ts'
 
@@ -25,14 +25,14 @@ export async function generateMetadata({ params }: Props) {
     type: 'article',
     image: caseImage(s),
     modified: s.updated,
-    keywords: ['Amplibee case study', ...(s.product ? [`${s.product} case study`] : [])],
+    keywords: ['Amplibee case study', ...(s.product ? [`${s.product} case study`] : []), ...(s.domain ? [`${s.domain} visibility check`] : [])],
   })
 }
 
 export default async function CaseStudyPage({ params }: Props) {
   const s = getCaseStudy((await params).slug)
   if (!s) notFound()
-  const c = getCustomer(s)
+  const c = getFacts(s)
   const path = `/case-studies/${s.slug}`
   const thumb = caseThumb(s)
   const others = CASE_STUDIES.filter((x) => x.slug !== s.slug)
@@ -50,7 +50,7 @@ export default async function CaseStudyPage({ params }: Props) {
             <CaseAvatar name={c.name} src={c.avatar} size={48} />
             <div>
               <strong>{c.name}</strong>
-              <span className="muted">{s.product ?? c.company}</span>
+              {c.sub ? <span className="muted">{c.sub}</span> : null}
             </div>
           </div>
           {thumb ? (
@@ -70,16 +70,20 @@ export default async function CaseStudyPage({ params }: Props) {
             <section className="launch-sec" key={sec.h}>
               <h2>{sec.h}</h2>
               {sec.body.map((p) => <p key={p}>{p}</p>)}
+              {sec.bullets ? <ul className="launch-list">{sec.bullets.map((b) => <li key={b}>{b}</li>)}</ul> : null}
             </section>
           ))}
-          <figure className="cs-quote">
-            <blockquote><p>&ldquo;{c.quote}&rdquo;</p></blockquote>
-            <figcaption>
-              {c.name}{s.product ? `, ${s.product}` : ''}
-              {c.url ? <> · <a href={c.url} target="_blank" rel="noopener noreferrer">See the post on {source}</a></> : null}
-            </figcaption>
-          </figure>
+          {c.quote ? (
+            <figure className="cs-quote">
+              <blockquote><p>&ldquo;{c.quote}&rdquo;</p></blockquote>
+              <figcaption>
+                {c.name}{s.product ? `, ${s.product}` : ''}
+                {c.url ? <> · <a href={c.url} target="_blank" rel="noopener noreferrer">See the post on {source}</a></> : null}
+              </figcaption>
+            </figure>
+          ) : null}
           {s.launchSlug ? <p><Link className="btn secondary" href={`/launches/${s.launchSlug}`}>See {s.product} on Amplibee</Link></p> : null}
+          {c.example ? <p><Link className="btn" href="/">Check your own product for free</Link></p> : null}
         </article>
 
         <section className="launch-more" aria-labelledby="more-cs-h">

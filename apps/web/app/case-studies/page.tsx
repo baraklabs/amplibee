@@ -30,7 +30,7 @@ export default function CaseStudies() {
       <h1 className="sr-only">Case studies</h1>
       <CustomerResults />
       <div className="wrap">
-        <h2 className="cs-list-h">All case studies</h2>
+        <h2 className="cs-list-h">Case Studies</h2>
         <CaseList />
       </div>
       <ClosingCta />
