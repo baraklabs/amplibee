@@ -1,4 +1,5 @@
 import { absolute } from '../../lib/config.ts'
+import { CASE_STUDIES } from '../../lib/content/case-studies.ts'
 import { GUIDES } from '../../lib/content/guides.ts'
 import { LAUNCHES } from '../../lib/content/launches.ts'
 
@@ -18,7 +19,7 @@ Checks are deterministic and use public information only.
 - [FAQ](${absolute('/faq')}): short answers about cost, data and accuracy
 - [Pricing](${absolute('/pricing')}): what is free and what the paid plans add
 - [About](${absolute('/about')}): who it is for and what it will not do
-- [Case studies](${absolute('/case-studies')}): customer outcomes
+- [Case studies](${absolute('/case-studies')}): real visibility checks of well-known products, by use case
 - [Contact](${absolute('/contact')}): support and questions
 - [Full text for models](${absolute('/llms-full.txt')}): the guides and FAQ in one file
 
@@ -26,6 +27,10 @@ Checks are deterministic and use public information only.
 
 - [Browse all launches](${absolute('/launches')}): products launched with Amplibee
 ${LAUNCHES.map((l) => `- [${l.name}](${absolute(`/launches/${l.slug}`)}): ${l.tagline}. Alternatives: ${l.compare.alternatives.map((x) => x.name).join(', ')}.`).join('\n')}
+
+## Case studies
+
+${CASE_STUDIES.map((c) => `- [${c.headline}](${absolute(`/case-studies/${c.slug}`)}): ${c.summary}`).join('\n')}
 
 ## Blog
 

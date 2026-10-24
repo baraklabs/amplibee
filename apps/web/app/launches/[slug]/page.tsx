@@ -1,10 +1,12 @@
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { Breadcrumbs } from '../../../components/Breadcrumbs.tsx'
+import { CaseRelCard } from '../../../components/CaseStudies.tsx'
 import { FaqAccordion } from '../../../components/FaqAccordion.tsx'
 import { JsonLd } from '../../../components/JsonLd.tsx'
 import { StartupGrid, startups } from '../../../components/Startups.tsx'
 import { absolute } from '../../../lib/config.ts'
+import { CASE_STUDIES } from '../../../lib/content/case-studies.ts'
 import { getLaunch, LAUNCHES, launchImages } from '../../../lib/content/launches.ts'
 import { article, faqPage } from '../../../lib/jsonld.ts'
 import { pageMeta } from '../../../lib/seo.ts'
@@ -36,7 +38,9 @@ export default async function LaunchPage({ params }: Props) {
   const path = `/launches/${l.slug}`
   const img = launchImages(l.slug)
   const altId = (name: string) => `alt-${name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')}`
-  const more = startups.filter((s) => s.domain !== l.domain).slice(0, 2)
+  const more = startups.filter((s) => s.domain !== l.domain).slice(0, 4)
+  // the use cases that matter to anyone who has just launched: getting listed, seeing the competition, being named
+  const useCases = ['launch-on-directories', 'competitor-research', 'get-cited-by-ai-assistants', 'site-audit-robots-og-seo'].map((slug) => CASE_STUDIES.find((c) => c.slug === slug)).filter((c) => !!c)
   const product = {
     '@context': 'https://schema.org',
     '@type': l.app.type,
@@ -132,6 +136,16 @@ export default async function LaunchPage({ params }: Props) {
             <Link href="/launches">Browse all launches</Link>
           </div>
           <StartupGrid items={more} />
+        </section>
+
+        <section className="launch-more" aria-labelledby="uc-h">
+          <div className="launch-more-head">
+            <h2 id="uc-h">Use cases</h2>
+            <Link href="/case-studies">All case studies</Link>
+          </div>
+          <div className="cs-rel-grid">
+            {useCases.map((c) => (c ? <CaseRelCard s={c} key={c.slug} /> : null))}
+          </div>
         </section>
       </div>
 

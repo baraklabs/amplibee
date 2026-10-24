@@ -1,4 +1,5 @@
 import { absolute } from '../../lib/config.ts'
+import { CASE_STUDIES } from '../../lib/content/case-studies.ts'
 import { FAQ } from '../../lib/content/faq.ts'
 import { GUIDES } from '../../lib/content/guides.ts'
 import { LAUNCHES } from '../../lib/content/launches.ts'
@@ -19,6 +20,11 @@ export function GET() {
     const qa = l.faq.map((f) => `**${f.q}**\n${f.a}`).join('\n\n')
     return `## ${l.name}\n\nURL: ${absolute(`/launches/${l.slug}`)}\nWebsite: ${l.url}\nLaunched: ${new Date(l.launched).toLocaleDateString('en-US', { month: 'long', year: 'numeric', timeZone: 'UTC' })}\n\n${l.intro}\n\n${sections}\n\n### Alternatives to ${l.name}\n\n${l.compare.intro}\n\n${alts}\n\n${l.compare.verdict}\n\n### Questions about ${l.name}\n\n${qa}`
   }).join('\n\n')
+  const cases = CASE_STUDIES.map((c) => {
+    const body = c.sections.map((x) => `### ${x.h}\n\n${x.body.join('\n\n')}${x.bullets?.length ? `\n\n${x.bullets.map((b) => `- ${b}`).join('\n')}` : ''}`).join('\n\n')
+    const qa = c.faq.map((f) => `**${f.q}**\n${f.a}`).join('\n\n')
+    return `## ${c.headline}\n\nURL: ${absolute(`/case-studies/${c.slug}`)}\nUpdated: ${c.updated}\n\n${c.answer}\n\n${body}\n\n### Questions about this case study\n\n${qa}`
+  }).join('\n\n')
   const text = `# Amplibee: full text
 
 > Amplibee is a free web tool for founders. Enter a product website and it checks directories, search indexing, mentions, technical SEO and trust signals, compares the product with its competitors, scores it out of 100 and lists the specific gaps with a fix for each.
@@ -32,6 +38,10 @@ ${faq}
 # Product launches
 
 ${launches}
+
+# Case studies
+
+${cases}
 
 # Guides
 

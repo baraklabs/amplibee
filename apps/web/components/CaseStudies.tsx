@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import type { CSSProperties } from 'react'
 import { CASE_STUDIES, type CaseStudy, caseThumb, caseTone, getFacts } from '../lib/content/case-studies.ts'
+// caseThumb and caseTone are used by CaseImage below
 
 /** The first letter of a name in a circle, or the photo when there is one. */
 export function CaseAvatar({ name, src, size = 40 }: { name: string; src?: string; size?: number }) {
@@ -10,29 +11,51 @@ export function CaseAvatar({ name, src, size = 40 }: { name: string; src?: strin
 }
 
 /**
+ * The study's image: its own thumbnail when it has one; otherwise a dark block with the use case and what the
+ * check found, in the share image's shape. One component so the list, the page and the related cards always agree.
+ */
+export function CaseImage({ s, className = '', eager = false }: { s: CaseStudy; className?: string; eager?: boolean }) {
+  const thumb = caseThumb(s)
+  if (thumb) {
+    // eslint-disable-next-line @next/next/no-img-element
+    return <img className={`cs-img ${className}`} src={thumb} alt={s.name} width={1200} height={630} loading={eager ? 'eager' : 'lazy'} decoding="async" />
+  }
+  return (
+    <div className={`cs-img cs-ph ${className}`} style={{ '--dark': caseTone(s) } as CSSProperties} role="img" aria-label={`${s.name}: ${s.tagline}`}>
+      <strong>{s.name}</strong>
+      {s.tagline ? <span>{s.tagline}</span> : null}
+    </div>
+  )
+}
+
+/**
  * One study as a card: a small label, the title and a short description on the left, and on the right an image that
- * runs to the card's edge. The image is the study's own thumbnail when it has one; otherwise a dark block with the
- * product's name and what it is. The title link covers the whole card.
+ * runs to the card's edge. The title link covers the whole card.
  */
 function CaseRow({ s }: { s: CaseStudy }) {
   const c = getFacts(s)
-  const thumb = caseThumb(s)
   return (
-    <article className="cs-row" style={{ '--dark': caseTone(s) } as CSSProperties}>
+    <article className="cs-row">
       <div className="cs-row-text">
         <span className="cs-kicker">{c.sub}</span>
         <h3 className="cs-row-title"><Link className="cs-row-link" href={`/case-studies/${s.slug}`}>{s.headline}</Link></h3>
         <p className="cs-row-sum">{s.summary}</p>
       </div>
-      {thumb ? (
-        // eslint-disable-next-line @next/next/no-img-element
-        <img className="cs-row-thumb" src={thumb} alt="" width={440} height={231} loading="lazy" decoding="async" />
-      ) : (
-        <div className="cs-row-thumb cs-ph" aria-hidden="true">
-          <strong>{c.name}</strong>
-          {s.tagline ? <span>{s.tagline}</span> : null}
-        </div>
-      )}
+      <CaseImage s={s} className="cs-row-thumb" />
+    </article>
+  )
+}
+
+/** A smaller card for the related studies under a study: image on top, then label, title and a short description. */
+export function CaseRelCard({ s }: { s: CaseStudy }) {
+  return (
+    <article className="cs-rel">
+      <CaseImage s={s} className="cs-rel-img" />
+      <div className="cs-rel-body">
+        <span className="cs-kicker">{getFacts(s).sub}</span>
+        <h3><Link className="cs-row-link" href={`/case-studies/${s.slug}`}>{s.headline}</Link></h3>
+        <p>{s.summary}</p>
+      </div>
     </article>
   )
 }

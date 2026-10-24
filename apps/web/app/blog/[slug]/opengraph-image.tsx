@@ -11,5 +11,5 @@ export function generateStaticParams() {
 
 export default async function Image({ params }: { params: Promise<{ slug: string }> }) {
   const g = getGuide((await params).slug)
-  return ogCard({ kicker: 'Blog', title: g?.title ?? 'Blog', foot: g ? `Updated ${g.updated}` : undefined })
+  return ogCard({ kicker: 'Blog', title: g?.title ?? 'Blog', foot: g ? `Updated ${new Date(g.updated).toLocaleDateString('en-US', { month: 'long', year: 'numeric', timeZone: 'UTC' })}` : undefined })
 }
