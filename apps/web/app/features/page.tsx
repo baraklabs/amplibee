@@ -8,7 +8,7 @@ import { FEATURES } from '../../lib/content/features.ts'
 import { faqPage, webPage } from '../../lib/jsonld.ts'
 import { pageMeta } from '../../lib/seo.ts'
 
-const DESCRIPTION = 'Everything Amplibee does: a visibility score, directory listings, a ranked gap list, competitor comparison, a technical SEO audit, AI visibility tracking, mentions and a content planner.'
+const DESCRIPTION = 'Everything Amplibee does: a visibility score, directory listings, a ranked gap list, competitor comparison, a technical SEO audit, AI visibility tracking and a content planner for social posts and blog posts.'
 
 export const metadata = pageMeta({
   title: 'Features: check, fix and grow your product’s visibility',
@@ -33,7 +33,7 @@ export default function FeaturesPage() {
         <Breadcrumbs trail={[{ name: 'Features', path: '/features' }]} />
         <JsonLd data={[webPage({ type: 'CollectionPage', name: 'Amplibee features', description: DESCRIPTION, path: '/features' }), list, faqPage(TOP_FAQ)]} />
         <h1 className="cs-list-h cs-list-h-top">Features</h1>
-        <p className="cs-list-sub">What Amplibee checks, what it tells you to fix and what it can do for you. Each page answers the questions people search for.</p>
+        <p className="cs-list-sub">What Amplibee checks, what it tells you to fix and what it can do for you.</p>
         <FeatureList />
         <section className="cs-sec" aria-labelledby="ft-faq-h">
           <h2 id="ft-faq-h" className="cs-list-h">Questions people ask</h2>

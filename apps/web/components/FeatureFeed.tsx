@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import { HeroArt } from './HeroArt.tsx'
-import { FEATURES, type Feature, featureImage } from '../lib/content/features.ts'
+import { FEATURES, type Feature, featureThumb } from '../lib/content/features.ts'
 
 /** One feature as a row: a label, the title and the description on the left, the share image on the right. */
 function FeatureRow({ f }: { f: Feature }) {
@@ -12,7 +12,7 @@ function FeatureRow({ f }: { f: Feature }) {
         <p className="cs-row-sum">{f.summary}</p>
       </div>
       {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img className="cs-img cs-row-thumb" src={featureImage(f)} alt={f.name} width={1200} height={630} loading="lazy" decoding="async" />
+      <img className="cs-img cs-row-thumb" src={featureThumb(f)} alt={f.name} width={1200} height={630} loading="lazy" decoding="async" />
     </article>
   )
 }
@@ -48,7 +48,7 @@ export function FeatureRelCard({ f }: { f: Feature }) {
   return (
     <article className="cs-rel">
       {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img className="cs-img cs-rel-img" src={featureImage(f)} alt="" width={1200} height={630} loading="lazy" decoding="async" />
+      <img className="cs-img cs-rel-img" src={featureThumb(f)} alt="" width={1200} height={630} loading="lazy" decoding="async" />
       <div className="cs-rel-body">
         <span className="cs-kicker">{f.name}</span>
         <h3><Link className="cs-row-link" href={`/features/${f.slug}`}>{f.headline}</Link></h3>

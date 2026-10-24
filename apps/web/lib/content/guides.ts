@@ -49,10 +49,7 @@ export const GUIDES: Guide[] = [
         a: 'For each directory in our list we try the public profile address when it follows a pattern we have confirmed, and we look for the directory in search results for your domain. Some directories block automated requests, so they show as not confirmed.',
       },
     ],
-    sources: [
-      { label: 'Hacker News: Show HN rules', url: 'https://news.ycombinator.com/showhn.html' },
-      { label: 'Google Search Central: Creating helpful, reliable, people-first content', url: 'https://developers.google.com/search/docs/fundamentals/creating-helpful-content' },
-    ],
+    sources: [],
   },
   {
     slug: 'first-mentions',
@@ -181,6 +178,48 @@ export const GUIDES: Guide[] = [
       { label: 'Google Search Central: Introduction to robots.txt', url: 'https://developers.google.com/search/docs/crawling-indexing/robots/intro' },
       { label: 'Google Search Central: Introduction to structured data', url: 'https://developers.google.com/search/docs/appearance/structured-data/intro-structured-data' },
       { label: 'web.dev: Largest Contentful Paint', url: 'https://web.dev/articles/lcp' },
+    ],
+  },
+  {
+    slug: 'social-content-plan-for-a-launch',
+    title: 'A content plan for X, LinkedIn, Facebook and Product Hunt',
+    description: 'What a new product should post on X, LinkedIn, Facebook and Product Hunt, how often, and how to plan it so the posts keep going after launch day.',
+    updated: '2026-10-24',
+    intro: 'A launch is one day. Visibility is built by what you post before and after it. This guide shows what to put on each platform and how to plan it so you keep going.',
+    sections: [
+      {
+        q: 'What should a new product post on social platforms?',
+        a: 'Post four kinds of things: what you shipped, a real example of a problem the product solved, what the product does and who it is for, and what you learned while building it. Every post should say something a reader can use and link to a page that shows the product.',
+        more: ['Do not repeat one announcement on every platform. Change the opening and the length to fit each place, and keep the facts the same.'],
+      },
+      {
+        q: 'What works on X?',
+        a: 'Short posts and threads that show something specific: a screenshot, a number, a before and after. A thread that walks through what you built and why is easier to share than a single link. Reply to people who ask about the problem you solve, and link only when it answers them.',
+      },
+      {
+        q: 'What works on LinkedIn?',
+        a: 'Longer posts written by a person, not a page, that tell what happened: the problem, what you tried, what you shipped and what changed. Name the buyer you built it for. Put the link in a comment or at the end, and answer comments yourself.',
+      },
+      {
+        q: 'What works on Facebook?',
+        a: 'Posts for communities and groups where your buyers already talk. Read each group\'s rules first, since many limit self-promotion. Share what you built and ask a real question. A post on your own page is a place for people to confirm you exist, not a way to reach strangers.',
+      },
+      {
+        q: 'How do I plan a Product Hunt launch?',
+        a: 'Prepare the listing before the day: a clear tagline, a short description, screenshots and a first comment that tells the story of why you built it. Plan the posts on other platforms around launch day so people have somewhere to go from each one. Product Hunt publishes a launch guide that covers the listing.',
+        more: ['Answer every comment on the day yourself. Afterwards, keep the listing: it stays online as a page that names your product.'],
+      },
+      {
+        q: 'How do I keep posting after launch day?',
+        a: 'Plan a few weeks ahead. Aim for a small number of posts you can keep up, such as two or three a week across your platforms, and reuse one idea in a different shape for each. The Amplibee content planner gives you posts curated for your product and your application, one set for each platform, so you are not starting from a blank page.',
+      },
+      {
+        q: 'Does posting on social platforms help visibility?',
+        a: 'It gives people and search engines more pages that name your product and link to it, and it gives you something to point mentions at. It does not guarantee a ranking or a citation from an AI assistant. Treat it as one part of the plan, next to directory listings, mentions and the basics on your own site.',
+      },
+    ],
+    sources: [
+      { label: 'Product Hunt: Launch guide', url: 'https://www.producthunt.com/launch' },
     ],
   },
 ]

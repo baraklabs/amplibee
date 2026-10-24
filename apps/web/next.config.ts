@@ -11,6 +11,7 @@ const config: NextConfig = {
       // the case studies were replaced by the features pages
       { source: '/case-studies', destination: '/features', permanent: true },
       { source: '/case-studies/:slug*', destination: '/features', permanent: true },
+      { source: '/features/mentions-and-campaigns', destination: '/features', permanent: true },
     ]
   },
   async headers() {

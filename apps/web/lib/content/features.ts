@@ -24,8 +24,11 @@ export interface Feature {
   keywords: string[]
   /** Slugs of the blog posts that go deeper. */
   blogs: string[]
-  /** Dark background of the share image. */
+  /** Dark background of the generated share image. */
   tone: string
+  /** Optional real images: the share image (1200x630 jpg) and a smaller card thumbnail (webp). Without them the card draws one. */
+  image?: string
+  thumb?: string
 }
 
 const UPDATED = '2026-10-24'
@@ -60,6 +63,8 @@ export const FEATURES: Feature[] = [
     keywords: ['product visibility score', 'website visibility checker', 'online visibility check', 'brand visibility score', 'free visibility check'],
     blogs: ['technical-basics', 'where-to-list-a-new-saas'],
     tone: '#0f3d33',
+    image: '/features/product-visibility-score-og.jpg',
+    thumb: '/features/product-visibility-score-thumb.webp',
   },
   {
     slug: 'directory-listings',
@@ -85,6 +90,8 @@ export const FEATURES: Feature[] = [
     keywords: ['directory submission', 'startup directories', 'product launch directories', 'where to list a SaaS', 'submit to Product Hunt alternatives'],
     blogs: ['where-to-list-a-new-saas', 'first-mentions'],
     tone: '#4a3410',
+    image: '/features/directory-listings-og.jpg',
+    thumb: '/features/directory-listings-thumb.webp',
   },
   {
     slug: 'gap-finder',
@@ -110,6 +117,8 @@ export const FEATURES: Feature[] = [
     keywords: ['website visibility gaps', 'SEO gap analysis', 'fix list for startups', 'visibility audit', 'launch checklist'],
     blogs: ['technical-basics', 'where-to-list-a-new-saas'],
     tone: '#1f2a5c',
+    image: '/features/gap-finder-2-og.jpg',
+    thumb: '/features/gap-finder-2-thumb.webp',
   },
   {
     slug: 'competitor-comparison',
@@ -135,6 +144,8 @@ export const FEATURES: Feature[] = [
     keywords: ['competitor comparison tool', 'competitor analysis for startups', 'compare websites', 'domain rank comparison', 'competitor research'],
     blogs: ['first-mentions', 'where-to-list-a-new-saas'],
     tone: '#4d1f2e',
+    image: '/features/competitor-comparison-3-og.jpg',
+    thumb: '/features/competitor-comparison-3-thumb.webp',
   },
   {
     slug: 'technical-seo-audit',
@@ -164,6 +175,8 @@ export const FEATURES: Feature[] = [
     keywords: ['technical SEO audit', 'robots.txt checker', 'sitemap checker', 'Open Graph checker', 'JSON-LD checker', 'SEO audit tool'],
     blogs: ['technical-basics', 'what-an-og-image-is'],
     tone: '#0e3f4a',
+    image: '/features/technical-seo-audit-og.jpg',
+    thumb: '/features/technical-seo-audit-thumb.webp',
   },
   {
     slug: 'ai-visibility-tracking',
@@ -189,63 +202,48 @@ export const FEATURES: Feature[] = [
     keywords: ['AI visibility', 'generative engine optimization', 'GEO', 'answer engine optimization', 'AEO', 'ChatGPT brand mentions', 'get recommended by ChatGPT'],
     blogs: ['how-answer-engines-pick-products', 'technical-basics'],
     tone: '#3b1f5c',
-  },
-  {
-    slug: 'mentions-and-campaigns',
-    name: 'Mentions',
-    tagline: 'Hacker News, GitHub, creators',
-    headline: 'Get your product mentioned by real people',
-    summary: 'Amplibee measures your mentions on Hacker News and GitHub, then drafts a brief for a mentions campaign with creators, at a budget you set.',
-    updated: UPDATED,
-    answer: 'Amplibee counts the Hacker News stories and public GitHub repositories that mention your product, compares them with your competitors, and drafts a mentions campaign: a brief and a budget you set, carried out by creators who are paid to post, write about or engage with your product.',
-    sections: [
-      { h: 'How are mentions measured?', body: ['Amplibee counts Hacker News stories and public GitHub repositories that mention your product, and shows the same figures for your competitors.'] },
-      { h: 'What is a mentions campaign?', body: ['A draft brief for an article or post about your product, with a link to your site and what the product does and who it is for. You set the starting budget and can edit the brief.'] },
-      { h: 'Who writes the mentions?', body: ['Creators who are paid to post, write about or engage with your product.'] },
-      { h: 'Is a result promised?', body: ['No. A campaign gets your product in front of people. It does not promise a result.'] },
-    ],
-    faq: [
-      { q: 'How do I get my startup mentioned online?', a: 'Start with the places that already talk about products like yours, such as Hacker News and GitHub, then ask creators and communities to cover it. Amplibee measures where you stand and drafts the brief for a campaign.' },
-      { q: 'Why do mentions matter for AI assistants?', a: 'Answer engines can only cite what real people have written about you. Mentions from real people are what they can point to.' },
-      { q: 'Can I set my own budget?', a: 'Yes. The campaign starts from a suggested budget that you set.' },
-      { q: 'Does Amplibee fake mentions?', a: 'No. Campaigns use creators who are paid to post, write about or engage with your product, and the posts are theirs.' },
-    ],
-    keywords: ['get mentioned online', 'brand mentions', 'Hacker News mentions', 'GitHub mentions', 'creator campaigns for startups'],
-    blogs: ['first-mentions', 'how-answer-engines-pick-products'],
-    tone: '#4a2f12',
+    image: '/features/ai-visibility-tracking-og.jpg',
+    thumb: '/features/ai-visibility-tracking-thumb.webp',
   },
   {
     slug: 'content-planner',
     name: 'Content planner',
-    tagline: 'Comparison pages and posts',
-    headline: 'Content planner: comparison pages, blog posts and launch posts',
-    summary: 'Amplibee turns your competitor list into content ideas, moves them from idea to published on a board, and on a paid plan writes the blog posts for you.',
+    tagline: 'Social posts and blog posts',
+    headline: 'Content planner for X, LinkedIn, Facebook, Product Hunt and blog posts',
+    summary: 'Get posts for X, LinkedIn, Facebook and Product Hunt, and blog posts for your site, each curated for your product and your application, so your product shows up where buyers look.',
     updated: UPDATED,
-    answer: 'The content planner builds ideas from your competitor list: a comparison page for each competitor, a best-alternatives page, a blog post and a launch announcement. Ideas move across a board from ideas to drafting, scheduled and published, and paid plans include blog posts written for you.',
+    answer: 'The content planner gives you posts for the platforms where buyers look, X, LinkedIn, Facebook and Product Hunt, and blog posts for your own site. Each one is curated for your product and your application, so it talks about what you actually built and who it is for, not generic marketing copy.',
     sections: [
       {
-        h: 'What does the content planner suggest?',
-        body: ['It builds ideas from the competitors you add.'],
-        bullets: ['A comparison page for each competitor: “your product vs competitor: which is right for you?”', 'A “best alternatives” page', 'A blog post on how the product helps customers, with a real example', 'A launch announcement post on what it does and who it is for'],
+        h: 'Which platforms does the content planner cover?',
+        body: ['The places where founders and buyers discover products, and your own blog.'],
+        bullets: ['X: short posts and threads about what you shipped', 'LinkedIn: posts for founders, teams and buyers', 'Facebook: posts for communities and pages', 'Product Hunt: the launch post and the first comment', 'Your blog: posts that answer what buyers search for'],
       },
-      { h: 'How does the board work?', body: ['Each idea moves from ideas to drafting, scheduled and published, so you can see what is planned and what is done.'] },
-      { h: 'Can someone write the posts for me?', body: ['Yes. Paid plans include blog posts written for you, and you can ask for one from any idea on the board. The plans page lists how many.'] },
+      { h: 'Are the posts generic?', body: ['No. Each post is curated for your product and your application, using what the product does, who it is for and how it compares with others in its category. A post for Product Hunt reads differently from one for LinkedIn, and both are about your product.'] },
+      { h: 'How does it help your visibility?', body: ['Posts on the platforms buyers use give people, search engines and AI assistants more places that name your product and link to it. A steady plan beats a single launch day.'] },
+      { h: 'Can someone write the blog posts for me?', body: ['Yes. Paid plans include blog posts written for you, curated for your product. The plans page lists how many.'] },
     ],
     faq: [
-      { q: 'What content should a SaaS publish for SEO?', a: 'Start with comparison pages against your competitors, a best-alternatives page and posts that show how the product solves a real problem. The planner suggests these from your competitor list.' },
-      { q: 'Where do comparison page ideas come from?', a: 'From the competitors you add. Each one becomes a “you vs them” idea.' },
+      { q: 'What should a SaaS post on X and LinkedIn?', a: 'What you shipped, a real example of a customer problem you solved, and what the product does and who it is for. The planner curates them for your product and each platform.' },
+      { q: 'How do I plan a Product Hunt launch?', a: 'Plan the launch post, the first comment and the posts on other platforms around launch day. The planner curates each one for your product.' },
+      { q: 'Does posting on social platforms help visibility?', a: 'It gives people and search engines more places that name your product and link to it. No tool can promise a ranking or a citation.' },
+      { q: 'Which platforms can I plan content for?', a: 'X, LinkedIn, Facebook and Product Hunt, plus blog posts for your own site.' },
       { q: 'Can Amplibee write the content?', a: 'Paid plans include blog posts written for you. The plans page lists how many.' },
-      { q: 'What kinds of content can I plan?', a: 'Blog posts, comparison pages and social posts, each moved from idea to published.' },
     ],
-    keywords: ['content planner for startups', 'comparison page ideas', 'SaaS blog topics', 'alternatives page', 'content calendar'],
-    blogs: ['where-to-list-a-new-saas', 'first-mentions'],
+    keywords: ['content planner for startups', 'social media planner for SaaS', 'LinkedIn post planner', 'X post planner', 'Product Hunt launch plan', 'Facebook post planner', 'blog post ideas for SaaS'],
+    blogs: ['social-content-plan-for-a-launch', 'first-mentions'],
     tone: '#27303f',
+    image: '/features/content-planner-og.jpg',
+    thumb: '/features/content-planner-thumb.webp',
   },
 ]
 
 export const getFeature = (slug: string) => FEATURES.find((f) => f.slug === slug)
 
-export const featureImage = (f: Feature) => `/features/${f.slug}/opengraph-image`
+export const featureImage = (f: Feature) => f.image ?? `/features/${f.slug}/opengraph-image`
+
+/** The smaller picture on cards: the thumbnail when there is one. */
+export const featureThumb = (f: Feature) => f.thumb ?? featureImage(f)
 
 export const featureMonthYear = (f: Feature) => new Date(f.updated).toLocaleDateString('en-US', { month: 'long', year: 'numeric', timeZone: 'UTC' })
 

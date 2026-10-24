@@ -34,9 +34,10 @@ function minutes(g: Guide): number {
 /** The features that go with a post, by the topic of the post. */
 const FEATURES_FOR: Record<string, string[]> = {
   'where-to-list-a-new-saas': ['directory-listings', 'content-planner'],
-  'first-mentions': ['mentions-and-campaigns', 'competitor-comparison'],
+  'first-mentions': ['competitor-comparison', 'ai-visibility-tracking'],
   'what-an-og-image-is': ['technical-seo-audit', 'product-visibility-score'],
   'how-answer-engines-pick-products': ['ai-visibility-tracking', 'gap-finder'],
+  'social-content-plan-for-a-launch': ['content-planner', 'directory-listings'],
   'technical-basics': ['technical-seo-audit', 'gap-finder'],
 }
 
@@ -74,12 +75,14 @@ export default async function GuidePage({ params }: Props) {
               </section>
             ))}
 
-            <section className="cs-sec">
-              <h2>Sources</h2>
-              <ul className="cs-sources">
-                {g.sources.map((s) => <li key={s.url}><a href={s.url} rel="noopener">{s.label}</a></li>)}
-              </ul>
-            </section>
+            {g.sources.length ? (
+              <section className="cs-sec">
+                <h2>Sources</h2>
+                <ul className="cs-sources">
+                  {g.sources.map((s) => <li key={s.url}><a href={s.url} rel="noopener">{s.label}</a></li>)}
+                </ul>
+              </section>
+            ) : null}
 
             <section className="cs-sec" aria-labelledby="bl-rel-h">
               <div className="cs-sec-head">
