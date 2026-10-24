@@ -57,9 +57,9 @@ export default function Home() {
       </section>
 
       <Features />
-      <CustomerResults />
       <StartupsLaunched />
       <Pipeline />
+      <CustomerResults />
 
       <section className="section" aria-labelledby="faq-h">
         <div className="wrap">
