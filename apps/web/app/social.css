@@ -251,6 +251,30 @@ dialog.modal[open] {
   }
 }
 
+/* sign-in popup: the sign-in card itself is the dialog, so the dialog adds no frame of its own */
+/* the transparent padding gives the card room to swing toward you while it turns over, so no scrollbar flashes up; very short screens still scroll */
+dialog.auth-modal {
+  width: calc(100% - 16px);
+  max-width: 500px;
+  max-height: calc(100vh - 16px);
+  padding: 40px;
+  overflow: hidden;
+  background: transparent;
+  box-shadow: none;
+  border-radius: 0;
+}
+@media (max-height: 760px) {
+  dialog.auth-modal {
+    overflow-y: auto;
+  }
+}
+.auth-modal-body {
+  position: relative;
+}
+.auth-modal-body .modal-x {
+  z-index: 10;
+}
+
 /* headline: two lines at every width. "Get Your Product" on top, the green phrase on its own line below,
    never broken, and the type scales down so it fits on phones */
 .hero-center h1 {

@@ -1,8 +1,8 @@
 'use client'
 
-import Link from 'next/link'
 import { type FormEvent, useEffect, useState } from 'react'
 import { api, ApiError } from '../lib/api.ts'
+import { AuthModal } from './AuthModal.tsx'
 import { Turnstile } from './Turnstile.tsx'
 import { useAccount } from './useAccount.ts'
 
@@ -240,11 +240,12 @@ export function SubmitForm() {
 
 /** Shown above and below the form to visitors who are signed out. */
 function SignInNote({ bottom = false }: { bottom?: boolean }) {
-  const next = encodeURIComponent('/launch-your-product')
+  const [open, setOpen] = useState(false)
   return (
     <div className={`submit-signin${bottom ? ' bottom' : ''}`} role="note">
       <p><strong>Sign in to submit your product for free.</strong></p>
-      <Link className="btn small" href={`/sign-in?next=${next}`}>Sign in to submit</Link>
+      <button type="button" className="btn small" aria-haspopup="dialog" onClick={() => setOpen(true)}>Sign in to submit</button>
+      <AuthModal open={open} onClose={() => setOpen(false)} />
     </div>
   )
 }

@@ -19,8 +19,11 @@ const COPY: Record<Mode, { heading: string; submit: string; submitting: string; 
 
 const messageOf = (e: unknown) => (e instanceof AuthError ? e.message : 'Something went wrong. Try again.')
 
-/** Sign in and sign up are the two faces of a card that turns over; "forgot password" and "check your email" take its place. */
-export function AuthForm() {
+/**
+ * Sign in and sign up are the two faces of a card that turns over; "forgot password" and "check your email" take its place.
+ * With onSuccess (the sign-in popup) nothing redirects: the caller decides what happens once the person is signed in.
+ */
+export function AuthForm({ onSuccess }: { onSuccess?: () => void } = {}) {
   const router = useRouter()
   const [mode, setMode] = useState<Mode>('signin')
   const [showForgot, setShowForgot] = useState(false)
@@ -33,16 +36,17 @@ export function AuthForm() {
   const [busy, setBusy] = useState(false)
   const [next, setNext] = useState('/dashboard')
   const me = useAccount()
+  const finish = () => (onSuccess ? onSuccess() : router.push(next))
 
   // Someone who is already signed in has no use for this page.
   useEffect(() => {
-    if (me) router.replace(next)
-  }, [me, next, router])
+    if (me && !onSuccess) router.replace(next)
+  }, [me, next, router, onSuccess])
 
   // /sign-in?mode=signup opens the card on "Create your account"; ?next= is where to go afterwards.
   useEffect(() => {
     const q = new URLSearchParams(window.location.search)
-    if (q.get('mode') === 'signup') setMode('signup')
+    if (!onSuccess && q.get('mode') === 'signup') setMode('signup')
     const n = q.get('next')
     // only paths on this site, never an address on another one
     if (n && n.startsWith('/') && !n.startsWith('//')) setNext(n)
@@ -61,7 +65,7 @@ export function AuthForm() {
   }
 
   function done(o: Outcome) {
-    if (o.kind === 'signed_in') router.push(next)
+    if (o.kind === 'signed_in') finish()
     else setVerifying(true)
   }
 
@@ -86,13 +90,14 @@ export function AuthForm() {
     }
   }
 
+  if (me && onSuccess) return null
   if (me) return <p className="muted" role="status">You are signed in. Taking you to your dashboard.</p>
 
   if (verifying) {
     return (
       <VerifyFace
         email={email}
-        onDone={() => router.push(next)}
+        onDone={finish}
         onBack={() => {
           void signOut()
           setVerifying(false)
@@ -125,7 +130,7 @@ export function AuthForm() {
       }}
       busy={busy}
       onSubmit={onSubmit}
-      onSignedIn={() => router.push(next)}
+      onSignedIn={finish}
       onToggle={() => flipTo(m === 'signin' ? 'signup' : 'signin')}
       onForgot={() => {
         setErrors({})
