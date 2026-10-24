@@ -102,5 +102,7 @@ export function getFacts(s: CaseStudy): CaseFacts {
 }
 
 export const getCaseStudy = (slug: string) => CASE_STUDIES.find((s) => s.slug === slug)
+/** A real screenshot, when the study has one. Without it the list draws a card from the app name and title. */
 export const caseThumb = (s: CaseStudy) => s.thumb
-export const caseImage = (s: CaseStudy) => s.image
+/** The share image: the study's own, or the generated card at /case-studies/<slug>/opengraph-image. */
+export const caseImage = (s: CaseStudy) => s.image ?? `/case-studies/${s.slug}/opengraph-image`
