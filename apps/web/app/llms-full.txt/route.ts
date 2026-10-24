@@ -1,5 +1,5 @@
 import { absolute } from '../../lib/config.ts'
-import { CASE_STUDIES } from '../../lib/content/case-studies.ts'
+import { FEATURES } from '../../lib/content/features.ts'
 import { FAQ } from '../../lib/content/faq.ts'
 import { GUIDES } from '../../lib/content/guides.ts'
 import { LAUNCHES } from '../../lib/content/launches.ts'
@@ -20,10 +20,10 @@ export function GET() {
     const qa = l.faq.map((f) => `**${f.q}**\n${f.a}`).join('\n\n')
     return `## ${l.name}\n\nURL: ${absolute(`/launches/${l.slug}`)}\nWebsite: ${l.url}\nLaunched: ${new Date(l.launched).toLocaleDateString('en-US', { month: 'long', year: 'numeric', timeZone: 'UTC' })}\n\n${l.intro}\n\n${sections}\n\n### Alternatives to ${l.name}\n\n${l.compare.intro}\n\n${alts}\n\n${l.compare.verdict}\n\n### Questions about ${l.name}\n\n${qa}`
   }).join('\n\n')
-  const cases = CASE_STUDIES.map((c) => {
-    const body = c.sections.map((x) => `### ${x.h}\n\n${x.body.join('\n\n')}${x.bullets?.length ? `\n\n${x.bullets.map((b) => `- ${b}`).join('\n')}` : ''}`).join('\n\n')
-    const qa = c.faq.map((f) => `**${f.q}**\n${f.a}`).join('\n\n')
-    return `## ${c.headline}\n\nURL: ${absolute(`/case-studies/${c.slug}`)}\nUpdated: ${c.updated}\n\n${c.answer}\n\n${body}\n\n### Questions about this case study\n\n${qa}`
+  const features = FEATURES.map((f) => {
+    const body = f.sections.map((x) => `### ${x.h}\n\n${x.body.join('\n\n')}${x.bullets?.length ? `\n\n${x.bullets.map((b) => `- ${b}`).join('\n')}` : ''}`).join('\n\n')
+    const qa = f.faq.map((q) => `**${q.q}**\n${q.a}`).join('\n\n')
+    return `## ${f.headline}\n\nURL: ${absolute(`/features/${f.slug}`)}\nUpdated: ${f.updated}\n\n${f.answer}\n\n${body}\n\n### Questions about ${f.name.toLowerCase()}\n\n${qa}`
   }).join('\n\n')
   const text = `# Amplibee: full text
 
@@ -39,9 +39,9 @@ ${faq}
 
 ${launches}
 
-# Case studies
+# Features
 
-${cases}
+${features}
 
 # Guides
 

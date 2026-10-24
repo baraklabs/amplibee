@@ -4,7 +4,7 @@ import { GUIDES, type Guide } from '../lib/content/guides.ts'
 /** The post's share image, drawn from its title. It is also the picture on its card and at the top of the post. */
 export const blogImage = (g: Guide) => `/blog/${g.slug}/opengraph-image`
 
-/** One post as a row, like the case studies: a label, the title and the description on the left, the image on the right. */
+/** One post as a row, like the feature pages: a label, the title and the description on the left, the image on the right. */
 function BlogRow({ g }: { g: Guide }) {
   return (
     <article className="cs-row">
@@ -27,7 +27,7 @@ export function BlogList({ items = GUIDES }: { items?: Guide[] }) {
   )
 }
 
-/** A smaller card for the related posts under a case study or a post: image on top, then label, title and description. */
+/** A smaller card for the related posts under a feature page or a post: image on top, then label, title and description. */
 export function BlogRelCard({ g }: { g: Guide }) {
   return (
     <article className="cs-rel">

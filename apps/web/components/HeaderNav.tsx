@@ -9,7 +9,7 @@ import { AuthLink } from './AuthLink.tsx'
 const NAV = [
   { href: '/how-it-works', label: 'How it works' },
   { href: '/launches', label: 'Launches' },
-  { href: '/case-studies', label: 'Case Studies' },
+  { href: '/features', label: 'Features' },
   { href: '/pricing', label: 'Pricing' },
 ]
 

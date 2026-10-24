@@ -1,4 +1,4 @@
-// "What our customers got out of it" on the home page, read from apps/web/data/customers.json (the same data locally and in production).
+// "What our customers say" on the home page, read from apps/web/data/customers.json (the same data locally and in production).
 // Without data, it falls back to the real example checks.
 
 import customersData from '../data/customers.json'
@@ -56,7 +56,7 @@ export function CustomerResults() {
   return (
     <section className="section" aria-labelledby="cust-h">
       <div className="wrap">
-        <h2 id="cust-h" style={{ textAlign: 'center', borderTop: 0 }}>What our customers got out of it</h2>
+        <h2 id="cust-h" style={{ textAlign: 'center', borderTop: 0 }}>What our customers say</h2>
         <div className="cards-4">
           {customers.slice(0, 4).map((c) => (
             <article className="card cust-card" key={c.name + c.company}>

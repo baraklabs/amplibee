@@ -8,9 +8,9 @@ const config: NextConfig = {
     return [
       { source: '/guides', destination: '/blog', permanent: true },
       { source: '/guides/:slug', destination: '/blog/:slug', permanent: true },
-      // earlier case study addresses, which were replaced by the use case pages
-      { source: '/case-studies/check-:rest', destination: '/case-studies', permanent: false },
-      { source: '/case-studies/:slug(project-management|website-analytics|developer-email|product-analytics|app-hosting|backend-platform|scheduling|user-sign-in|indiecrew|nativeship|edgevolume|stas)', destination: '/case-studies', permanent: false },
+      // the case studies were replaced by the features pages
+      { source: '/case-studies', destination: '/features', permanent: true },
+      { source: '/case-studies/:slug*', destination: '/features', permanent: true },
     ]
   },
   async headers() {

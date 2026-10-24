@@ -3,10 +3,10 @@ import { notFound } from 'next/navigation'
 import { ArticleAside, ArticleMeta } from '../../../components/ArticleParts.tsx'
 import { blogImage, BlogRelCard } from '../../../components/BlogFeed.tsx'
 import { Breadcrumbs } from '../../../components/Breadcrumbs.tsx'
-import { CaseRelCard } from '../../../components/CaseStudies.tsx'
+import { FeatureRelCard } from '../../../components/FeatureFeed.tsx'
 import { JsonLd } from '../../../components/JsonLd.tsx'
 import { ClosingCta } from '../../../components/Landing.tsx'
-import { CASE_STUDIES } from '../../../lib/content/case-studies.ts'
+import { FEATURES } from '../../../lib/content/features.ts'
 import { GUIDES, getGuide, type Guide } from '../../../lib/content/guides.ts'
 import { article, faqPage } from '../../../lib/jsonld.ts'
 import { pageMeta } from '../../../lib/seo.ts'
@@ -31,13 +31,13 @@ function minutes(g: Guide): number {
   return Math.max(1, Math.round(words / 220))
 }
 
-/** The case studies that go with a post, by the topic of the post. */
-const CASES_FOR: Record<string, string[]> = {
-  'where-to-list-a-new-saas': ['launch-on-directories', 'missing-platforms-content-plan'],
-  'first-mentions': ['get-mentioned-by-real-people', 'competitor-research'],
-  'what-an-og-image-is': ['site-audit-robots-og-seo', 'track-your-score'],
-  'how-answer-engines-pick-products': ['get-cited-by-ai-assistants', 'rank-among-competitors'],
-  'technical-basics': ['site-audit-robots-og-seo', 'rank-among-competitors'],
+/** The features that go with a post, by the topic of the post. */
+const FEATURES_FOR: Record<string, string[]> = {
+  'where-to-list-a-new-saas': ['directory-listings', 'content-planner'],
+  'first-mentions': ['mentions-and-campaigns', 'competitor-comparison'],
+  'what-an-og-image-is': ['technical-seo-audit', 'product-visibility-score'],
+  'how-answer-engines-pick-products': ['ai-visibility-tracking', 'gap-finder'],
+  'technical-basics': ['technical-seo-audit', 'gap-finder'],
 }
 
 export default async function GuidePage({ params }: Props) {
@@ -45,7 +45,7 @@ export default async function GuidePage({ params }: Props) {
   if (!g) notFound()
   const path = `/blog/${g.slug}`
   const related = GUIDES.filter((x) => x.slug !== g.slug).slice(0, 2)
-  const cases = (CASES_FOR[g.slug] ?? []).map((s) => CASE_STUDIES.find((c) => c.slug === s)).filter((c) => !!c)
+  const features = (FEATURES_FOR[g.slug] ?? []).map((s) => FEATURES.find((c) => c.slug === s)).filter((c) => !!c)
   const articleLd = {
     ...article({ title: g.title, description: g.description, path, updated: g.updated, image: blogImage(g) }),
     speakable: { '@type': 'SpeakableSpecification', cssSelector: ['.cs-ans'] },
@@ -91,14 +91,14 @@ export default async function GuidePage({ params }: Props) {
               </div>
             </section>
 
-            {cases.length ? (
-              <section className="cs-sec" aria-labelledby="bl-cs-h">
+            {features.length ? (
+              <section className="cs-sec" aria-labelledby="bl-ft-h">
                 <div className="cs-sec-head">
-                  <h2 id="bl-cs-h">Related case studies</h2>
-                  <Link href="/case-studies">All case studies →</Link>
+                  <h2 id="bl-ft-h">Related features</h2>
+                  <Link href="/features">All features →</Link>
                 </div>
                 <div className="cs-rel-grid">
-                  {cases.map((c) => (c ? <CaseRelCard s={c} key={c.slug} /> : null))}
+                  {features.map((c) => (c ? <FeatureRelCard f={c} key={c.slug} /> : null))}
                 </div>
               </section>
             ) : null}

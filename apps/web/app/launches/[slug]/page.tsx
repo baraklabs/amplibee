@@ -1,12 +1,12 @@
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { Breadcrumbs } from '../../../components/Breadcrumbs.tsx'
-import { CaseRelCard } from '../../../components/CaseStudies.tsx'
+import { FeatureRelCard } from '../../../components/FeatureFeed.tsx'
 import { FaqAccordion } from '../../../components/FaqAccordion.tsx'
 import { JsonLd } from '../../../components/JsonLd.tsx'
 import { StartupGrid, startups } from '../../../components/Startups.tsx'
 import { absolute } from '../../../lib/config.ts'
-import { CASE_STUDIES } from '../../../lib/content/case-studies.ts'
+import { FEATURES } from '../../../lib/content/features.ts'
 import { getLaunch, LAUNCHES, launchImages } from '../../../lib/content/launches.ts'
 import { article, faqPage } from '../../../lib/jsonld.ts'
 import { pageMeta } from '../../../lib/seo.ts'
@@ -39,8 +39,8 @@ export default async function LaunchPage({ params }: Props) {
   const img = launchImages(l.slug)
   const altId = (name: string) => `alt-${name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')}`
   const more = startups.filter((s) => s.domain !== l.domain).slice(0, 4)
-  // the use cases that matter to anyone who has just launched: getting listed, seeing the competition, being named
-  const useCases = ['launch-on-directories', 'competitor-research', 'get-cited-by-ai-assistants', 'site-audit-robots-og-seo'].map((slug) => CASE_STUDIES.find((c) => c.slug === slug)).filter((c) => !!c)
+  // the features that matter to anyone who has just launched: getting listed, seeing the competition, being named
+  const useCases = ['directory-listings', 'competitor-comparison', 'ai-visibility-tracking', 'technical-seo-audit'].map((slug) => FEATURES.find((c) => c.slug === slug)).filter((c) => !!c)
   const product = {
     '@context': 'https://schema.org',
     '@type': l.app.type,
@@ -140,11 +140,11 @@ export default async function LaunchPage({ params }: Props) {
 
         <section className="launch-more" aria-labelledby="uc-h">
           <div className="launch-more-head">
-            <h2 id="uc-h">Use cases</h2>
-            <Link href="/case-studies">All case studies</Link>
+            <h2 id="uc-h">Features</h2>
+            <Link href="/features">All features</Link>
           </div>
           <div className="cs-rel-grid">
-            {useCases.map((c) => (c ? <CaseRelCard s={c} key={c.slug} /> : null))}
+            {useCases.map((c) => (c ? <FeatureRelCard f={c} key={c.slug} /> : null))}
           </div>
         </section>
       </div>

@@ -9,7 +9,7 @@ const BENEFITS: { icon: string; text: string }[] = [
   { icon: 'M5 12l5 5L20 7', text: 'Get listed on directories and plan a month of content' },
 ]
 
-/** The sticky call-to-action card beside every case study and blog post. */
+/** The sticky call-to-action card beside every feature page and blog post. */
 export function ArticleAside() {
   return (
     <aside className="cs-side" aria-label="Check your own product">
