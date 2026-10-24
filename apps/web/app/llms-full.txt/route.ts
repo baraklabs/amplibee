@@ -17,7 +17,7 @@ export function GET() {
     const sections = l.sections.map((s) => `### ${s.h}\n\n${s.a}${s.more?.length ? `\n\n${s.more.join('\n\n')}` : ''}${s.bullets?.length ? `\n\n${s.bullets.map((b) => `- ${b}`).join('\n')}` : ''}`).join('\n\n')
     const alts = l.compare.alternatives.map((x) => `- ${x.name}${x.url ? ` (${x.url})` : ''}: ${x.what} Best for: ${x.bestFor}. Trade-off: ${x.tradeoff}.`).join('\n')
     const qa = l.faq.map((f) => `**${f.q}**\n${f.a}`).join('\n\n')
-    return `## ${l.name}\n\nURL: ${absolute(`/launches/${l.slug}`)}\nWebsite: ${l.url}\nLaunched: ${l.launched}\n\n${l.intro}\n\n${sections}\n\n### Alternatives to ${l.name}\n\n${l.compare.intro}\n\n${alts}\n\n${l.compare.verdict}\n\n### Questions about ${l.name}\n\n${qa}`
+    return `## ${l.name}\n\nURL: ${absolute(`/launches/${l.slug}`)}\nWebsite: ${l.url}\nLaunched: ${new Date(l.launched).toLocaleDateString('en-US', { month: 'long', year: 'numeric', timeZone: 'UTC' })}\n\n${l.intro}\n\n${sections}\n\n### Alternatives to ${l.name}\n\n${l.compare.intro}\n\n${alts}\n\n${l.compare.verdict}\n\n### Questions about ${l.name}\n\n${qa}`
   }).join('\n\n')
   const text = `# Amplibee: full text
 

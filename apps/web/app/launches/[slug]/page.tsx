@@ -71,7 +71,7 @@ export default async function LaunchPage({ params }: Props) {
               <h1>{l.name}</h1>
               <p className="launch-meta">
                 <span className="tag">{l.category}</span>
-                <span className="muted">Launched <time dateTime={l.launched}>{new Date(l.launched).toLocaleDateString('en-US', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' })}</time></span>
+                <span className="muted">Launched <time dateTime={l.launched.slice(0, 7)}>{new Date(l.launched).toLocaleDateString('en-US', { month: 'long', year: 'numeric', timeZone: 'UTC' })}</time></span>
               </p>
             </div>
           </div>
