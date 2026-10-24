@@ -1,10 +1,8 @@
-// "What our customers got out of it" and "What customers are saying".
-// Both read entries from apps/web/data/customers.json and testimonials.json (the same data locally and in production).
-// Without data, the results section falls back to the real example checks and the quote section is hidden.
+// "What our customers got out of it" on the home page, read from apps/web/data/customers.json (the same data locally and in production).
+// Without data, it falls back to the real example checks.
 
 import customersData from '../data/customers.json'
 import metaData from '../data/customers.meta.json'
-import quotesData from '../data/testimonials.json'
 import { ExampleCards } from './Landing.tsx'
 import { StatValue } from './StatValue.tsx'
 
@@ -21,17 +19,8 @@ interface Customer {
   avatar?: string
   stats: Stat[]
 }
-interface Quote {
-  quote: string
-  name: string
-  company?: string
-  role?: string
-  url?: string
-  avatar?: string
-}
 
 const customers = customersData as Customer[]
-const quotes = quotesData as Quote[]
 // Optional real totals for the whole customer base, when it is larger than the cards shown: { "total_customers": 1200 }
 const meta = metaData as { total_customers?: number; pill_first?: Stat; pill_middle?: Stat; pill_last?: Stat }
 
@@ -88,47 +77,6 @@ export function CustomerResults() {
             </article>
           ))}
         </div>
-      </div>
-    </section>
-  )
-}
-
-function QuoteCard({ q, hidden }: { q: Quote; hidden?: boolean }) {
-  const sub = q.company ?? q.role
-  return (
-    <figure className="card quote" aria-hidden={hidden ? true : undefined}>
-      <blockquote><p>&ldquo;{q.quote}&rdquo;</p></blockquote>
-      <figcaption>
-        <Avatar name={q.name} src={q.avatar} />
-        <span><strong>{q.name}</strong>{sub ? <span className="muted">{sub}</span> : null}</span>
-      </figcaption>
-    </figure>
-  )
-}
-
-export function Testimonials() {
-  if (!quotes.length) return null
-  const rows = quotes.length >= 6 ? 3 : 1
-  const groups: Quote[][] = Array.from({ length: rows }, () => [])
-  quotes.forEach((q, i) => groups[i % rows].push(q))
-  return (
-    <section className="section" aria-labelledby="q-h">
-      <div className="wrap">
-        <h2 id="q-h" style={{ textAlign: 'center', borderTop: 0 }}>What customers are saying</h2>
-      </div>
-      <div className="marquee-rows">
-        {groups.map((g, r) => {
-          // Repeat short rows until one half is wider than a wide screen, then double so the loop has no gap.
-          const half = Array.from({ length: Math.max(1, Math.ceil(6 / g.length)) }, () => g).flat()
-          return (
-            <div className="marquee" key={r}>
-              <div className="marquee-track" style={{ animationDuration: `${70 + r * 14}s`, animationDirection: r % 2 ? 'reverse' : 'normal' }}>
-                {half.map((q, i) => <QuoteCard q={q} key={`a${i}`} />)}
-                {half.map((q, i) => <QuoteCard q={q} key={`b${i}`} hidden />)}
-              </div>
-            </div>
-          )
-        })}
       </div>
     </section>
   )
