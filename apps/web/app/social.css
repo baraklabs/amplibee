@@ -540,16 +540,17 @@ dialog.auth-modal {
 /* case studies */
 .cs-list {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: 1fr;
   gap: 20px;
-  align-items: start;
   margin: 8px 0 48px;
 }
+/* one study per row: thumbnail on the left, text on the right; a study without a thumbnail is text only */
 .cs-card {
   padding: 0;
   overflow: hidden;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  align-items: stretch;
   position: relative;
   box-shadow: var(--shadow-plaque);
   border-color: transparent;
@@ -558,14 +559,21 @@ dialog.auth-modal {
 .cs-card:hover {
   transform: translateY(-2px);
 }
+/* the CTA sits between the cards so it must span the one column */
+.cs-list-h {
+  margin: 40px 0 16px;
+  border-top: 0;
+  padding-top: 0;
+}
 .cs-thumb {
   display: block;
-  width: 100%;
+  flex: 0 0 340px;
+  width: 340px;
   height: auto;
-  aspect-ratio: 800 / 420;
   object-fit: cover;
+  object-position: left center;
   background: var(--paper-2);
-  border-bottom: 1px solid var(--rule);
+  border-right: 1px solid var(--rule);
 }
 .cs-card-body {
   padding: 20px;
@@ -631,8 +639,15 @@ dialog.auth-modal {
   opacity: 0.8;
 }
 @media (max-width: 720px) {
-  .cs-list {
-    grid-template-columns: 1fr;
+  .cs-card {
+    flex-direction: column;
+  }
+  .cs-thumb {
+    flex: none;
+    width: 100%;
+    aspect-ratio: 800 / 420;
+    border-right: 0;
+    border-bottom: 1px solid var(--rule);
   }
 }
 .cs-page {

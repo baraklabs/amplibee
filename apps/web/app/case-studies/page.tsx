@@ -2,6 +2,7 @@ import { Breadcrumbs } from '../../components/Breadcrumbs.tsx'
 import { CaseList } from '../../components/CaseStudies.tsx'
 import { JsonLd } from '../../components/JsonLd.tsx'
 import { ClosingCta } from '../../components/Landing.tsx'
+import { CustomerResults } from '../../components/Social.tsx'
 import { absolute } from '../../lib/config.ts'
 import { CASE_STUDIES } from '../../lib/content/case-studies.ts'
 import { webPage } from '../../lib/jsonld.ts'
@@ -31,6 +32,10 @@ export default function CaseStudies() {
           <h1>Case studies</h1>
           <p className="lede">Real founders, real checks. Open a case study to see what they found and what they did about it.</p>
         </div>
+      </div>
+      <CustomerResults />
+      <div className="wrap">
+        <h2 className="cs-list-h">All case studies</h2>
         <CaseList />
       </div>
       <ClosingCta />
