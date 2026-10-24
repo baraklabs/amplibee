@@ -144,7 +144,7 @@ export function Features() {
             <div className="authority-side">
               <p>Want to get mentioned by people to improve your brand visibility? We will get it done for you, with a draft brief and a budget you set.</p>
               <CheckCta className="btn-cta">Get mentioned<ArrowRight /></CheckCta>
-              <p className="authority-note">Campaigns use creators who are paid to post, write about or engage with your product. No result is promised.</p>
+              <p className="authority-note">Campaigns use creators who are paid to post, write about or engage with your product, which improves your odds of being mentioned.</p>
             </div>
           </div>
 

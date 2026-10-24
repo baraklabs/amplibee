@@ -11,8 +11,9 @@ export const dynamic = 'force-static'
 export function GET() {
   const faq = FAQ.map((f) => `### ${f.q}\n\n${stripLinks(f.a)}${f.more?.length ? `\n\n${f.more.map(stripLinks).join('\n\n')}` : ''}`).join('\n\n')
   const guides = GUIDES.map((g) => {
-    const body = g.sections.map((s) => `### ${s.q}\n\n${stripLinks(s.a)}${s.more?.length ? `\n\n${s.more.map(stripLinks).join('\n\n')}` : ''}`).join('\n\n')
-    return `## ${g.title}\n\nURL: ${absolute(`/blog/${g.slug}`)}\nUpdated: ${g.updated}\n\n${stripLinks(g.intro)}\n\n${body}`
+    const body = g.sections.map((s) => `### ${s.q}\n\n${stripLinks(s.a)}${s.table ? `\n\n${s.table.rows.map((r) => `- ${r.join(': ')}`).join('\n')}` : ''}${s.bullets?.length ? `\n\n${s.bullets.map((b) => `- ${b.replace(/\*\*/g, '')}`).join('\n')}` : ''}${s.more?.length ? `\n\n${s.more.map(stripLinks).join('\n\n')}` : ''}`).join('\n\n')
+    const qa = g.faq?.length ? `\n\n### Questions people ask\n\n${g.faq.map((f) => `**${f.q}**\n${stripLinks(f.a)}`).join('\n\n')}` : ''
+    return `## ${g.title}\n\nURL: ${absolute(`/blog/${g.slug}`)}\nUpdated: ${g.updated}\n\n${stripLinks(g.intro)}${g.summary ? `\n\n${g.summary}` : ''}\n\n${body}${qa}`
   }).join('\n\n')
   const launches = LAUNCHES.map((l) => {
     const sections = l.sections.map((s) => `### ${s.h}\n\n${s.a}${s.more?.length ? `\n\n${s.more.join('\n\n')}` : ''}${s.bullets?.length ? `\n\n${s.bullets.map((b) => `- ${b}`).join('\n')}` : ''}`).join('\n\n')

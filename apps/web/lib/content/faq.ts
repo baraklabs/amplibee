@@ -48,7 +48,7 @@ export const FAQ: QA[] = [
   },
   {
     q: 'What does the campaign button do?',
-    a: 'It opens a campaign request with the gap, a draft brief and a suggested budget attached. Want to get mentioned by people to improve your brand visibility? We get it done for you with creators who are paid to post about or engage with your product. You set the final brief and price. No result is promised.',
+    a: 'It opens a campaign request with the gap, a draft brief and a suggested budget attached. Want to get mentioned by people to improve your brand visibility? We get it done for you with creators who are paid to post about or engage with your product. You set the final brief and price. A campaign improves your odds of being mentioned.',
   },
   {
     q: 'How do I remove my report?',

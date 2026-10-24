@@ -169,7 +169,7 @@ export function ReportView({ report, unlockSlot, skipped }: { report: Report; un
             </div>
             {oyekoolItems.length > 0 ? (
               <p className="caption" style={{ marginTop: 10 }}>
-                Campaigns run through a partner marketplace where brands pay creators to post, write about or engage with their product. A campaign does not guarantee a result.
+                Campaigns run through a partner marketplace where brands pay creators to post, write about or engage with their product. A campaign improves your odds of being mentioned.
               </p>
             ) : null}
           </section>

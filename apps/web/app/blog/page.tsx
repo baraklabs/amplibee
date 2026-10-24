@@ -7,7 +7,7 @@ import { GUIDES } from '../../lib/content/guides.ts'
 import { webPage } from '../../lib/jsonld.ts'
 import { pageMeta } from '../../lib/seo.ts'
 
-const DESCRIPTION = 'Short posts on listing a new SaaS, earning first mentions, setting an OG image, how answer engines pick products, and technical basics.'
+const DESCRIPTION = 'Short posts on listing a new SaaS, setting an OG image, how to get ChatGPT to suggest your product, and technical basics.'
 
 export const metadata = pageMeta({
   title: 'Blog: guides for getting found',
@@ -27,7 +27,7 @@ export default function BlogIndex() {
         <Breadcrumbs trail={[{ name: 'Blog', path: '/blog' }]} />
         <JsonLd data={[webPage({ type: 'CollectionPage', name: 'Amplibee blog', description: DESCRIPTION, path: '/blog' }), list]} />
         <h1 className="cs-list-h cs-list-h-top">Blog</h1>
-        <p className="cs-list-sub">Each post answers its questions first, then gives the detail. Every one is dated and cites its sources.</p>
+        <p className="cs-list-sub">Each post answers its questions first, then gives the detail. Every one is dated.</p>
         <BlogList />
       </div>
       <ClosingCta />

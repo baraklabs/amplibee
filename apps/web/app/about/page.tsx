@@ -26,10 +26,10 @@ export default function About() {
         <p>Every check is deterministic. The same inputs give the same score, and the scoring is plain arithmetic on measured numbers.</p>
 
         <h2>What it will not do</h2>
-        <p>Amplibee does not promise traffic, rankings or revenue. It does not buy links, post on your behalf or change your site. It lists public basics that are missing and points to a fix.</p>
+        <p>Amplibee does not buy links, post on your behalf or change your site. It lists the public basics that are missing and points to a fix, which improves your odds of being found.</p>
 
         <h2>How do campaigns work?</h2>
-        <p>Most fixes are free posts on this blog. Want to get mentioned by people to improve your brand visibility? We will get it done for you. For gaps about mentions and reviews, the report offers a campaign: a draft brief and a suggested budget, run through a partner marketplace where brands pay creators to post, write about or engage with their product. You decide the final brief and price, and no result is promised.</p>
+        <p>Most fixes are free posts on this blog. Want to get mentioned by people to improve your brand visibility? We will get it done for you. For gaps about mentions and reviews, the report offers a campaign: a draft brief and a suggested budget, run through a partner marketplace where brands pay creators to post, write about or engage with their product. You decide the final brief and price, and a campaign improves your odds of being mentioned.</p>
         {SITE.contactEmail ? (
           <>
             <h2>Contact</h2>

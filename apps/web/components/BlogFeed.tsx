@@ -2,7 +2,10 @@ import Link from 'next/link'
 import { GUIDES, type Guide } from '../lib/content/guides.ts'
 
 /** The post's share image, drawn from its title. It is also the picture on its card and at the top of the post. */
-export const blogImage = (g: Guide) => `/blog/${g.slug}/opengraph-image`
+export const blogImage = (g: Guide) => g.image ?? `/blog/${g.slug}/opengraph-image`
+
+/** The smaller picture on cards: the thumbnail when there is one. */
+const blogThumb = (g: Guide) => g.thumb ?? blogImage(g)
 
 /** One post as a row, like the feature pages: a label, the title and the description on the left, the image on the right. */
 function BlogRow({ g }: { g: Guide }) {
@@ -14,7 +17,7 @@ function BlogRow({ g }: { g: Guide }) {
         <p className="cs-row-sum">{g.description}</p>
       </div>
       {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img className="cs-img cs-row-thumb" src={blogImage(g)} alt="" width={1200} height={630} loading="lazy" decoding="async" />
+      <img className="cs-img cs-row-thumb" src={blogThumb(g)} alt="" width={1200} height={630} loading="lazy" decoding="async" />
     </article>
   )
 }
@@ -32,7 +35,7 @@ export function BlogRelCard({ g }: { g: Guide }) {
   return (
     <article className="cs-rel">
       {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img className="cs-img cs-rel-img" src={blogImage(g)} alt="" width={1200} height={630} loading="lazy" decoding="async" />
+      <img className="cs-img cs-rel-img" src={blogThumb(g)} alt="" width={1200} height={630} loading="lazy" decoding="async" />
       <div className="cs-rel-body">
         <span className="cs-kicker">Blog</span>
         <h3><Link className="cs-row-link" href={`/blog/${g.slug}`}>{g.title}</Link></h3>
