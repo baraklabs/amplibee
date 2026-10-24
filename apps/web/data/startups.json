@@ -1,5 +1,14 @@
 [
   {
+    "name": "Email List",
+    "domain": "emaillist.ai",
+    "url": "https://emaillist.ai/",
+    "tagline": "AI-assisted US B2B contact files prepared per order",
+    "category": "Marketing",
+    "launched": "2026-10",
+    "logo": "/customers/emaillist-logo.png"
+  },
+  {
     "name": "Vaneform",
     "domain": "vaneform.com",
     "url": "https://vaneform.com/",
