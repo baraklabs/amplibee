@@ -56,10 +56,10 @@ export default function Home() {
         </div>
       </section>
 
+      <Features />
       <CustomerResults />
       <StartupsLaunched />
       <Pipeline />
-      <Features />
 
       <section className="section" aria-labelledby="faq-h">
         <div className="wrap">
