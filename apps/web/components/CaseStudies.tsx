@@ -1,5 +1,6 @@
 import Link from 'next/link'
-import { CASE_STUDIES, type CaseStudy, caseThumb, getFacts } from '../lib/content/case-studies.ts'
+import type { CSSProperties } from 'react'
+import { CASE_STUDIES, type CaseStudy, caseThumb, caseTone, getFacts } from '../lib/content/case-studies.ts'
 import { StatValue } from './StatValue.tsx'
 
 /** The first letter of a name in a circle, or the photo when there is one. */
@@ -14,11 +15,12 @@ export function CaseAvatar({ name, src, size = 40 }: { name: string; src?: strin
  * right a thumbnail in the share image's shape. The thumbnail is optional; without one the text uses the full row.
  * The title link covers the whole row.
  */
-function CaseRow({ s, tone }: { s: CaseStudy; tone: number }) {
+function CaseRow({ s }: { s: CaseStudy }) {
   const c = getFacts(s)
   const thumb = caseThumb(s)
+  const tone = caseTone(s)
   return (
-    <article className="cs-row">
+    <article className="cs-row" style={{ '--block': tone.light, '--dark': tone.dark } as CSSProperties}>
       <div className="cs-row-text">
         <header className="cs-row-who">
           <CaseAvatar name={c.name} size={24} />
@@ -37,9 +39,9 @@ function CaseRow({ s, tone }: { s: CaseStudy; tone: number }) {
         // eslint-disable-next-line @next/next/no-img-element
         <img className="cs-row-thumb" src={thumb} alt="" width={240} height={126} loading="lazy" decoding="async" />
       ) : (
-        <div className="cs-row-thumb cs-ph" data-tone={tone % 4} aria-hidden="true">
+        <div className="cs-row-thumb cs-ph" aria-hidden="true">
           <strong>{c.name}</strong>
-          <span>{s.headline}</span>
+          {s.tagline ? <span>{s.tagline}</span> : null}
         </div>
       )}
     </article>
@@ -62,7 +64,7 @@ export function CaseCta() {
 /** The list of studies, with a call to action after the 5th one when the list is longer than that. */
 export function CaseList({ items = CASE_STUDIES }: { items?: CaseStudy[] }) {
   const AFTER = 5
-  const rows = items.map((s, i) => <CaseRow s={s} tone={i} key={s.slug} />)
+  const rows = items.map((s) => <CaseRow s={s} key={s.slug} />)
   return (
     <div className="cs-list">
       {rows.slice(0, AFTER)}

@@ -14,6 +14,8 @@ export interface CaseStudy {
   slug: string
   /** The checked site, as written in data/examples.json. */
   domain: string
+  /** What the checked product is, in a few words. Shown under the name on the generated thumbnail and share image. */
+  tagline: string
   /** One line for the row and the page heading. */
   headline: string
   /** Two sentences for the row and the meta description. */
@@ -48,6 +50,23 @@ interface Example {
 
 const examples = examplesData as unknown as { taken_at: string; items: Example[] }
 
+/** A few plain words on what each checked product is. A product missing here just shows no line. */
+const PRODUCT_LINE: Record<string, string> = {
+  'linear.app': 'Issue tracking for software teams',
+  'plausible.io': 'Privacy-friendly website analytics',
+  'resend.com': 'Email API for developers',
+  'posthog.com': 'Open-source product analytics',
+}
+
+/** Each study gets its own color: a light one for its block in the list and a dark one for its generated image. */
+export const TONES = [
+  { light: '#dbf5ec', dark: '#0f3d33' },
+  { light: '#fbeed0', dark: '#4a3410' },
+  { light: '#e3e8fb', dark: '#1f2a5c' },
+  { light: '#f8e1e6', dark: '#4d1f2e' },
+]
+export const caseTone = (s: CaseStudy) => TONES[Math.max(0, CASE_STUDIES.indexOf(s)) % TONES.length]
+
 const SUB_LABEL: Record<string, string> = { discoverability: 'Discoverability', buzz: 'Buzz', trust: 'Trust', technical: 'Technical' }
 const plural = (n: number, one: string, many: string) => (n === 1 ? one : many)
 
@@ -81,6 +100,7 @@ function exampleStudy(e: Example): CaseStudy {
   return {
     slug: `check-${e.domain.replace(/[^a-z0-9]+/g, '-')}`,
     domain: e.domain,
+    tagline: PRODUCT_LINE[e.domain] ?? '',
     headline: `What an Amplibee check found on ${e.domain}`,
     summary: `${e.domain} scored ${score} in an example check and has ${e.gap_total} ${plural(e.gap_total, 'gap', 'gaps')} left.${largest}`,
     updated: examples.taken_at,
