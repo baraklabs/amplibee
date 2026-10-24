@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { HeroArt } from './HeroArt.tsx'
 import { FEATURES, type Feature, featureImage } from '../lib/content/features.ts'
 
 /** One feature as a row: a label, the title and the description on the left, the share image on the right. */
@@ -20,11 +21,12 @@ function FeatureRow({ f }: { f: Feature }) {
 function FeatureCta() {
   return (
     <aside className="cs-cta" aria-label="Check your product">
-      <div>
+      <HeroArt />
+      <div className="cs-cta-text">
         <strong>See these features on your product.</strong>
         <span>Check it for free and see which gaps to fix first.</span>
       </div>
-      <Link className="btn" href="/launch-your-product">Submit your product</Link>
+      <Link className="btn cs-cta-btn" href="/launch-your-product">Submit your product</Link>
     </aside>
   )
 }

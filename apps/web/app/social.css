@@ -654,10 +654,34 @@ dialog.auth-modal {
   flex-wrap: wrap;
   padding: 22px 26px;
   border-radius: 14px;
-  background: var(--ink);
-  color: var(--paper);
+  background: #0b0f0e;
+  color: #f2f5f4;
+  position: relative;
+  overflow: hidden;
 }
-.cs-cta > div {
+/* the same honeycomb as the closing banner, faded out under the text */
+.cs-cta .hex-outline {
+  stroke: rgba(16, 185, 129, 0.22);
+}
+.cs-cta .hex-fill {
+  fill: #10b981;
+}
+.cs-cta .hex-fill.strong {
+  fill: #6ee7b7;
+}
+.cs-cta::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at left center, #0b0f0e 30%, rgba(11, 15, 14, 0) 80%);
+  pointer-events: none;
+}
+.cs-cta-text,
+.cs-cta-btn {
+  position: relative;
+  z-index: 1;
+}
+.cs-cta-text {
   display: flex;
   flex-direction: column;
   gap: 2px;
