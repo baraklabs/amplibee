@@ -179,15 +179,15 @@ export function Features() {
 
             <div className="mini-card">
               <h4>Hacker News stories per site</h4>
-              <div className="bars" role="img" aria-label={`Hacker News stories: ${hn.map((h) => `${h.domain} ${h.n}`).join(', ')}`}>
+              <div className="fx-bars" role="img" aria-label={`Hacker News stories: ${hn.map((h) => `${h.domain} ${h.n}`).join(', ')}`}>
                 {hn.map((h) => (
                   <div key={h.domain}>
-                    <span className="bar-val">{num(h.n)}</span>
-                    <span className="bar-col" style={{ height: `${Math.max(2, (h.n / topHn) * 100)}%` }} />
+                    <span className="fx-bar-val">{num(h.n)}</span>
+                    <span className="fx-bar-col" style={{ height: `${Math.max(2, (h.n / topHn) * 100)}%` }} />
                   </div>
                 ))}
               </div>
-              <div className="bar-labels">{hn.map((h) => <span key={h.domain}>{h.domain.replace(/\.[a-z]+$/, '')}</span>)}</div>
+              <div className="fx-bar-labels">{hn.map((h) => <span key={h.domain}>{h.domain.replace(/\.[a-z]+$/, '')}</span>)}</div>
             </div>
           </div>
         </div>

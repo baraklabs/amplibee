@@ -299,7 +299,7 @@
   margin: 0 0 8px;
   font-size: 0.9rem;
 }
-.bars {
+.fx-bars {
   display: flex;
   align-items: flex-end;
   gap: 14px;
@@ -307,7 +307,7 @@
   margin-top: 8px;
   border-bottom: 1px solid var(--rule);
 }
-.bars > div {
+.fx-bars > div {
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -318,24 +318,24 @@
   color: var(--muted);
   gap: 4px;
 }
-.bars .bar-val {
+.fx-bars .fx-bar-val {
   font-size: 0.72rem;
 }
-.bars .bar-col {
+.fx-bars .fx-bar-col {
   display: block;
   width: 100%;
   border-radius: 6px 6px 0 0;
   background: var(--accent);
   min-height: 3px;
 }
-.bar-labels {
+.fx-bar-labels {
   display: flex;
   gap: 14px;
   margin-top: 6px;
   font-size: 0.72rem;
   color: var(--muted);
 }
-.bar-labels span {
+.fx-bar-labels span {
   flex: 1;
   text-align: center;
   overflow: hidden;
