@@ -3,6 +3,7 @@ import type { NextConfig } from 'next'
 const config: NextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
+  experimental: { agentUpgrade: 'security' },
   async redirects() {
     return [
       { source: '/guides', destination: '/blog', permanent: true },
