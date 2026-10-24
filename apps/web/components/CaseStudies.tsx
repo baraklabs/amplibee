@@ -1,7 +1,6 @@
 import Link from 'next/link'
 import type { CSSProperties } from 'react'
 import { CASE_STUDIES, type CaseStudy, caseThumb, caseTone, getFacts } from '../lib/content/case-studies.ts'
-import { StatValue } from './StatValue.tsx'
 
 /** The first letter of a name in a circle, or the photo when there is one. */
 export function CaseAvatar({ name, src, size = 40 }: { name: string; src?: string; size?: number }) {
@@ -11,33 +10,23 @@ export function CaseAvatar({ name, src, size = 40 }: { name: string; src?: strin
 }
 
 /**
- * One study as a row, like a post in a feed: who it is about, the title and a short summary on the left, and on the
- * right a thumbnail in the share image's shape. The thumbnail is optional; without one the text uses the full row.
- * The title link covers the whole row.
+ * One study as a card: a small label, the title and a short description on the left, and on the right an image that
+ * runs to the card's edge. The image is the study's own thumbnail when it has one; otherwise a dark block with the
+ * product's name and what it is. The title link covers the whole card.
  */
 function CaseRow({ s }: { s: CaseStudy }) {
   const c = getFacts(s)
   const thumb = caseThumb(s)
-  const tone = caseTone(s)
   return (
-    <article className="cs-row" style={{ '--block': tone.light, '--dark': tone.dark } as CSSProperties}>
+    <article className="cs-row" style={{ '--dark': caseTone(s) } as CSSProperties}>
       <div className="cs-row-text">
-        <header className="cs-row-who">
-          <CaseAvatar name={c.name} size={24} />
-          <strong>{c.name}</strong>
-          <span className="muted">· {c.sub}</span>
-        </header>
+        <span className="cs-kicker">{c.sub}</span>
         <h3 className="cs-row-title"><Link className="cs-row-link" href={`/case-studies/${s.slug}`}>{s.headline}</Link></h3>
         <p className="cs-row-sum">{s.summary}</p>
-        <div className="cs-row-meta">
-          {c.stats.slice(0, 2).map((x) => (
-            <span className="cs-chip" key={x.label}><strong><StatValue value={x.value} /></strong> {x.label}</span>
-          ))}
-        </div>
       </div>
       {thumb ? (
         // eslint-disable-next-line @next/next/no-img-element
-        <img className="cs-row-thumb" src={thumb} alt="" width={240} height={126} loading="lazy" decoding="async" />
+        <img className="cs-row-thumb" src={thumb} alt="" width={440} height={231} loading="lazy" decoding="async" />
       ) : (
         <div className="cs-row-thumb cs-ph" aria-hidden="true">
           <strong>{c.name}</strong>

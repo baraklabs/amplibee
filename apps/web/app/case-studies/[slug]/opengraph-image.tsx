@@ -13,7 +13,7 @@ export function generateStaticParams() {
 /** The share image for a study without a screenshot: the product's name and what it is, centered on its own dark color. */
 export default async function Image({ params }: { params: Promise<{ slug: string }> }) {
   const s = getCaseStudy((await params).slug)
-  const bg = s ? caseTone(s).dark : '#1d1d1b'
+  const bg = s ? caseTone(s) : '#1d1d1b'
   return new ImageResponse(
     (
       <div style={{ width: '100%', height: '100%', background: bg, color: '#ffffff', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center', padding: 80 }}>

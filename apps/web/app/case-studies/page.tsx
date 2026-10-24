@@ -28,7 +28,9 @@ export default function CaseStudies() {
       <Breadcrumbs trail={[{ name: 'Case studies', path: '/case-studies' }]} />
       <JsonLd data={[webPage({ type: 'CollectionPage', name: 'Amplibee case studies', description: DESCRIPTION, path: '/case-studies' }), list]} />
       <h1 className="sr-only">Case studies</h1>
-      <CustomerResults />
+      <div className="cs-top">
+        <CustomerResults />
+      </div>
       <div className="wrap">
         <h2 className="cs-list-h">Case Studies</h2>
         <CaseList />

@@ -56,15 +56,14 @@ const PRODUCT_LINE: Record<string, string> = {
   'plausible.io': 'Privacy-friendly website analytics',
   'resend.com': 'Email API for developers',
   'posthog.com': 'Open-source product analytics',
+  'vercel.com': 'Frontend cloud and hosting platform',
+  'supabase.com': 'Open-source Postgres development platform',
+  'cal.com': 'Open-source scheduling software',
+  'clerk.com': 'Authentication and user management',
 }
 
-/** Each study gets its own color: a light one for its block in the list and a dark one for its generated image. */
-export const TONES = [
-  { light: '#dbf5ec', dark: '#0f3d33' },
-  { light: '#fbeed0', dark: '#4a3410' },
-  { light: '#e3e8fb', dark: '#1f2a5c' },
-  { light: '#f8e1e6', dark: '#4d1f2e' },
-]
+/** Each study gets its own dark color for its generated thumbnail and share image. */
+export const TONES = ['#0f3d33', '#4a3410', '#1f2a5c', '#4d1f2e', '#0e3f4a', '#3b1f5c', '#27303f', '#3a4010']
 export const caseTone = (s: CaseStudy) => TONES[Math.max(0, CASE_STUDIES.indexOf(s)) % TONES.length]
 
 const SUB_LABEL: Record<string, string> = { discoverability: 'Discoverability', buzz: 'Buzz', trust: 'Trust', technical: 'Technical' }

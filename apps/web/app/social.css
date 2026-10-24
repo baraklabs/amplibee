@@ -538,50 +538,52 @@ dialog.auth-modal {
 }
 
 /* case studies */
+/* the customer cards sit close under the header on the case studies page */
+.cs-top > .section {
+  padding-top: 20px;
+}
 .cs-list-h {
-  margin: 40px 0 8px;
+  margin: 56px 0 32px;
   text-align: center;
   border-top: 0;
   padding-top: 0;
 }
-/* a feed of rows: text on the left, a thumbnail the shape of the share image (1200x630) on the right */
+/* a stack of cards: label, title and description on the left, an image running to the right edge */
 .cs-list {
   display: flex;
   flex-direction: column;
-  gap: 20px;
-  margin: 8px 0 48px;
+  gap: 24px;
+  margin: 0 0 48px;
 }
 .cs-row {
   position: relative;
   display: flex;
   align-items: stretch;
-  justify-content: space-between;
   overflow: hidden;
-  border-radius: 20px;
-  background: var(--block, var(--paper-2));
-  transition: filter 0.15s;
+  border: 1px solid var(--rule);
+  border-radius: 14px;
+  background: var(--card);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+  transition: border-color 0.15s, box-shadow 0.15s;
 }
 .cs-row:hover {
-  filter: brightness(0.97);
+  border-color: var(--accent);
+  box-shadow: 0 6px 20px -8px rgba(0, 0, 0, 0.18);
 }
 .cs-row-text {
   flex: 1;
   min-width: 0;
-  padding: 28px 32px;
+  padding: 32px 36px;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   gap: 8px;
 }
-.cs-row-who {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 0.88rem;
-}
-.cs-row-who .avatar {
-  width: 24px;
-  height: 24px;
-  font-size: 0.7rem;
+.cs-kicker {
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
 }
 .cs-row-title {
   margin: 0;
@@ -595,7 +597,7 @@ dialog.auth-modal {
   color: inherit;
   text-decoration: none;
 }
-/* the title link covers the whole row */
+/* the title link covers the whole card */
 .cs-row-link::after {
   content: '';
   position: absolute;
@@ -604,31 +606,12 @@ dialog.auth-modal {
 .cs-row-sum {
   margin: 0;
   color: var(--muted);
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-}
-.cs-row-meta {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-top: 4px;
-}
-.cs-chip {
-  font-size: 0.8rem;
-  color: var(--muted);
-  background: var(--card);
-  border-radius: 999px;
-  padding: 3px 10px;
-}
-.cs-chip strong {
-  color: var(--ink);
 }
 .cs-row-thumb {
-  flex: 0 0 320px;
-  width: 320px;
-  min-height: 168px;
+  flex: 0 0 40%;
+  max-width: 440px;
+  width: 40%;
+  min-height: 224px;
   height: auto;
   object-fit: cover;
   display: block;
@@ -636,26 +619,27 @@ dialog.auth-modal {
   border-radius: 0;
   background: var(--dark, var(--paper-2));
 }
+/* no image yet: the product's name and what it is, centered on its own dark color */
 .cs-ph {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   text-align: center;
-  gap: 8px;
+  gap: 10px;
   box-sizing: border-box;
-  padding: 20px;
+  padding: 24px;
   background: var(--dark);
   color: #ffffff;
 }
 .cs-ph strong {
-  font-size: 1.6rem;
+  font-size: 1.9rem;
   line-height: 1.1;
   letter-spacing: -0.02em;
   overflow-wrap: anywhere;
 }
 .cs-ph span {
-  font-size: 0.85rem;
+  font-size: 0.95rem;
   line-height: 1.35;
   opacity: 0.78;
 }
@@ -665,9 +649,8 @@ dialog.auth-modal {
   justify-content: space-between;
   gap: 16px 24px;
   flex-wrap: wrap;
-  margin: 8px 0;
   padding: 22px 26px;
-  border-radius: 20px;
+  border-radius: 14px;
   background: var(--ink);
   color: var(--paper);
 }
@@ -679,12 +662,12 @@ dialog.auth-modal {
 .cs-cta span {
   opacity: 0.8;
 }
-@media (max-width: 640px) {
+@media (max-width: 720px) {
   .cs-row-text {
     padding: 20px 18px;
   }
   .cs-row-title {
-    font-size: 1.15rem;
+    font-size: 1.1rem;
   }
   .cs-row-thumb {
     flex-basis: 120px;
@@ -697,11 +680,7 @@ dialog.auth-modal {
   .cs-ph span {
     display: none;
   }
-  .cs-row-sum {
-    display: none;
-  }
 }
-
 .cs-page {
   padding-top: 28px;
   padding-bottom: 40px;

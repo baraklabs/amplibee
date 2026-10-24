@@ -1,5 +1,5 @@
 {
-  "taken_at": "2026-10-10",
+  "taken_at": "2026-10-24",
   "items": [
     {
       "domain": "linear.app",
@@ -13,8 +13,8 @@
       "gap_total": 6,
       "top_gap": "We confirmed 4 listings across the 17 directories we looked at. 12 of them could not be confirmed automatically, so they may hold a listing we did not see. Listings give buyers and crawlers a second place to find you.",
       "rank": 9797,
-      "hn": 132,
-      "github": 5004,
+      "hn": 133,
+      "github": 5280,
       "tech_passed": 12,
       "tech_total": 17
     },
@@ -31,7 +31,7 @@
       "top_gap": "We confirmed 3 listings across the 17 directories we looked at. 12 of them could not be confirmed automatically, so they may hold a listing we did not see. Listings give buyers and crawlers a second place to find you.",
       "rank": 4236,
       "hn": 68,
-      "github": 1450,
+      "github": 1503,
       "tech_passed": 15,
       "tech_total": 17
     },
@@ -48,7 +48,7 @@
       "top_gap": "We confirmed 4 listings across the 17 directories we looked at. 12 of them could not be confirmed automatically, so they may hold a listing we did not see. Listings give buyers and crawlers a second place to find you.",
       "rank": 16576,
       "hn": 40,
-      "github": 25475,
+      "github": 27233,
       "tech_passed": 17,
       "tech_total": 17
     },
@@ -64,9 +64,77 @@
       "gap_total": 3,
       "top_gap": "We confirmed 4 listings across the 17 directories we looked at. 12 of them could not be confirmed automatically, so they may hold a listing we did not see. Listings give buyers and crawlers a second place to find you.",
       "rank": 2198,
-      "hn": 296,
-      "github": 4169,
+      "hn": 278,
+      "github": 4378,
       "tech_passed": 15,
+      "tech_total": 17
+    },
+    {
+      "domain": "vercel.com",
+      "score": 93,
+      "sub_scores": {
+        "discoverability": 87,
+        "buzz": 100,
+        "trust": 100,
+        "technical": 89
+      },
+      "gap_total": 3,
+      "top_gap": "We confirmed 4 listings across the 17 directories we looked at. 12 of them could not be confirmed automatically, so they may hold a listing we did not see. Listings give buyers and crawlers a second place to find you.",
+      "rank": 3011,
+      "hn": 553,
+      "github": 398048,
+      "tech_passed": 15,
+      "tech_total": 17
+    },
+    {
+      "domain": "supabase.com",
+      "score": 94,
+      "sub_scores": {
+        "discoverability": 87,
+        "buzz": 100,
+        "trust": 100,
+        "technical": 91
+      },
+      "gap_total": 3,
+      "top_gap": "We confirmed 4 listings across the 17 directories we looked at. 12 of them could not be confirmed automatically, so they may hold a listing we did not see. Listings give buyers and crawlers a second place to find you.",
+      "rank": 4999,
+      "hn": 432,
+      "github": 183928,
+      "tech_passed": 15,
+      "tech_total": 17
+    },
+    {
+      "domain": "cal.com",
+      "score": 70,
+      "sub_scores": {
+        "discoverability": 60,
+        "buzz": 100,
+        "trust": 25,
+        "technical": 89
+      },
+      "gap_total": 4,
+      "top_gap": "We confirmed 2 listings across the 17 directories we looked at. 12 of them could not be confirmed automatically, so they may hold a listing we did not see. Listings give buyers and crawlers a second place to find you.",
+      "rank": 7005,
+      "hn": 27,
+      "github": 13885,
+      "tech_passed": 15,
+      "tech_total": 17
+    },
+    {
+      "domain": "clerk.com",
+      "score": 87,
+      "sub_scores": {
+        "discoverability": 60,
+        "buzz": 100,
+        "trust": 100,
+        "technical": 96
+      },
+      "gap_total": 2,
+      "top_gap": "We confirmed 2 listings across the 17 directories we looked at. 12 of them could not be confirmed automatically, so they may hold a listing we did not see. Listings give buyers and crawlers a second place to find you.",
+      "rank": 7075,
+      "hn": 35,
+      "github": 10820,
+      "tech_passed": 16,
       "tech_total": 17
     }
   ]

@@ -55,7 +55,7 @@ export function ExampleCards() {
       <div className="wrap">
         <h2 id="ex-h" style={{ textAlign: 'center', borderTop: 0 }}>What a check shows</h2>
         <p className="measure" style={{ margin: '8px auto 0', textAlign: 'center' }}>
-          Four well-known products, checked on {dateLabel(examples.taken_at)} with the same code you will run. Search and speed checks needed API keys that were not set, so these scores rest on the page, directory, rank and mention checks only.
+          {examples.items.length} well-known products, checked on {dateLabel(examples.taken_at)} with the same code you will run. Search and speed checks needed API keys that were not set, so these scores rest on the page, directory, rank and mention checks only.
         </p>
         <div className="cards-4">
           {examples.items.map((e) => (
