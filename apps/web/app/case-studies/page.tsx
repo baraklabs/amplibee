@@ -25,14 +25,9 @@ export default function CaseStudies() {
   }
   return (
     <>
-      <div className="wrap">
-        <div className="page-head">
-          <Breadcrumbs trail={[{ name: 'Case studies', path: '/case-studies' }]} />
-          <JsonLd data={[webPage({ type: 'CollectionPage', name: 'Amplibee case studies', description: DESCRIPTION, path: '/case-studies' }), list]} />
-          <h1>Case studies</h1>
-          <p className="lede">Real founders, real checks. Open a case study to see what they found and what they did about it.</p>
-        </div>
-      </div>
+      <Breadcrumbs trail={[{ name: 'Case studies', path: '/case-studies' }]} />
+      <JsonLd data={[webPage({ type: 'CollectionPage', name: 'Amplibee case studies', description: DESCRIPTION, path: '/case-studies' }), list]} />
+      <h1 className="sr-only">Case studies</h1>
       <CustomerResults />
       <div className="wrap">
         <h2 className="cs-list-h">All case studies</h2>
